@@ -1,22 +1,35 @@
+---
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro Basics</title>
+  </head>
+  <body>
+    <div class="relative">
+      <!-- Left SVG line -->
+      <img
+        src="/assets/line-1.svg"
+        class="absolute left-8 top-0"
+        alt="left line"
+      />
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+      <!-- Right SVG line -->
+      <img
+        src="/assets/line-2.svg"
+        class=""
+        alt="right line"
+      />
+
+      <!-- Your content -->
+      <div class="px-4 md:px-20">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>
