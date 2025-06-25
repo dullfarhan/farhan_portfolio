@@ -1,1 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  font-family: "Inter", sans-serif;
+}
+.dashed-line {
+  height: 100%;
+  border-left: 2px solid transparent;
+  border-image: repeating-linear-gradient(
+    to bottom,
+    #e8e8e8 0,
+    #e8e8e8 12px,
+    transparent 12px,
+    transparent 24px
+  );
+  border-image-slice: 1;
+  position: absolute;
+  top: 0;
+}
+.dashed-line-horizontal {
+  width: 100%;
+  border-top: 2px solid transparent;
+  border-image: repeating-linear-gradient(
+    to right,
+    #e8e8e8 0,
+    #e8e8e8 12px,
+    transparent 12px,
+    transparent 24px
+  );
+  border-image-slice: 1;
+  position: absolute;
+  left: 0;
+}
+.left-line {
+  left: 6.8%;
+  transform: translateX(-50%);
+}
 
+.right-line {
+  right: 6.8%;
+  transform: translateX(50%);
+}
+
+.content {
+  @apply mx-auto relative z-[1] px-[2rem] py-[1.7rem] sm:px-[3rem] md:px-[4.5rem] lg:px-[5.5rem] xl:px-[6.5rem];
+}
