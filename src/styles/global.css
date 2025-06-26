@@ -50,3 +50,21 @@ body {
 .content {
   @apply mx-auto relative z-[1] px-[2rem] py-[1.7rem] sm:px-[3rem] md:px-[4.5rem] lg:px-[5.5rem] xl:px-[6.5rem];
 }
+.gradient-text-vertical {
+  background: linear-gradient(
+    180deg,
+    theme(colors.textPrimary) -21.25%,
+    theme(colors.textSecondary) 136.25%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bg-gradient-vertical {
+  background: linear-gradient(
+    180deg,
+    theme(colors.textPrimary) -21.25%,
+    theme(colors.textSecondary) 136.25%
+  );
+  color: white;
+}
