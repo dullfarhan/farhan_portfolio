@@ -1,0 +1,27 @@
+---
+import SocialLink from "../social/SocialLink.astro";
+
+const socialLinks = [
+  {
+    href: "https://www.upwork.com",
+    icon: "/assets/icons/up-work.svg",
+    label: "Upwork",
+  },
+  {
+    href: "https://github.com",
+    icon: "/assets/icons/github.svg",
+    label: "GitHub",
+  },
+  {
+    href: "https://linkedin.com",
+    icon: "/assets/icons/linkedin.svg",
+    label: "LinkedIn",
+  },
+];
+---
+
+<div class="flex space-x-9 items-center mr-8">
+  {socialLinks.map((link) => (
+    <SocialLink {...link} />
+  ))}
+</div>
