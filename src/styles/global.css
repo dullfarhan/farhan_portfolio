@@ -3,11 +3,29 @@
 @tailwind utilities;
 html,
 body {
-  height: 100%;
+  /* height: 100%; */
   margin: 0;
   padding: 0;
   background-color: #ffffff;
   font-family: "Inter", sans-serif;
+}
+h1 {
+  @apply text-[40px] leading-[1.15] text-center md:text-[96px];
+}
+h2 {
+  @apply font-semibold text-[24px] leading-[100%] tracking-[0] text-center align-bottom sm:text-[48px];
+}
+h3 {
+  @apply font-semibold text-[20px] leading-[100%] tracking-normal align-bottom sm:text-[32px];
+}
+h4 {
+  @apply text-center font-normal text-[14px] leading-[100%] tracking-normal align-bottom sm:text-[20px];
+}
+/* h3{
+  @apply font-semibold text-[24px] leading-[48px] tracking-[0] text-center align-bottom sm:text-[48px]
+} */
+p {
+  @apply font-normal text-[16px] leading-[100%] tracking-normal align-bottom;
 }
 .dashed-line {
   height: 100%;
@@ -38,17 +56,15 @@ body {
   left: 0;
 }
 .left-line {
-  left: 6.8%;
-  transform: translateX(-50%);
+  @apply absolute left-[6.8%] -translate-x-1/2 lg:left-[6.8%] md:left-[5%] sm:left-[4%];
 }
 
 .right-line {
-  right: 6.8%;
-  transform: translateX(50%);
+  @apply absolute right-[6.8%] translate-x-1/2 lg:right-[6.8%] md:right-[5%] sm:right-[4%];
 }
 
 .content {
-  @apply mx-auto relative z-[1] px-[2rem] py-[1.7rem] sm:px-[3rem] md:px-[4.5rem] lg:px-[5.5rem] xl:px-[6.5rem];
+  @apply mx-auto relative z-[1] px-[2rem] py-[2rem] sm:px-[3rem] md:px-[4.5rem] lg:px-[6rem] xl:px-[6.5rem];
 }
 .gradient-text-vertical {
   background: linear-gradient(
@@ -67,4 +83,10 @@ body {
     theme(colors.textSecondary) 136.25%
   );
   color: white;
+}
+.card {
+  @apply w-full h-auto
+  gap-[20px] rounded-[20px] p-[12px] bg-surface flex flex-col 
+  hover:shadow-[2px_1px_15px_rgba(0,0,0,0.25)] transition-shadow duration-300
+  sm:max-w-[370px] sm:max-h-[478.17px] max-w-[320px] max-h-[405.06px];
 }

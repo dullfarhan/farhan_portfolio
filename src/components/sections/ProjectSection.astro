@@ -1,0 +1,64 @@
+---
+// components/sections/SelectedProjects.astro
+import ProjectCard from "../common/ProjectCard.astro";
+import Divider from "../common/Divider.astro";
+const projects = [
+  {
+    title: "FullFrame",
+    description:
+      "Fullframe is a secure AI tool for fast script and book summaries with character insights.",
+    image: "/assets/images/FullFrame.png",
+    tags: ["Full-stack", "AI-integrated", "Cloud-based"],
+  },
+  {
+    title: "DevelMo",
+    description:
+      "A global multi-tenant safety system connecting schools, transport, and parents to ensure child protection.",
+    image: "/assets/images/DevelMo.png",
+    tags: ["AI-driven", "AI-integrated", "Cloud-based"],
+  },
+  {
+    title: "Walqalum",
+    description:
+      "A global multi-tenant safety system connecting schools, transport, and parents to ensure child protection.",
+    image: "/assets/images/Walqalum.png",
+    tags: ["Full-stack", "Scalable", "DevOps-enabled"],
+  },
+  {
+    title: "AI ChreadeS",
+    description:
+      "AI Chreades is a web platform that uses Azure’s AI, including DALL·E, to create images from text prompts.",
+    image: "/assets/images/AI-Chreades.png",
+    tags: ["Full-stack", "AI-integrated", "Cloud-based"],
+  },
+  {
+    title: "FullFrame",
+    description:
+      "Fullframe is a secure AI tool for fast script and book summaries with character insights.",
+    image: "/assets/images/FullFrame.png",
+    tags: ["Full-stack", "AI-integrated", "Cloud-based"],
+  },
+];
+---
+
+<section class="px-2 my-5 sm:my-14 sm:px-8">
+  <h2 class="text-center relative mb-1 mt-12 sm:mt-20 sm:mb-3 ">
+    <span class="inline-block">
+      Selected<img
+        src="/assets/icons/drawingLines.svg"
+        alt="underline"
+        class="-translate-x-2 sm:-translate-x-5 sm:translate-y-[0.2rem] w-[100px] h-[15px] sm:w-[207px]"
+      />
+    </span>
+    <span>Projects</span>
+  </h2>
+
+  <h4 class="text-center mb-5 sm:mb-10 px-3">
+    Every dev has their origin stories here are mine.
+  </h4>
+
+  <div class="flex flex-wrap justify-center gap-4 sm:gap-8">
+    {projects.map((project) => <ProjectCard {...project} />)}
+  </div>
+</section>
+<Divider />
