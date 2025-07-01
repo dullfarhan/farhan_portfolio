@@ -46,25 +46,25 @@ const projects = [
 ];
 ---
 
-<section class="my-5 sm:my-14">
-  <h2 class="text-center relative mb-1 mt-12 sm:mt-20 sm:mb-3">
-    <span class="inline-block">
-      Selected<img
-        src="/assets/icons/drawingLines.svg"
-        alt="underline"
-        class="-translate-x-2 sm:-translate-x-5 sm:translate-y-[0.2rem] w-[100px] h-[15px] sm:w-[207px]"
-      />
-    </span>
-    <span>Projects</span>
-  </h2>
+<section class="flex flex-col gap-[20px] sm:gap-[32px]">
+  <div class="flex flex-col justify-center gap-[12px] sm:gap-[32px]">
+    <h2 class=" relative">
+      <span class="inline-block">
+        Selected<img
+          src="/assets/icons/drawingLines.svg"
+          alt="underline"
+          class="-translate-x-2 sm:-translate-x-5 sm:translate-y-[0.2rem] w-[100px] h-[15px] sm:w-[207px]"
+        />
+      </span>
+      <span>Projects</span>
+    </h2>
 
-  <h5 class="text-center mb-5 sm:mb-10 px-3">
-    Every dev has their origin stories here are mine.
-  </h5>
+    <h5 class=" px-3">
+      Every dev has their origin stories here are mine.
+    </h5>
+  </div>
 
-  <div
-    class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px] px-3 sm:px-0"
-  >
+  <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px]">
     {projects.map((project) => <ProjectCard {...project} />)}
   </div>
 </section>

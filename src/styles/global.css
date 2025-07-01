@@ -11,7 +11,7 @@ body {
   color: #0c131c;
 }
 h1 {
-  @apply text-[40px] leading-[1.15] text-center md:text-[96px];
+  @apply text-[40px]  text-center md:text-[96px];
 }
 h2 {
   @apply font-semibold text-[24px] leading-[100%] tracking-[0] text-center align-bottom sm:text-[48px];
@@ -22,8 +22,8 @@ h3 {
 h5 {
   @apply text-center font-normal text-[14px] leading-[100%] tracking-normal align-bottom sm:text-[20px];
 }
-h4{
-  @apply font-semibold text-[16px] leading-[48px] tracking-[0] align-bottom sm:text-[24px]
+h4 {
+  @apply font-semibold text-[16px] leading-[48px] tracking-[0] align-bottom sm:text-[24px];
 }
 p {
   @apply font-normal text-[14px] leading-[100%] tracking-normal align-bottom sm:text-[16px];
@@ -43,6 +43,7 @@ p {
   top: 0;
 }
 .dashed-line-horizontal {
+  height: 1px; /* ✅ gives it a visible height */
   width: 100%;
   border-top: 2px solid transparent;
   border-image: repeating-linear-gradient(
@@ -57,11 +58,11 @@ p {
   left: 0;
 }
 .left-line {
-  @apply absolute left-[6.8%] -translate-x-1/2 lg:left-[6.8%] md:left-[5%] sm:left-[4%];
+  @apply absolute left-[5.5%] -translate-x-1/2 lg:left-[6.8%] md:left-[5%] sm:left-[4%];
 }
 
 .right-line {
-  @apply absolute right-[6.8%] translate-x-1/2 lg:right-[6.8%] md:right-[5%] sm:right-[4%];
+  @apply absolute right-[5.5%] translate-x-1/2 lg:right-[6.8%] md:right-[5%] sm:right-[4%];
 }
 
 .content {
@@ -86,8 +87,7 @@ p {
   color: white;
 }
 .card {
-  @apply w-full h-auto
-  gap-[20px] rounded-[20px] p-[12px] sm:p-[10px] bg-surface flex flex-col 
+  @apply gap-[20px] rounded-[20px] p-[12px] sm:p-[10px] bg-surface flex flex-col 
   hover:shadow-[2px_1px_15px_rgba(0,0,0,0.25)] transition-shadow duration-300
-  sm:max-w-[370px] sm:max-h-[478.17px] max-w-[320px] max-h-[405.06px];
+  max-h-[405.06px] sm:max-w-[370px] max-w-[320px] sm:max-h-[478.17px];
 }

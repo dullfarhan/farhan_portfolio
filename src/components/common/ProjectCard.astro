@@ -27,16 +27,13 @@ const { title, description, image1, image2, tags } = Astro.props;
       class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out duration-400 group-hover:opacity-100 rounded-[18px] sm:rounded-[20px]"
     />
   </div>
-  <div class="flex flex-col px-0 sm:px-2 justify-center">
-    <div class="flex flex-col gap-3 sm:gap-6">
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
-
-    <div class="flex gap-[10px] sm:gap-[8px] mt-4 sm:mb-2">
+  <div class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    <div class="flex gap-[10px]">
       {
         tags.map((tag) => (
-          <span class="bg-[#ffffff] text-[10px] sm:text-[14px] font-normal px-[12px] py-[10px] rounded-[99px] leading-[100%]">
+          <span class="bg-[#ffffff] text-[12px] sm:text-[14px] font-normal px-[12px] py-[8px] rounded-[99px] leading-[100%]">
             {tag}
           </span>
         ))
