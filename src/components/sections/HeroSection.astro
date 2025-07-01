@@ -1,92 +1,16 @@
 ---
+import HeroTitle from "../common/HeroTitle.astro";
+import HeroIcons from "../common/HeroIcons.astro";
+import HeroCTA from "../common/HeroCTA.astro";
 import Divider from "../common/Divider.astro";
 ---
 
-<section class="px-6 my-10">
-  <div
-    class="flex justify-center items-center flex-col text-textPrimary space-y-6"
-  >
-    <!-- Text Section -->
-    <div class="flex justify-center items-center flex-col">
-      <h6
-        class="bg-surface text-center w-fit p-[0.4rem] px-[0.7rem] my-3 rounded-3xl font-medium
-         text-[0.73rem] sm:text-[0.86rem] sm:font-light md:text-[0.96rem] leading-snug"
-      >
-        <span class="gradient-text-vertical block text-wrap">
-          Full-Stack Dev, DevOps & Cloud, AI & ML, Team Leadership
-        </span>
-      </h6>
-      <h1
-        class="text-[5.2rem] leading-[1.15] font-semibold mt-1 text-center text-wrap gradient-text-vertical"
-      >
-        Code that Powers. Systems that Last.
-      </h1>
-      <p
-        class="text-textPrimary mt-4 max-w-lg mx-auto text-center leading-tight text-[0.95rem]"
-      >
-        Crafting seamless web applications with robust backends, intuitive
-        frontends and scalable cloud solutions.
-      </p>
-    </div>
-
-    <!-- Icons Row -->
-    <div>
-      <ul class="flex justify-center items-center space-x-4 list-none my-2">
-        <li>
-          <img
-            src="/assets/icons/hero-icon-1.svg"
-            alt="Icon 1"
-            class="w-8 h-10"
-          />
-        </li>
-        <li>
-          <img
-            src="/assets/icons/hero-icon-2.svg"
-            alt="Icon 2"
-            class="w-13 h-10"
-          />
-        </li>
-        <li>
-          <img
-            src="/assets/icons/hero-icon-3.svg"
-            alt="Icon 3"
-            class="w-28 h-10"
-          />
-        </li>
-        <li>
-          <img
-            src="/assets/icons/hero-icon-4.svg"
-            alt="Icon 4"
-            class="w-24 h-12"
-          />
-        </li>
-      </ul>
-    </div>
-
-    <!-- CTA and User Info -->
-    <div
-      class="flex flex-col-reverse sm:flex-row items-center justify-center gap-6"
-    >
-      <button
-        class="flex items-center gap-2 py-[0.9rem] px-4 rounded-[20px] bg-gradient-vertical"
-      >
-        <img
-          src="/assets/icons/hero-envelope-icon.svg"
-          alt="Envelope"
-          class="w-6 h-5"
-        />
-        <p class="mr-3">Let's Talk Strategy</p>
-      </button>
-
-      <span class="flex items-center gap-2 text-textPrimary leading-relaxed">
-        <img
-          src="/assets/icons/hero-imgs-icon.svg"
-          alt="hero Imgs"
-          class="w-18 h-12"
-        />
-        <p class="text-xl font-medium">12+Active Users</p>
-      </span>
-    </div>
+<section class="flex justify-center py-[32px] ">
+  <div class="flex justify-center items-center flex-col gap-[24px] sm:gap-[48px] w-[325px] sm:w-[1006px]">
+    <HeroTitle />
+    <HeroIcons />
+    <HeroCTA />
   </div>
 </section>
+
 <Divider />
