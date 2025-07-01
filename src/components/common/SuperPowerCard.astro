@@ -1,0 +1,13 @@
+---
+const { title, description, icon, bgColor } = Astro.props;
+---
+
+<div
+  class={`p-[20px] sm:p-[24px] rounded-[20px] ${bgColor} w-[320px] sm:w-[568px]  flex flex-col gap-[16px] sm:gap-[24px]`}
+>
+  <img src={icon} alt={`${title} icon`} class="size-[32px] sm:size-[60px]" />
+  <div class="w-[290px] sm:w-[520px] flex flex-col gap-[12px]">
+    <h4 class="leading-[100%]">{title}</h4>
+    <p class="font-light sm:font-normal">{description}</p>
+  </div>
+</div>

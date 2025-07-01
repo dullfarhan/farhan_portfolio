@@ -1,0 +1,53 @@
+---
+import Divider from "../common/Divider.astro";
+import SuperPowerCard from "../common/SuperPowerCard.astro";
+const superPowers = [
+  {
+    title: "Frontend Development",
+    icon: "/assets/icons/code-circle.svg",
+    description:
+      "Creating fast, responsive, and user-friendly interfaces for seamless digital experiences.",
+    bgColor: "bg-[#ECDFE6]", // pastel pink
+  },
+  {
+    title: "Backend Development",
+    icon: "/assets/icons/backend-icon.svg",
+    description:
+      "Building secure, scalable, and high-performance backend solutions for seamless digital experiences.",
+    bgColor: "bg-[#E9EBE8]", // light grey
+  },
+  {
+    title: "Database Systems",
+    icon: "/assets/icons/driver.svg",
+    description:
+      "Efficient, secure, and scalable database solutions for seamless data management.",
+    bgColor: "bg-[#FBEDE0]", // pastel yellow/orange
+  },
+  {
+    title: "DevOps & Cloud",
+    icon: "/assets/icons/cloud-add.svg",
+    description:
+      "Streamlining deployment, scalability, and security with cutting-edge DevOps and cloud solutions.",
+    bgColor: "bg-[#e7f0f2]", // light blue-grey
+  },
+];
+---
+
+<section class="my-5 sm:my-10">
+  <div class="flex justify-center flex-col my-4 sm:my-7">
+    <div class="flex justify-center items-center gap-[8px] sm:gap-[16px] mt-6 sm:mt-10">
+      <h2>My Super Powers</h2>
+      <img src="/assets/icons/Super-icon.svg" alt="Super Icon" class="w-[34.58px] h-[28.22px] sm:w-[68.91px] sm:h-[56px]" />
+    </div>
+    <p class=" text-center text-[14px] sm:text-[20px] mt-4  w-[320px] h-[34px] sm:w-[599px] sm:h-[48px] mx-auto">
+      Debugging like Sherlock with a stack trace and solving mysteries one
+      breakpoint at a time
+    </p>
+  </div>
+
+  <div class="flex flex-wrap justify-center gap-[24px]">
+    {superPowers.map((power) => <SuperPowerCard {...power} />)}
+  </div>
+
+</section>
+<Divider />

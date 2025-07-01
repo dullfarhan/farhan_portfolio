@@ -3,39 +3,44 @@
 export interface Props {
   title: string;
   description: string;
-  image: string;
+  image1: string;
+  image2: string;
   tags: string[];
 }
 
-const { title, description, image, tags } = Astro.props;
+const { title, description, image1, image2, tags } = Astro.props;
 ---
 
 <div class="card group relative">
-  <div class="relative w-full h-[220px] sm:h-[250px]">
+  <div
+    class="relative w-full max-w-[296px] h-[240.06px] sm:max-w-[351px] sm:h-[267.17px]"
+  >
     <!-- Default image -->
     <img
-      src={image}
+      src={image1}
       alt={title}
-      class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
+      class="absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out duration-400 group-hover:opacity-0 rounded-[18px] sm:rounded-[20px]"
     />
     <img
-      src="/assets/images/DevelMo.png"
+      src={image2}
       alt={title}
-      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out duration-400 group-hover:opacity-100 rounded-[18px] sm:rounded-[20px]"
     />
   </div>
-  <div class="ml-0 flex flex-col gap-3 sm:ml-3 ssm:gap-6">
-    <h3 class="text-textPrimary">{title}</h3>
-    <p class="text-textPrimary">{description}</p>
-  </div>
+  <div class="flex flex-col px-0 sm:px-2 justify-center">
+    <div class="flex flex-col gap-3 sm:gap-6">
+      <h3>{title}</h3>
+      <p>{description}</p>
+    </div>
 
-  <div class="flex justify-center gap-1 sm:gap-2 my-2">
-    {
-      tags.map((tag) => (
-        <span class="bg-[#ffffff] text-textPrimary text-[10px] sm:text-[14px] font-normal px-[12px] py-[10px] rounded-[99px] leading-[100%]">
-          {tag}
-        </span>
-      ))
-    }
+    <div class="flex gap-[10px] sm:gap-[8px] mt-4 sm:mb-2">
+      {
+        tags.map((tag) => (
+          <span class="bg-[#ffffff] text-[10px] sm:text-[14px] font-normal px-[12px] py-[10px] rounded-[99px] leading-[100%]">
+            {tag}
+          </span>
+        ))
+      }
+    </div>
   </div>
 </div>
