@@ -10,6 +10,7 @@ body {
   background-color: #ffffff;
   font-family: "Inter", sans-serif;
   color: #0c131c;
+  scrollbar-width: thin;
 }
 
 h1 {
@@ -17,7 +18,7 @@ h1 {
 }
 
 h2 {
-  @apply font-semibold text-[24px] leading-[100%] tracking-[0] text-center align-bottom sm:text-[48px];
+  @apply font-semibold text-[24px] leading-[100%] tracking-[0] align-bottom sm:text-[48px];
 }
 
 h3 {
@@ -25,27 +26,31 @@ h3 {
 }
 
 h5 {
-  @apply text-center font-normal text-[14px] leading-[100%] tracking-normal align-bottom sm:text-[20px];
+  @apply font-normal text-[14px] leading-[100%] tracking-normal align-bottom sm:text-[20px];
 }
 
 h4 {
   @apply font-semibold text-[16px] leading-[48px] tracking-[0] align-bottom sm:text-[24px];
 }
-
+h6 {
+  @apply font-semibold text-[14px] sm:text-[18px] leading-[100%];
+}
 p {
   @apply font-normal text-[14px] leading-[100%] tracking-normal align-bottom sm:text-[16px];
 }
 
 .dashed-left-right-border {
-  height: 100%;
+  /* height: 100%; */
   border-left: 2px solid transparent;
   border-right: 2px solid transparent;
 
-  border-image: repeating-linear-gradient(to bottom,
-      #e8e8e8 0,
-      #e8e8e8 12px,
-      transparent 12px,
-      transparent 24px);
+  border-image: repeating-linear-gradient(
+    to bottom,
+    #e8e8e8 0,
+    #e8e8e8 12px,
+    transparent 12px,
+    transparent 24px
+  );
   border-image-slice: 1;
   top: 0;
 }
@@ -53,46 +58,40 @@ p {
 .dashed-line-horizontal {
   height: 1px;
   border-top: 2px solid transparent;
-  border-image: repeating-linear-gradient(to right,
-      #e8e8e8 0,
-      #e8e8e8 12px,
-      transparent 12px,
-      transparent 24px);
+  border-image: repeating-linear-gradient(
+    to right,
+    #e8e8e8 0,
+    #e8e8e8 12px,
+    transparent 12px,
+    transparent 24px
+  );
   border-image-slice: 1;
 
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  width: 100vw;
-}
-
-.left-line {
-  @apply absolute left-[5.5%] -translate-x-1/2 lg:left-[6.8%] md:left-[5%] sm:left-[4%];
-}
-
-.right-line {
-  @apply absolute right-[5.5%] translate-x-1/2 lg:right-[6.8%] md:right-[5%] sm:right-[4%];
-}
-
-.content {
-  @apply mx-auto relative z-[1] px-[2rem] py-[2rem] sm:px-[3rem] md:px-[4.5rem] lg:px-[6rem] xl:px-[6.5rem];
+  margin-left: -50svw;
+  margin-right: -50svw;
+  width: 99.5svw;
 }
 
 .gradient-text-vertical {
-  background: linear-gradient(180deg,
-      theme(colors.textPrimary) -21.25%,
-      theme(colors.textSecondary) 136.25%);
+  background: linear-gradient(
+    180deg,
+    theme(colors.textPrimary) -21.25%,
+    theme(colors.textSecondary) 136.25%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .bg-gradient-vertical {
-  background: linear-gradient(180deg,
-      theme(colors.textPrimary) -21.25%,
-      theme(colors.textSecondary) 136.25%);
+  background: linear-gradient(
+    180deg,
+    theme(colors.textPrimary) -21.25%,
+    theme(colors.textSecondary) 136.25%
+  );
   color: white;
 }
 .card {

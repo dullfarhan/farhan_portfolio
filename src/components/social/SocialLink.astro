@@ -5,12 +5,8 @@ const { href, icon, label } = Astro.props;
 <a
   href={href}
   target="_blank"
-  class="flex items-center space-x-2"
+  class="flex items-center space-x-2 "
 >
-  <img
-    src={icon}
-    alt={label}
-    class=""
-  />
+  <img src={icon} alt={label} class="" />
   <span class="hidden md:block text-[0.9rem]">{label}</span>
 </a>

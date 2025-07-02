@@ -1,0 +1,35 @@
+---
+import StatItem from "./StateItem.astro";
+import ConnectButton from "./ConnectButton.astro";
+---
+
+<div class="flex flex-col gap-[20px] justify-between max-w-[280px] sm:max-w-[588px]">
+  <div class="flex flex-col flex-wrap gap-[16px] sm:gap-[32px]">
+    <div class="flex flex-col gap-[16px]">
+      <div class="flex flex-col gap-[12px]">
+        <h2>Muhammad Farhan</h2>
+        <h6>
+          Senior Software Engineer | Full-Stack Developer | DevOps Enthusiast
+        </h6>
+      </div>
+      <p>
+        I’m a Full-Stack Software Engineer with 5+ years of experience
+        building scalable web applications using NestJS, Django, React, and
+        Next.js. I focus on clean architecture, performance, and seamless
+        user experiences across the stack.
+      </p>
+      <p>
+        I’ve led development teams, built CI/CD pipelines, and deployed
+        enterprise solutions on Azure and AWS. Passionate about innovation,
+        I turn complex challenges into practical, impactful software.
+      </p>
+    </div>
+
+    <div class="flex gap-[20px] sm:gap-[32px]">
+      <StatItem number="10+" label="Complete Work" />
+      <StatItem number="5+" label="Years of Experience" />
+    </div>
+  </div>
+
+  <ConnectButton />
+</div>

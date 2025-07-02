@@ -3,12 +3,14 @@ import Layout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
 import ProjectSection from "../components/sections/ProjectSection.astro"
 import SuperPower from "../components/sections/SuperPower.astro"
+import AboutSection from '../components/sections/AboutSection.astro'
 ---
 
 <Layout>
-  <main>
+  <main class="flex flex-col gap-[20px] sm:gap-[40px] pt-[20px] sm:pt-[40px]">
     <HeroSection />
     <ProjectSection/>
     <SuperPower/>
+    <AboutSection/>
   </main>
 </Layout>
