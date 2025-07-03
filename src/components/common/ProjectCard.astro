@@ -29,7 +29,7 @@ const { title, description, image1, image2, tags } = Astro.props;
   </div>
   <div class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]">
     <h3>{title}</h3>
-    <p>{description}</p>
+    <p class="leading-[1.2]">{description}</p>
     <div class="flex gap-[10px]">
       {
         tags.map((tag) => (

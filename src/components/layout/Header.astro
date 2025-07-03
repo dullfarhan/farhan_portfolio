@@ -20,8 +20,17 @@ const socialLinks = [
 ];
 ---
 
-<div class="flex gap-[30px] sm:gap-[36px] items-center ">
-  {socialLinks.map((link) => (
-    <SocialLink {...link} />
-  ))}
+<div class="flex gap-[30px] sm:gap-[36px] items-center">
+  {
+    socialLinks.map((link) => (
+      <SocialLink
+        href={link.href}
+        icon={link.icon}
+        label={link.label}
+        linkClass="flex items-center space-x-2"
+        iconClass="w-6 h-6"
+        labelClass="hidden md:block text-[0.9rem]"
+      />
+    ))
+  }
 </div>

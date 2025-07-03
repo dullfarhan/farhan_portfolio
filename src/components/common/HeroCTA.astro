@@ -1,26 +1,26 @@
+---
+import ConnectButton from "./ConnectButton.astro";
+---
+
 <div
   class="flex flex-col-reverse sm:flex-row items-center justify-center gap-[24px] sm:gap-[32px]"
 >
-  <button
+  <ConnectButton
+    text="Let's Talk Strategy"
+    icon="/assets/icons/hero-envelope-icon.svg"
     class="flex items-center gap-[10px] rounded-[12px] bg-gradient-vertical p-[10px] sm:px-[24px] sm:py-[21px] sm:rounded-[22px] shadow-[inset_6px_6px_6px_0px_#00000066]"
-  >
-    <img
-      src="/assets/icons/hero-envelope-icon.svg"
-      alt="Envelope"
-      class="h-[12.59px] sm:h-[21.79px] w-[17.48px] sm:w-[26px] "
-    />
-    <p class="text-[12px] sm:text-[13px] md:text-[20px] font-medium">
-      Let's Talk Strategy
-    </p>
-  </button>
-
-  <span class="flex items-center gap-[7px] sm:gap-[12px] ">
+    iconClass="h-[12.59px] sm:h-[21.79px] w-[17.48px] sm:w-[26px]"
+    textClass="text-[12px] sm:text-[13px] md:text-[20px] font-medium"
+  />
+  <span class="flex items-center gap-[7px] sm:gap-[12px]">
     <img
       src="/assets/icons/hero-imgs-icon.svg"
       alt="hero Imgs"
       class="w-[43.06px] h-[21.53px] sm:w-[104.8px] sm:h-[52.4px]"
     />
-    <p class="text-[12px] sm:text-[16px] md:text-[22px] lg:text-[24px] font-medium">
+    <p
+      class="text-[12px] sm:text-[16px] md:text-[22px] lg:text-[24px] font-medium"
+    >
       12+ Active Users
     </p>
   </span>

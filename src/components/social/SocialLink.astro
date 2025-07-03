@@ -1,12 +1,21 @@
 ---
-const { href, icon, label } = Astro.props;
+const {
+  href="",
+  icon="",
+  label = "",
+  linkClass = "",
+  iconClass = "",
+  labelClass = "",
+} = Astro.props;
+
+const showLabel = label.trim() !== "";
 ---
 
 <a
   href={href}
   target="_blank"
-  class="flex items-center space-x-2 "
+  class={` ${linkClass}`}
 >
-  <img src={icon} alt={label} class="" />
-  <span class="hidden md:block text-[0.9rem]">{label}</span>
+  <img src={icon} alt={label || "social icon"} class={iconClass} />
+  {showLabel && <span class={labelClass}>{label}</span>}
 </a>
