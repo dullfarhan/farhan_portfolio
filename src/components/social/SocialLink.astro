@@ -1,7 +1,8 @@
 ---
+import { Image } from "astro:assets";
 const {
-  href="",
-  icon="",
+  href = "",
+  icon = "",
   label = "",
   linkClass = "",
   iconClass = "",
@@ -11,11 +12,13 @@ const {
 const showLabel = label.trim() !== "";
 ---
 
-<a
-  href={href}
-  target="_blank"
-  class={` ${linkClass}`}
->
-  <img src={icon} alt={label || "social icon"} class={iconClass} />
+<a href={href} target="_blank" class={` ${linkClass}`}>
+  <Image
+    src={icon}
+    alt={label || "social icon"}
+    class={iconClass}
+    height={5}
+    width={5}
+  />
   {showLabel && <span class={labelClass}>{label}</span>}
 </a>
