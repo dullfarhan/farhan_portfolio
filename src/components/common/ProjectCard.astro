@@ -2,6 +2,7 @@
 // ProjectCard.astro
 import { Image } from "astro:assets";
 export interface Props {
+  index: number;
   title: string;
   description: string;
   image1: ImageMetadata;
@@ -9,7 +10,8 @@ export interface Props {
   tags: string[];
 }
 
-const { title, description, image1, image2, tags } = Astro.props;
+const { title, description, image1, image2, tags, index } = Astro.props;
+const isFirstIndex = index === 0;
 ---
 
 <div class="card group relative">
@@ -20,6 +22,8 @@ const { title, description, image1, image2, tags } = Astro.props;
     <Image
       src={image1}
       alt={title}
+      priority={isFirstIndex}
+      loading={isFirstIndex ? "eager" : "lazy"}
       class="absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out duration-500 group-hover:opacity-0 rounded-[18px] sm:rounded-[20px]"
     />
     <Image

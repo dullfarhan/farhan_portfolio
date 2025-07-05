@@ -79,7 +79,11 @@ const projects = [
   </div>
 
   <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px]">
-    {projects.map((project) => <ProjectCard {...project} />)}
+    {
+      projects.map((project, index) => (
+        <ProjectCard index={index} {...project} />
+      ))
+    }
   </div>
 </section>
 <Divider />

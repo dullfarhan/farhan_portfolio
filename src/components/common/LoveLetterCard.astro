@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 const { title, message, name, role, image } = Astro.props;
 ---
 
@@ -13,7 +15,7 @@ const { title, message, name, role, image } = Astro.props;
   </div>
   <div class="flex gap-[10px]">
     <div class="w-[50px] h-[50px] border-[3px] border-[#FFFFFF] rounded-[12px] overflow-hidden">
-      <img
+      <Image
         src={image}
         alt={name}
         class="object-cover object-top w-full h-full"

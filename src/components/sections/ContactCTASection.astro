@@ -43,8 +43,8 @@ const socials = [
           <p class="leading-[145%] text-center mx-auto">
             Great software starts with a conversation. Let’s team up to build
             intuitive,<br />
-             impactful digital experiences that drive real results and stand the
-            test of time.
+            impactful digital experiences that drive real results and stand the test
+            of time.
           </p>
         </div>
         <ConnectButton
@@ -65,10 +65,7 @@ const socials = [
         <div class="flex gap-[32px] sm:gap-[24px] md:gap-[32px]">
           {
             socials.map((social) => (
-              <SocialLink
-                href={social.href}
-                icon={social.icon}
-              />
+              <SocialLink href={social.href} icon={social.icon} />
             ))
           }
         </div>
@@ -77,18 +74,17 @@ const socials = [
   </div>
 </section>
 <script is:inline>
-function formatTime(date) {
-    return date.toLocaleTimeString([], {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true, //
+  const el = document.getElementById("live-time");
+
+  function updateClock() {
+    const formatter = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Karachi", // GMT+5
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
     });
-}
-
-const el = document.getElementById("live-time");
-
-function updateClock() {
-    el.textContent = `Local Time: ${formatTime(new Date())}`;
+    const gmt5Time = formatter.format(new Date());
+    el.textContent = `Local Time: ${gmt5Time}`;
   }
 
   updateClock();

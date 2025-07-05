@@ -1,30 +1,40 @@
 ---
 import Divider from "../common/Divider.astro";
 import LoverLetterCard from "../common/LoveLetterCard.astro";
+import shahzeb from "@/assets/images/love-letters/shahzeb.jpeg";
+import talha from "@/assets/images/love-letters/talha.jpeg";
+import zach from "@/assets/images/love-letters/zach.jpeg";
+
 const testimonials = [
   {
     title: "His attention to detail really shows in the code.",
     message:
       "Farhan handled both front-end and back-end with care and precision. Even under pressure, he delivered clean, thoughtful solutions. He’s someone you can rely on to quietly raise the bar without making a fuss.",
-    name: "Sarah Khan",
-    role: "Product Manager at NovaTech",
-    image: "/assets/images/NovaTech.png",
+    name: "Zachary Waugaman",
+    role: "Co-Founder of Fullframe",
+    love_letter_link: "",
+    lover_link: "",
+    image: zach,
   },
   {
     title: "You can tell he thinks before he codes",
     message:
-      "Farhan brought a thoughtful, structured approach to every task. His attention to both design and functionality made a noticeable difference—it’s rare to find someone who elevates the product quietly and consistently.",
-    name: "Emily Carter",
-    role: "Sr Product Designer at Flowstack",
-    image: "/assets/images/FlowStack.png",
+      "Farhan worked with us as a Full Stack Developer for approximately two years. He is a highly skilled and dedicated professional who consistently delivers quality results. His ability to set and achieve goals, combined with his strong problem-solving skills, makes him an invaluable asset to any team. Farhan is not only talented but also a true team player—he remains committed to the project until completion, ensuring collaboration and success. Any team would be fortunate to have him",
+    name: "Muhammad Talha Khan",
+    role: "Sr Manager at Walqalum",
+    love_letter_link: "https://www.linkedin.com/in/dullfarhan/",
+    lover_link: "Muhammad Talha Khan",
+    image: talha,
   },
   {
     title: "He made the complex feel simple",
     message:
-      "Farhan jumped into a tricky codebase, figured things out fast, and actually made the product better than we’d imagined.",
-    name: "Tomás Herrera",
-    role: "Product Lead, UK",
-    image: "/assets/images/ProductLead.png",
+      "Working with Farhan has been an exceptional experience. He not only integrated all the changes in our codebase flawlessly, but also went above and beyond in assisting with additional tasks and ensuring that all documentation was thorough and well-organized. His attention to detail, responsiveness, and commitment to the project were outstanding. Farhan’s work ethic and proactive approach made a significant impact on the success of our development efforts. Highly recommended, and we look forward to working with him again!",
+    name: "Shahzeb Ali",
+    role: "CEO at Develmo",
+    love_letter_link: "https://www.upwork.com/ab/g/pub/wom/prx/eyJwZXJzb25VaWQiOiIxNzI4NDUzMzMyNTcyMzQ0MzIwIiwiY29udHJhY3RSaWQiOiI0MDE1MjE0NCIsImJhbm5lclR5cGUiOiJjb250cmFjdCIsImJhbm5lclZhcmlhbnQiOiJkZWZhdWx0Iiwid29tIjoiZmx2MiIsInJlZGlyZWN0IjoiZmxfcHJvZmlsZV9wcm9tbyJ9",
+    lover_link: "https://www.linkedin.com/in/shahzebdata/",
+    image: shahzeb,
   },
 ];
 ---
@@ -40,20 +50,24 @@ const testimonials = [
           class="w-[20px] h-[32px] sm:w-[30px] sm:h-[48px]"
         />
       </div>
-      <p class="text-center text-[14px] sm:text-[20px] align-bottom mx-auto w-[334px] md:w-auto">
+      <p
+        class="text-center text-[14px] sm:text-[20px] align-bottom mx-auto w-[334px] md:w-auto"
+      >
         Because somewhere between the bugs and builds, we made magic happen.
       </p>
     </div>
     <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[23.8px]">
-        {testimonials.map((t) => (
-            <LoverLetterCard
-              title={t.title}
-              message={t.message}
-              name={t.name}
-              role={t.role}
-              image={t.image}
-            />
-          ))}
+      {
+        testimonials.map((t) => (
+          <LoverLetterCard
+            title={t.title}
+            message={t.message}
+            name={t.name}
+            role={t.role}
+            image={t.image}
+          />
+        ))
+      }
     </div>
   </div>
 </section>

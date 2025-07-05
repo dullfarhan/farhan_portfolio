@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
+import { Font } from "astro:assets";
 ---
 
 <!doctype html>
@@ -12,16 +13,18 @@ import Footer from "../components/layout/Footer.astro";
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
     <title>Farhan Portfolio</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <Font cssVariable="--font-inter" preload />
+    <style>
+      body {
+        font-family: var(--font-inter);
+      }
+    </style>
   </head>
   <body
     class="relative py-[24px] sm:py-[32px] mx-[14.3px] sm:mx-[30px] md:mx-[50px] lg:mx-[100px] dashed-left-right-border"
   >
     <Navbar />
     <slot />
-    <Footer/>
+    <Footer />
   </body>
 </html>
