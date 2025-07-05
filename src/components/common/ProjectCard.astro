@@ -14,6 +14,8 @@ const { title, description, image1, image2, tags, index } = Astro.props;
 const isFirstIndex = index === 0;
 ---
 
+{isFirstIndex && <link rel="preload" as="image" href={image1.src} />}
+
 <div class="card group relative">
   <div
     class="relative w-full max-w-[296px] h-[240.06px] sm:max-w-[351px] sm:h-[267.17px]"
@@ -24,14 +26,25 @@ const isFirstIndex = index === 0;
       alt={title}
       priority={isFirstIndex}
       loading={isFirstIndex ? "eager" : "lazy"}
-      class="absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out duration-500 group-hover:opacity-0 rounded-[18px] sm:rounded-[20px]"
+      decoding="async"
+      class={`absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] ${
+        isFirstIndex
+          ? ""
+          : "transition-opacity ease-in-out duration-500 group-hover:opacity-0"
+      }`}
     />
     <Image
       src={image2}
       alt={title}
-      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out duration-500 group-hover:opacity-100 rounded-[18px] sm:rounded-[20px]"
+      decoding="async"
+      class={`absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] opacity-0 ${
+        isFirstIndex
+          ? ""
+          : "transition-opacity ease-in-out duration-500 group-hover:opacity-100"
+      }`}
     />
   </div>
+
   <div
     class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]"
   >
