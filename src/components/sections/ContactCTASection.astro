@@ -1,0 +1,96 @@
+---
+import ConnectButton from "../common/ConnectButton.astro";
+import SocialLink from "../social/SocialLink.astro";
+const socials = [
+  {
+    href: "https://www.upwork.com/freelancers/farhaninfo?mp_source=share",
+    icon: "/assets/icons/color-up.svg",
+    alt: "Upwork",
+  },
+  {
+    href: "https://github.com/dullfarhan",
+    icon: "/assets/icons/color-git.svg",
+    alt: "GitHub",
+  },
+  {
+    href: "http://www.linkedin.com/in/dullfarhan",
+    icon: "/assets/icons/color-in.svg",
+    alt: "LinkedIn",
+  },
+  {
+    href: "https://wa.me/+923174310868",
+    icon: "/assets/icons/color-whatsapp.svg",
+    alt: "WhatsApp",
+  },
+];
+---
+
+<section
+  class="flex justify-center px-[17.5px] sm:px-[39px] mb-[20px] sm:mb-[40px]"
+>
+  <div
+    class="rounded-[20px] p-[24px] sm:p-[56px] flex flex-col gap-[28px] bg-textPrimary w-auto sm:w-[1160px]"
+  >
+    <div class="flex flex-col gap-[56px] pb-[32px] sm:pb-0">
+      <div class="flex flex-col justify-center items-center gap-[32px]">
+        <div class="text-[#FFFFFF] flex flex-col gap-[16px]">
+          <div
+            class="flex flex-col justify-center items-center gap-[16px] sm:gap-[12px] py-0 sm:py-[20px]"
+          >
+            <p class="font-medium">Get In Touch</p>
+            <h2 class="text-center">Let’s Work Together</h2>
+          </div>
+          <p class="leading-[145%] text-center mx-auto">
+            Great software starts with a conversation. Let’s team up to build
+            intuitive,<br />
+             impactful digital experiences that drive real results and stand the
+            test of time.
+          </p>
+        </div>
+        <ConnectButton
+          email="dullfarhan@gmail.com"
+          text="Let’s Connect"
+          icon="/assets/icons/mail-icon.svg"
+          class="p-[12px] sm:px-[16px] sm:py-[13px] rounded-[12px] bg-tertiaryBg w-[146px] sm:w-[171px] flex justify-center items-center gap-[10px]"
+          iconClass="size-[20px] sm:size-[24px]"
+          textClass="text-[14px] sm:text-[16px] font-medium"
+        />
+      </div>
+      <div
+        class="flex flex-col-reverse sm:flex-row justify-between items-center gap-[32px]"
+      >
+        <p id="live-time" class="leading-[22px] text-[#FFFFFF]">
+          Local Time: Loading...
+        </p>
+        <div class="flex gap-[32px] sm:gap-[24px] md:gap-[32px]">
+          {
+            socials.map((social) => (
+              <SocialLink
+                href={social.href}
+                icon={social.icon}
+              />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script is:inline>
+function formatTime(date) {
+    return date.toLocaleTimeString([], {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true, //
+    });
+}
+
+const el = document.getElementById("live-time");
+
+function updateClock() {
+    el.textContent = `Local Time: ${formatTime(new Date())}`;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>

@@ -1,10 +1,11 @@
 ---
 // ProjectCard.astro
+import { Image } from "astro:assets";
 export interface Props {
   title: string;
   description: string;
-  image1: string;
-  image2: string;
+  image1: ImageMetadata;
+  image2: ImageMetadata;
   tags: string[];
 }
 
@@ -16,20 +17,22 @@ const { title, description, image1, image2, tags } = Astro.props;
     class="relative w-full max-w-[296px] h-[240.06px] sm:max-w-[351px] sm:h-[267.17px]"
   >
     <!-- Default image -->
-    <img
+    <Image
       src={image1}
       alt={title}
-      class="absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out duration-400 group-hover:opacity-0 rounded-[18px] sm:rounded-[20px]"
+      class="absolute inset-0 w-full h-full object-cover transition-opacity ease-in-out duration-500 group-hover:opacity-0 rounded-[18px] sm:rounded-[20px]"
     />
-    <img
+    <Image
       src={image2}
       alt={title}
-      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out duration-400 group-hover:opacity-100 rounded-[18px] sm:rounded-[20px]"
+      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity ease-in-out duration-500 group-hover:opacity-100 rounded-[18px] sm:rounded-[20px]"
     />
   </div>
-  <div class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]">
+  <div
+    class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]"
+  >
     <h3>{title}</h3>
-    <p>{description}</p>
+    <p class="leading-[1.2]">{description}</p>
     <div class="flex gap-[10px]">
       {
         tags.map((tag) => (

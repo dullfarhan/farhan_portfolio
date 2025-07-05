@@ -1,5 +1,15 @@
 ---
 // components/sections/SelectedProjects.astro
+import { Image } from "astro:assets";
+import FullFrame1 from "@/assets/images/FullFrame.png";
+import FullFrame2 from "@/assets/images/FullFrame-2.png";
+import DevelMo1 from "@/assets/images/DevelMo.png";
+import DevelMo2 from "@/assets/images/DevelMo-2.png";
+import Walqalum1 from "@/assets/images/Walqalum.png";
+import Walqalum2 from "@/assets/images/Walqalum-2.png";
+import AIChreades1 from "@/assets/images/AI-Chreades.png";
+import AIChreades2 from "@/assets/images/AI-Chreades-2.png";
+import DrawLines from "@/assets/icons/drawingLines.svg";
 import ProjectCard from "../common/ProjectCard.astro";
 import Divider from "../common/Divider.astro";
 const projects = [
@@ -7,51 +17,55 @@ const projects = [
     title: "FullFrame",
     description:
       "Fullframe is a secure AI tool for fast script and book summaries with character insights.",
-    image1: "/assets/images/FullFrame.png",
-    image2: "/assets/images/FullFrame-2.png",
+    image1: FullFrame1,
+    image2: FullFrame2,
     tags: ["Full-stack", "AI-integrated", "Cloud-based"],
   },
   {
     title: "DevelMo",
     description:
       "A global multi-tenant safety system connecting schools, transport, and parents to ensure child protection.",
-    image1: "/assets/images/DevelMo.png",
-    image2: "/assets/images/DevelMo-2.png",
+    image1: DevelMo1,
+    image2: DevelMo2,
     tags: ["AI-driven", "AI-integrated", "Cloud-based"],
   },
   {
     title: "Walqalum",
     description:
       "AI Chreades is a web platform that uses Azure’s AI, including DALL·E, to create images from text prompts.",
-    image1: "/assets/images/Walqalum.png",
-    image2: "/assets/images/Walqalum-2.png",
+    image1: Walqalum1,
+    image2: Walqalum2,
     tags: ["Full-stack", "Scalable", "DevOps-enabled"],
   },
   {
     title: "AI ChreadeS",
     description:
       "AI Chreades is a web platform that uses Azure’s AI, including DALL·E, to create images from text prompts.",
-    image1: "/assets/images/AI-Chreades.png",
-    image2: "/assets/images/AI-Chreades-2.png",
+    image1: AIChreades1,
+    image2: AIChreades2,
     tags: ["Full-stack", "AI-integrated", "Cloud-based"],
   },
   {
     title: "FullFrame",
     description:
       "Fullframe is a secure AI tool for fast script and book summaries with character insights.",
-    image1: "/assets/images/FullFrame.png",
-    image2: "/assets/images/FullFrame-2.png",
+    image1: FullFrame1,
+    image2: FullFrame2,
     tags: ["Full-stack", "AI-integrated", "Cloud-based"],
   },
 ];
 ---
 
-<section class="flex flex-col gap-[20px] sm:gap-[32px]">
-  <div class="flex flex-col justify-center gap-[12px] sm:gap-[32px]">
-    <h2 class=" relative">
+<section
+  class="flex flex-col gap-[20px] sm:gap-[32px] px-[17.5px] sm:px-[39px]"
+>
+  <div
+    class="flex flex-col justify-center items-center gap-[4px] sm:gap-[13px]"
+  >
+    <h2 class="relative">
       <span class="inline-block">
-        Selected<img
-          src="/assets/icons/drawingLines.svg"
+        Selected<Image
+          src={DrawLines}
           alt="underline"
           class="-translate-x-2 sm:-translate-x-5 sm:translate-y-[0.2rem] w-[100px] h-[15px] sm:w-[207px]"
         />
@@ -59,7 +73,7 @@ const projects = [
       <span>Projects</span>
     </h2>
 
-    <h5 class=" px-3">
+    <h5 class="text-center w-[256px] sm:w-auto">
       Every dev has their origin stories here are mine.
     </h5>
   </div>

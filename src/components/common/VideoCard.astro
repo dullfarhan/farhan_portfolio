@@ -1,0 +1,53 @@
+<div class="max-w-[280px] sm:max-w-[510px] h-[354px] sm:h-[528px] relative">
+  <video
+    id="myVideo"
+    src="https://pub-6342c9376d514bcd8e040d62520d1285.r2.dev/Experienced%20Full-Stack%20Developer%20_%20Backend%2C%20Frontend%20%26%20DevOps%20Solutions.mp4"
+    class="w-full h-full object-cover rounded-[16px] sm:rounded-[20px]"
+    playsinline
+    muted
+    poster="/assets/images/Poster.png"></video>
+
+  <button
+    class="p-[2px] sm:p-[6px] md:p-[12px] bg-tertiaryBg rounded-[35.5px] flex justify-center absolute bottom-[16.5px] right-[16.5px] sm:bottom-[24px] sm:right-[24px]"
+    id="playBtn"
+  >
+    <img id="playIcon" src="/assets/icons/play_arrow_filled.svg" alt="play" />
+  </button>
+
+  <button id="volumeBtn">
+    <img
+      id="volumeIcon"
+      src="/assets/icons/volume-x.svg"
+      alt="volume"
+      class="absolute top-[314.39px] sm:top-[480px] left-[16px] sm:left-[24px]"
+    />
+  </button>
+</div>
+
+<script is:inline>
+const video = document.getElementById("myVideo");
+const playBtn = document.getElementById("playBtn");
+const playIcon = document.getElementById("playIcon");
+
+const volumeBtn = document.getElementById("volumeBtn");
+const volumeIcon = document.getElementById("volumeIcon");
+
+playBtn.addEventListener("click", () => {
+  if (video.paused) {
+    video.play();
+    playIcon.src = "/assets/icons/pause-Icon.svg";
+  } else {
+    video.pause();
+    playIcon.src = "/assets/icons/play_arrow_filled.svg";
+  }
+});
+volumeBtn.addEventListener("click", () => {
+  video.muted = !video.muted;
+  volumeIcon.src = video.muted
+    ? "/assets/icons/volume-x.svg"
+    : "/assets/icons/volume-max.svg";
+});
+video.addEventListener("ended", () => {
+  playIcon.src = "/assets/icons/play_arrow_filled.svg";
+});
+</script>

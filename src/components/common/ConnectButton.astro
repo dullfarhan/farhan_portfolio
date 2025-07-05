@@ -1,0 +1,16 @@
+---
+import { Image } from "astro:assets";
+const {
+  email = "dullfarhan@gmail.com",
+  text = "",
+  icon = "",
+  class: className = "",
+  iconClass = "",
+  textClass = "",
+} = Astro.props;
+---
+
+<a href={`mailto:${email}`} class={className}>
+  <Image src={icon} alt="Envelope" class={iconClass} height={5} width={5} />
+  <p class={textClass}>{text}</p>
+</a>

@@ -1,32 +1,42 @@
-<ul
-  class="flex justify-center items-center space-x-2 list-none sm:space-x-4"
->
-  <li>
-    <img
-      src="/assets/icons/hero-icon-1.svg"
-      alt="Icon 1"
-      class="w-[19.27px] h-[19.27px] sm:w-[32.68px] sm:h-[32.68px]"
-    />
-  </li>
-  <li>
-    <img
-      src="/assets/icons/hero-icon-2.svg"
-      alt="Icon 2"
-      class="w-[51.22px] h-[26.48px] sm:w-[86.87px] sm:h-[44.91px]"
-    />
-  </li>
-  <li>
-    <img
-      src="/assets/icons/hero-icon-3.svg"
-      alt="Icon 3"
-      class="w-[77.07px] h-[15.98px] sm:w-[131.24px] sm:h-[27.1px]"
-    />
-  </li>
-  <li>
-    <img
-      src="/assets/icons/hero-icon-4.svg"
-      alt="Icon 4"
-      class="w-[70.11px] h-[16.65px] sm:w-[118.9px] sm:h-[28.24px]"
-    />
-  </li>
+---
+import { Image } from "astro:assets";
+import Icon1 from "@/assets/icons/hero-icon-1.svg";
+import Icon2 from "@/assets/icons/hero-icon-2.svg";
+import Icon3 from "@/assets/icons/hero-icon-3.svg";
+import Icon4 from "@/assets/icons/hero-icon-4.svg";
+
+const heroIcons = [
+  {
+    icon: Icon1,
+    label: "Icon 1",
+    iconClass: "w-[19.27px] h-[19.27px] sm:w-[32.68px] sm:h-[32.68px]",
+  },
+  {
+    icon: Icon2,
+    label: "Icon 2",
+    iconClass: "w-[51.22px] h-[26.48px] sm:w-[86.87px] sm:h-[44.91px]",
+  },
+  {
+    icon: Icon3,
+    label: "Icon 3",
+    iconClass: "w-[77.07px] h-[15.98px] sm:w-[131.24px] sm:h-[27.1px]",
+  },
+  {
+    icon: Icon4,
+    label: "Icon 4",
+    iconClass: "w-[70.11px] h-[16.65px] sm:w-[118.9px] sm:h-[28.24px]",
+  },
+];
+---
+
+<ul class="flex justify-center items-center space-x-2 list-none sm:space-x-4">
+  {
+    heroIcons.map((i) => {
+      return (
+        <li>
+          <Image src={i.icon} alt={i.label} class={i.iconClass} />
+        </li>
+      );
+    })
+  }
 </ul>

@@ -1,0 +1,60 @@
+---
+import Divider from "../common/Divider.astro";
+import LoverLetterCard from "../common/LoveLetterCard.astro";
+const testimonials = [
+  {
+    title: "His attention to detail really shows in the code.",
+    message:
+      "Farhan handled both front-end and back-end with care and precision. Even under pressure, he delivered clean, thoughtful solutions. He’s someone you can rely on to quietly raise the bar without making a fuss.",
+    name: "Sarah Khan",
+    role: "Product Manager at NovaTech",
+    image: "/assets/images/NovaTech.png",
+  },
+  {
+    title: "You can tell he thinks before he codes",
+    message:
+      "Farhan brought a thoughtful, structured approach to every task. His attention to both design and functionality made a noticeable difference—it’s rare to find someone who elevates the product quietly and consistently.",
+    name: "Emily Carter",
+    role: "Sr Product Designer at Flowstack",
+    image: "/assets/images/FlowStack.png",
+  },
+  {
+    title: "He made the complex feel simple",
+    message:
+      "Farhan jumped into a tricky codebase, figured things out fast, and actually made the product better than we’d imagined.",
+    name: "Tomás Herrera",
+    role: "Product Lead, UK",
+    image: "/assets/images/ProductLead.png",
+  },
+];
+---
+
+<section class="px-[17.5px] sm:px-[39px]">
+  <div class="flex flex-col gap-[20px] sm:gap-[32px]">
+    <div class="flex flex-col gap-[12px] sm:gap-[16px]">
+      <div class="flex justify-center items-center gap-[14px] sm:gap-[16px]">
+        <h2>Love Letters</h2>
+        <img
+          src="/assets/icons/love-letter.svg"
+          alt="Super Icon"
+          class="w-[20px] h-[32px] sm:w-[30px] sm:h-[48px]"
+        />
+      </div>
+      <p class="text-center text-[14px] sm:text-[20px] align-bottom mx-auto w-[334px] md:w-auto">
+        Because somewhere between the bugs and builds, we made magic happen.
+      </p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[23.8px]">
+        {testimonials.map((t) => (
+            <LoverLetterCard
+              title={t.title}
+              message={t.message}
+              name={t.name}
+              role={t.role}
+              image={t.image}
+            />
+          ))}
+    </div>
+  </div>
+</section>
+<Divider />
