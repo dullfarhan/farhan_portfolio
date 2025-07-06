@@ -17,6 +17,9 @@ import ImagesIcon from "@/assets/icons/hero-imgs-icon.svg";
   />
   <span class="flex items-center gap-[7px] sm:gap-[12px]">
     <Image
+      loading={"eager"}
+      priority={true}
+      fetchpriority={"high"}
       src={ImagesIcon}
       alt="hero Imgs"
       class="w-[43.06px] h-[21.53px] sm:w-[104.8px] sm:h-[52.4px]"

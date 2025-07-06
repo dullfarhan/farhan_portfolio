@@ -27,6 +27,9 @@ const socialLinks = [
     socialLinks.map((link) => {
       return (
         <SocialLink
+          loading={"eager"}
+          priority={true}
+          fetchpriority={"high"}
           href={link.href}
           icon={link.icon}
           label={link.label}

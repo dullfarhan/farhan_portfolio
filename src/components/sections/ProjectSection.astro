@@ -19,22 +19,25 @@ const projects = [
       "Fullframe is a secure AI tool for fast script and book summaries with character insights.",
     image1: FullFrame1,
     image2: FullFrame2,
+    link: "http://fullframe.me/",
     tags: ["Full-stack", "AI-integrated", "Cloud-based"],
   },
   {
-    title: "DevelMo",
+    title: "DevelMo - CrowdIq",
     description:
-      "A global multi-tenant safety system connecting schools, transport, and parents to ensure child protection.",
+      "CrowdIQ transforms your existing cameras into AI-powered tools for real-time retail insights.",
     image1: DevelMo1,
     image2: DevelMo2,
-    tags: ["AI-driven", "AI-integrated", "Cloud-based"],
+    link: "https://develmo.com/our-products/crowdiq/",
+    tags: ["YOLO", "Analytics", "MicroServices"],
   },
   {
     title: "Walqalum",
     description:
-      "AI Chreades is a web platform that uses Azure’s AI, including DALL·E, to create images from text prompts.",
+      "A global multi-tenant safety system connecting schools, transport, and parents to ensure child protection.",
     image1: Walqalum1,
     image2: Walqalum2,
+    link:"https://walqalum.com/",
     tags: ["Full-stack", "Scalable", "DevOps-enabled"],
   },
   {
@@ -43,22 +46,21 @@ const projects = [
       "AI Chreades is a web platform that uses Azure’s AI, including DALL·E, to create images from text prompts.",
     image1: AIChreades1,
     image2: AIChreades2,
-    tags: ["Full-stack", "AI-integrated", "Cloud-based"],
+    tags: ["Full-stack", "Image-Gen", "Cloud-based"],
   },
-  {
-    title: "FullFrame",
-    description:
-      "Fullframe is a secure AI tool for fast script and book summaries with character insights.",
-    image1: FullFrame1,
-    image2: FullFrame2,
-    tags: ["Full-stack", "AI-integrated", "Cloud-based"],
-  },
+  // {
+  //   title: "FullFrame",
+  //   description:
+  //     "Fullframe is a secure AI tool for fast script and book summaries with character insights.",
+  //   image1: FullFrame1,
+  //   image2: FullFrame2,
+  //   link:"https://fullfr.me",
+  //   tags: ["Full-stack", "AI-integrated", "Cloud-based"],
+  // },
 ];
 ---
 
-<section
-  class="flex flex-col gap-[20px] sm:gap-[32px]"
->
+<section class="flex flex-col gap-[20px] sm:gap-[32px]">
   <div
     class="flex flex-col justify-center items-center gap-[4px] sm:gap-[13px]"
   >
@@ -81,7 +83,7 @@ const projects = [
   <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px]">
     {
       projects.map((project, index) => (
-        <ProjectCard index={index} {...project} />
+        <ProjectCard client:load index={index} {...project} />
       ))
     }
   </div>
