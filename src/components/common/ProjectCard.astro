@@ -1,6 +1,8 @@
 ---
 // ProjectCard.astro
 import { Image } from "astro:assets";
+import ExternalLink from "./ExternalLink.astro";
+
 export interface Props {
   index: number;
   title: string;
@@ -8,9 +10,10 @@ export interface Props {
   image1: ImageMetadata;
   image2: ImageMetadata;
   tags: string[];
+  link?: string;
 }
 
-const { title, description, image1, image2, tags, index } = Astro.props;
+const { title, description, image1, image2, tags, index, link } = Astro.props;
 const isFirstIndex = index === 0;
 ---
 
@@ -48,12 +51,16 @@ const isFirstIndex = index === 0;
   <div
     class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]"
   >
-    <h3>{title}</h3>
-    <p class="leading-[1.2]">{description}</p>
-    <div class="flex gap-[10px]">
+    <h3 class="text-[18px] sm:text-[20px] font-semibold">
+      {link ? <ExternalLink href={link} title={title} /> : title}
+    </h3>
+
+    <p class="leading-[1.2] text-sm sm:text-base">{description}</p>
+
+    <div class="flex flex-wrap gap-[10px]">
       {
         tags.map((tag) => (
-          <span class="bg-[#ffffff] text-[12px] sm:text-[14px] font-normal px-[12px] py-[8px] rounded-[99px] leading-[100%]">
+          <span class="bg-white text-[12px] sm:text-[14px] font-normal px-[12px] py-[8px] rounded-full leading-[100%] border border-gray-200">
             {tag}
           </span>
         ))

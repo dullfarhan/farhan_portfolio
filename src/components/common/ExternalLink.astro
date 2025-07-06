@@ -1,0 +1,30 @@
+---
+import ExternalLinkIcon from "@/assets/icons/external.svg";
+
+export interface Props {
+  href: string;
+  title: string;
+  className?: string;
+  showIcon?: boolean;
+}
+
+const { href, title, className = "", showIcon = true } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class=`inline-flex gap-1.5 transition-all duration-200 ease-in-out hover:underline hover:underline-offset-4 hover:decoration-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:rounded-sm group"
+  , ${className}`
+  aria-label={`${title} (opens in new tab)`}
+>
+  <span>{title}</span>
+  {
+    showIcon && (
+      <div class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+        <ExternalLinkIcon />
+      </div>
+    )
+  }
+</a>
