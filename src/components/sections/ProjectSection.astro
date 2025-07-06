@@ -83,7 +83,7 @@ const projects = [
   <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px]">
     {
       projects.map((project, index) => (
-        <ProjectCard client:load index={index} {...project} />
+        <ProjectCard  index={index} {...project} />
       ))
     }
   </div>
