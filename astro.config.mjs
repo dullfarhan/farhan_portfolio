@@ -1,10 +1,12 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 import tailwind from "@astrojs/tailwind";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind()],
+    site: 'https://farhan.info',
+  integrations: [tailwind(), sitemap()],
   experimental: {
     fonts: [
       {
@@ -17,5 +19,3 @@ export default defineConfig({
     ],
   },
 });
-
-

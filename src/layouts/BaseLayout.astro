@@ -11,8 +11,83 @@ import { Font } from "astro:assets";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
-    <title>Farhan Portfolio</title>
+    <title>Farhan Portfolio | Full-Stack Developer & DevOps Engineer</title>
+    <meta
+      name="description"
+      content="Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML. Explore projects, skills, and testimonials."
+    />
+    <meta
+      name="keywords"
+      content="Farhan, portfolio, web developer, full-stack, DevOps, cloud, AI, ML, projects"
+    />
+    <meta name="author" content="Muhammad Farhan" />
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:title"
+      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://farhan.info/" />
+    <meta
+      property="og:image"
+      content="https://farhan.info/assets/images/profile.png"
+    />
+    <!-- Twitter -->
+    <meta name="twitter:creator" content="@dullfarhan" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+    />
+    <meta
+      name="twitter:image"
+      content="https://farhan.info/assets/images/profile.png"
+    />
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Muhammad Farhan",
+        "url": "https://farhan.info/",
+        "sameAs": [
+          "https://github.com/dullfarhan",
+          "http://www.linkedin.com/in/dullfarhan"
+        ],
+        "image": "https://farhan.info/assets/images/profile.jpg",
+        "jobTitle": "Full-Stack Developer, DevOps Engineer",
+        "description": "Portfolio of Muhammad Farhan: Full-Stack Developer, DevOps, Cloud, and AI/ML.",
+        "alumniOf": "FAST, National University of Computer and Emerging Sciences",
+        "knowsAbout": [
+          "JavaScript",
+          "Python",
+          "DevOps",
+          "Cloud Computing",
+          "Kubernetes",
+          "CI/CD",
+          "Astro",
+          "AI/ML"
+        ],
+        "workLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lahore",
+            "addressCountry": "PK"
+          }
+        }
+      }
+    </script>
     <Font cssVariable="--font-inter" preload />
     <style>
       body {

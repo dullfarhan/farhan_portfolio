@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://farhan.info/sitemap-index.xml
