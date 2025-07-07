@@ -17,8 +17,6 @@ const { title, description, image1, image2, tags, index, link } = Astro.props;
 const isFirstIndex = index === 0;
 ---
 
-{isFirstIndex && <link rel="preload" as="image" href={image1.src} />}
-
 <div class="card group relative">
   <div
     class="relative w-full max-w-[296px] h-[240.06px] sm:max-w-[351px] sm:h-[267.17px]"
@@ -57,7 +55,7 @@ const isFirstIndex = index === 0;
 
     <p class="leading-[1.2] text-sm sm:text-base">{description}</p>
 
-    <div class="flex flex-wrap gap-[10px] ">
+    <div class="flex flex-wrap gap-[10px]">
       {
         tags.map((tag) => (
           <span class="bg-white text-[12px] sm:text-[14px] font-normal px-[12px] py-[8px] rounded-full leading-[100%] border border-gray-200">
