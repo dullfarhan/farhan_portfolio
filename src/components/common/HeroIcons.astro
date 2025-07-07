@@ -34,7 +34,7 @@ const heroIcons = [
     heroIcons.map((i) => {
       return (
         <li>
-          <Image src={i.icon} alt={i.label} class={i.iconClass} />
+          <Image src={i.icon} alt={i.label} class={i.iconClass} loading="eager"/>
         </li>
       );
     })

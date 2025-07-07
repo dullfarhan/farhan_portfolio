@@ -1,33 +1,37 @@
 ---
+import MailIcon from "@/assets/icons/mail-icon.svg";
+import upworkIcon from "@/assets/icons/color-up.svg";
+import githubIcon from "@/assets/icons/color-git.svg";
+import linkedinIcon from "@/assets/icons/color-in.svg";
+import whatsappIcon from "@/assets/icons/color-whatsapp.svg";
 import ConnectButton from "../common/ConnectButton.astro";
 import SocialLink from "../social/SocialLink.astro";
+
 const socials = [
   {
     href: "https://www.upwork.com/freelancers/farhaninfo?mp_source=share",
-    icon: "/assets/icons/color-up.svg",
+    icon: upworkIcon,
     alt: "Upwork",
   },
   {
     href: "https://github.com/dullfarhan",
-    icon: "/assets/icons/color-git.svg",
+    icon: githubIcon,
     alt: "GitHub",
   },
   {
     href: "http://www.linkedin.com/in/dullfarhan",
-    icon: "/assets/icons/color-in.svg",
+    icon: linkedinIcon,
     alt: "LinkedIn",
   },
   {
     href: "https://wa.me/+923174310868",
-    icon: "/assets/icons/color-whatsapp.svg",
+    icon: whatsappIcon,
     alt: "WhatsApp",
   },
 ];
 ---
 
-<section
-  class="flex justify-center mb-[20px] sm:mb-[40px]"
->
+<section class="flex justify-center mb-[20px] sm:mb-[40px]">
   <div
     class="rounded-[20px] p-[24px] sm:p-[56px] flex flex-col gap-[28px] bg-textPrimary w-auto sm:w-[1160px]"
   >
@@ -43,14 +47,14 @@ const socials = [
           <p class="leading-[145%] text-center mx-auto">
             Great software starts with a conversation. Let’s team up to build
             intuitive,<br />
-            impactful digital experiences that drive real results and stand the test
-            of time.
+             impactful digital experiences that drive real results and stand the
+            test of time.
           </p>
         </div>
         <ConnectButton
           email="dullfarhan@gmail.com"
           text="Let’s Connect"
-          icon="/assets/icons/mail-icon.svg"
+          icon={MailIcon}
           class="p-[12px] sm:px-[16px] sm:py-[13px] rounded-[12px] bg-tertiaryBg w-[146px] sm:w-[171px] flex justify-center items-center gap-[10px]"
           iconClass="size-[20px] sm:size-[24px]"
           textClass="text-[14px] sm:text-[16px] font-medium"
@@ -74,19 +78,19 @@ const socials = [
   </div>
 </section>
 <script is:inline>
-  const el = document.getElementById("live-time");
+const el = document.getElementById("live-time");
 
-  function updateClock() {
-    const formatter = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Karachi", // GMT+5
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-    const gmt5Time = formatter.format(new Date());
-    el.textContent = `Local Time: ${gmt5Time}`;
-  }
+function updateClock() {
+  const formatter = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Asia/Karachi", // GMT+5
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+  const gmt5Time = formatter.format(new Date()).toUpperCase();
+  el.textContent = `Local Time: ${gmt5Time}`;
+}
 
-  updateClock();
-  setInterval(updateClock, 1000);
+updateClock();
+setInterval(updateClock, 1000);
 </script>

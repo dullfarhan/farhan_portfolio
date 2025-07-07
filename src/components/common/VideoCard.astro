@@ -1,3 +1,7 @@
+---
+import poster from "@/assets/images/Poster.png";
+---
+
 <div class="max-w-[280px] sm:max-w-[510px] h-[354px] sm:h-[528px] relative">
   <video
     id="myVideo"
@@ -5,7 +9,7 @@
     class="w-full h-full object-cover rounded-[16px] sm:rounded-[20px]"
     playsinline
     muted
-    poster="/assets/images/Poster.png"></video>
+    poster={poster.src}></video>
 
   <button
     class="p-[2px] sm:p-[6px] md:p-[12px] bg-tertiaryBg rounded-[35.5px] flex justify-center absolute bottom-[16.5px] right-[16.5px] sm:bottom-[24px] sm:right-[24px]"
