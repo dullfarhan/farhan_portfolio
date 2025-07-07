@@ -20,32 +20,33 @@ const isFirstIndex = index === 0;
 {isFirstIndex && <link rel="preload" as="image" href={image1.src} />}
 
 <div class="card group relative">
-  <div
-    class="relative w-full max-w-[296px] h-[240.06px] sm:max-w-[351px] sm:h-[267.17px]"
-  >
-    <!-- Default image -->
+  <div class="relative w-full max-w-[296px] sm:max-w-[351px] aspect-[4/3]">
     <Image
       src={image1}
+      width={350}
+      height={270}
       alt={title}
       priority={isFirstIndex}
       loading={isFirstIndex ? "eager" : "lazy"}
       decoding="async"
-      class={`absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] ${
-        isFirstIndex
-          ? ""
-          : "transition-opacity ease-in-out duration-500 group-hover:opacity-0"
+      class={`w-full h-full object-cover rounded-[18px] sm:rounded-[20px] ${
+        !isFirstIndex
+          ? "transition-opacity duration-500 group-hover:opacity-0"
+          : ""
       }`}
     />
-    <Image
-      src={image2}
-      alt={title}
-      decoding="async"
-      class={`absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] opacity-0 ${
-        isFirstIndex
-          ? ""
-          : "transition-opacity ease-in-out duration-500 group-hover:opacity-100"
-      }`}
-    />
+    {
+      !isFirstIndex && (
+        <Image
+          src={image2}
+          alt={title}
+          width={350}
+          height={270}
+          decoding="async"
+          class="absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        />
+      )
+    }
   </div>
 
   <div
