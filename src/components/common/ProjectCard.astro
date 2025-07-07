@@ -50,12 +50,13 @@ const isFirstIndex = index === 0;
   <div
     class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]"
   >
-    <h3 class="text-[18px] sm:text-[20px] font-semibold">
-      {link ? <ExternalLink href={link} title={title} /> : title}
-    </h3>
-
-    <p class="leading-[1.2] text-sm sm:text-base">{description}</p>
-
+    <div class="flex flex-col gap-[16px]">
+      <h3 class="text-[18px] sm:text-[20px] font-semibold">
+        {link ? <ExternalLink href={link} title={title} /> : title}
+      </h3>
+      <p class="leading-[1.2] text-sm sm:text-base">{description}</p>
+    </div>
+    <div class="flex-grow"></div>
     <div class="flex flex-wrap gap-[10px]">
       {
         tags.map((tag) => (
