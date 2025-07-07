@@ -8,9 +8,9 @@ import Header from "./Header.astro";
 <div class="flex flex-col gap-[10px] sm:gap-[18px]">
   <Divider />
   <nav>
-    <div class="flex justify-between items-center px-[25px] sm:px-[60px]">
+    <div class="flex justify-between items-center ">
       <div class="flex items-center justify-between space-x-2">
-        <Image src={logo} alt={"Logo"} class="h-6 sm:w-5" />
+        <Image src={logo} alt={"Logo"} class="h-6 sm:w-5" loading="eager"/>
         <span class="text-[12px] sm:text-[14px]">Code by Farhan</span>
       </div>
       <Header />

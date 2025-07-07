@@ -14,12 +14,14 @@ import ImagesIcon from "@/assets/icons/hero-imgs-icon.svg";
     class="flex items-center gap-[10px] rounded-[12px] bg-gradient-vertical p-[10px] sm:px-[24px] sm:py-[21px] sm:rounded-[22px] shadow-[inset_6px_6px_6px_0px_#00000066]"
     iconClass="h-[12.59px] sm:h-[21.79px] w-[17.48px] sm:w-[26px]"
     textClass="text-[12px] sm:text-[13px] md:text-[20px] font-medium"
+    isLoading={true}
   />
   <span class="flex items-center gap-[7px] sm:gap-[12px]">
     <Image
       src={ImagesIcon}
       alt="hero Imgs"
       class="w-[43.06px] h-[21.53px] sm:w-[104.8px] sm:h-[52.4px]"
+      loading="eager"
     />
     <p
       class="text-[12px] sm:text-[16px] md:text-[22px] lg:text-[24px] font-medium"

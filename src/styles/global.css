@@ -8,7 +8,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #ffffff;
-  font-family: "Inter", sans-serif;
   color: #0c131c;
   scrollbar-width: thin;
 }
@@ -99,7 +98,7 @@ p {
   hover:shadow-[2px_1px_15px_rgba(0,0,0,0.25)] transition-shadow duration-300
   max-h-[405.06px] sm:max-w-[370px] max-w-[320px] sm:max-h-[478.17px];
 }
-.connect-about-btn{
+.connect-about-btn {
   @apply px-[12px] py-[8px] sm:px-[16px] sm:py-[12px] rounded-[12px] 
   w-[146px] sm:w-[171px] flex flex-row-reverse justify-center items-center gap-[6px] sm:gap-[10px];
 }

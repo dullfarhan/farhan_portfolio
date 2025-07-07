@@ -1,10 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import Divider from "../common/Divider.astro";
 import LoverLetterCard from "../common/LoveLetterCard.astro";
 import shahzeb from "@/assets/images/love-letters/shahzeb.jpeg";
 import talha from "@/assets/images/love-letters/talha.jpeg";
 import zach from "@/assets/images/love-letters/zach.jpeg";
-
+import heart from "@/assets/icons/love-letter.svg";
 const testimonials = [
   {
     title: "His attention to detail really shows in the code.",
@@ -32,7 +33,8 @@ const testimonials = [
       "Working with Farhan has been an exceptional experience. He not only integrated all the changes in our codebase flawlessly, but also went above and beyond in assisting with additional tasks and ensuring that all documentation was thorough and well-organized. His attention to detail, responsiveness, and commitment to the project were outstanding. Farhan’s work ethic and proactive approach made a significant impact on the success of our development efforts. Highly recommended, and we look forward to working with him again!",
     name: "Shahzeb Ali",
     role: "CEO at Develmo",
-    love_letter_link: "https://www.upwork.com/ab/g/pub/wom/prx/eyJwZXJzb25VaWQiOiIxNzI4NDUzMzMyNTcyMzQ0MzIwIiwiY29udHJhY3RSaWQiOiI0MDE1MjE0NCIsImJhbm5lclR5cGUiOiJjb250cmFjdCIsImJhbm5lclZhcmlhbnQiOiJkZWZhdWx0Iiwid29tIjoiZmx2MiIsInJlZGlyZWN0IjoiZmxfcHJvZmlsZV9wcm9tbyJ9",
+    love_letter_link:
+      "https://www.upwork.com/ab/g/pub/wom/prx/eyJwZXJzb25VaWQiOiIxNzI4NDUzMzMyNTcyMzQ0MzIwIiwiY29udHJhY3RSaWQiOiI0MDE1MjE0NCIsImJhbm5lclR5cGUiOiJjb250cmFjdCIsImJhbm5lclZhcmlhbnQiOiJkZWZhdWx0Iiwid29tIjoiZmx2MiIsInJlZGlyZWN0IjoiZmxfcHJvZmlsZV9wcm9tbyJ9",
     lover_link: "https://www.linkedin.com/in/shahzebdata/",
     image: shahzeb,
   },
@@ -44,8 +46,8 @@ const testimonials = [
     <div class="flex flex-col gap-[12px] sm:gap-[16px]">
       <div class="flex justify-center items-center gap-[14px] sm:gap-[16px]">
         <h2>Love Letters</h2>
-        <img
-          src="/assets/icons/love-letter.svg"
+        <Image
+          src={heart}
           alt="Super Icon"
           class="w-[20px] h-[32px] sm:w-[30px] sm:h-[48px]"
         />
@@ -56,7 +58,7 @@ const testimonials = [
         Because somewhere between the bugs and builds, we made magic happen.
       </p>
     </div>
-    <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[12px]">
+    <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[23.5px]">
       {
         testimonials.map((t) => (
           <LoverLetterCard

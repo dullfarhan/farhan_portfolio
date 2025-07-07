@@ -7,6 +7,7 @@ const {
   linkClass = "",
   iconClass = "",
   labelClass = "",
+  isloading = false,
 } = Astro.props;
 
 const showLabel = label.trim() !== "";
@@ -19,6 +20,7 @@ const showLabel = label.trim() !== "";
     class={iconClass}
     height={28}
     width={28}
+    loading={isloading ? "eager" : "lazy"}
   />
   {showLabel && <span class={labelClass}>{label}</span>}
 </a>
