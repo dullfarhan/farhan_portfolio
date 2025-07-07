@@ -1,5 +1,5 @@
 ---
-import poster from "@/assets/images/Poster.png";
+import poster from "@/assets/images/Poster.webp";
 ---
 
 <div class="max-w-[280px] sm:max-w-[510px] h-[354px] sm:h-[528px] relative">
@@ -9,20 +9,33 @@ import poster from "@/assets/images/Poster.png";
     class="w-full h-full object-cover rounded-[16px] sm:rounded-[20px]"
     playsinline
     muted
-    poster={poster.src}></video>
+    poster={poster.src}
+    height="528"
+    width="510"></video>
 
   <button
     class="p-[2px] sm:p-[6px] md:p-[12px] bg-tertiaryBg rounded-[35.5px] flex justify-center absolute bottom-[16.5px] right-[16.5px] sm:bottom-[24px] sm:right-[24px]"
     id="playBtn"
   >
-    <img id="playIcon" src="/assets/icons/play_arrow_filled.svg" alt="play" />
+    <img
+      id="playIcon"
+      src="/assets/icons/play_arrow_filled.svg"
+      alt="play"
+      height="41"
+      width="41"
+    />
   </button>
 
-  <button id="volumeBtn" class="p-[2px] sm:p-[6px] md:p-[6px] absolute top-[312.39px] sm:top-[474px] left-[16px] sm:left-[24px] flex justify-center">
+  <button
+    id="volumeBtn"
+    class="p-[2px] sm:p-[6px] md:p-[6px] absolute top-[312.39px] sm:top-[474px] left-[16px] sm:left-[24px] flex justify-center"
+  >
     <img
       id="volumeIcon"
       src="/assets/icons/volume-x.svg"
       alt="volume"
+      width="24"
+      height="24"
     />
   </button>
 </div>
