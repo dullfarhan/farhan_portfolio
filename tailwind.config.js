@@ -10,6 +10,9 @@ export default {
         textSecondary: "#263A53", // subtext/descriptions
         tertiaryBg: "#00D1E8",
       },
+      screens: {
+        'xl': '1600px',
+      }
     },
   },
   plugins: [],
