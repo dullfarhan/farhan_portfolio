@@ -1,17 +1,30 @@
 ---
 import { Image } from "astro:assets";
+
 const {
   email = "dullfarhan@gmail.com",
+  upwork = "https://www.upwork.com/freelancers/farhaninfo",
   text = "",
   icon = "",
   class: className = "",
   iconClass = "",
   textClass = "",
-  isLoading = false
+  isLoading = false,
 } = Astro.props;
+
+// Check environment variable
+const buildType = import.meta.env.VITE_BUILD_TYPE;
+const href = buildType === "UPWORK" ? upwork : `mailto:${email}`;
 ---
 
-<a href={`mailto:${email}`} class={className}>
-  <Image src={icon} alt="Envelope" class={iconClass} height={5} width={5} loading={isLoading ? "eager" : "lazy"}/>
+<a href={href} class={className} target={buildType === "UPWORK" ? "_blank" : undefined}>
+  <Image 
+    src={icon} 
+    alt={buildType === "UPWORK" ? "Upwork" : "Envelope"} 
+    class={iconClass} 
+    height={5} 
+    width={5} 
+    loading={isLoading ? "eager" : "lazy"} 
+  />
   <p class={textClass}>{text}</p>
 </a>

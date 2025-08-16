@@ -7,28 +7,38 @@ import whatsappIcon from "@/assets/icons/color-whatsapp.svg";
 import ConnectButton from "../common/ConnectButton.astro";
 import SocialLink from "../social/SocialLink.astro";
 
-const socials = [
+const isUpworkBuild = import.meta.env.VITE_BUILD_TYPE === "UPWORK";
+
+const allSocials = [
   {
     href: "https://www.upwork.com/freelancers/farhaninfo?mp_source=share",
     icon: upworkIcon,
     alt: "Upwork",
+    upworkSafe: true,
   },
   {
     href: "https://github.com/dullfarhan",
     icon: githubIcon,
     alt: "GitHub",
+    upworkSafe: true,
   },
   {
     href: "http://www.linkedin.com/in/dullfarhan",
     icon: linkedinIcon,
     alt: "LinkedIn",
+    upworkSafe: false,
   },
   {
     href: "https://wa.me/+923174310868",
     icon: whatsappIcon,
     alt: "WhatsApp",
+    upworkSafe: false,
   },
 ];
+
+const socials = isUpworkBuild
+  ? allSocials.filter((social) => !!social.upworkSafe)
+  : allSocials;
 ---
 
 <section class="flex justify-center mb-[20px] sm:mb-[40px]">
@@ -51,14 +61,14 @@ const socials = [
             test of time.
           </p>
         </div>
-        <ConnectButton
-          email="dullfarhan@gmail.com"
-          text="Let’s Connect"
-          icon={MailIcon}
-          class="p-[12px] sm:px-[16px] sm:py-[13px] rounded-[12px] bg-tertiaryBg w-[146px] sm:w-[171px] flex justify-center items-center gap-[10px]"
-          iconClass="size-[20px] sm:size-[24px]"
-          textClass="text-[14px] sm:text-[16px] font-medium"
-        />
+          <ConnectButton
+            email="dullfarhan@gmail.com"
+            text="Let’s Connect"
+            icon={MailIcon}
+            class="p-[12px] sm:px-[16px] sm:py-[13px] rounded-[12px] bg-tertiaryBg w-[146px] sm:w-[171px] flex justify-center items-center gap-[10px]"
+            iconClass="size-[20px] sm:size-[24px]"
+            textClass="text-[14px] sm:text-[16px] font-medium"
+          />
       </div>
       <div
         class="flex flex-col-reverse sm:flex-row justify-between items-center gap-[32px]"

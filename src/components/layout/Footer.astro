@@ -1,5 +1,6 @@
 ---
 import Divider from "../common/Divider.astro";
+const isUpworkBuild = import.meta.env.VITE_BUILD_TYPE === "UPWORK";
 ---
 
 <div class="flex flex-col gap-[20px] sm:gap-[18px]">
@@ -9,32 +10,38 @@ import Divider from "../common/Divider.astro";
       class="flex flex-col-reverse md:flex-row justify-between gap-[20px] items-center lg:px-[21px] font-normal"
     >
       <p class="text-[10px] sm:text-[14px]">© 2025 All rights reserved</p>
-      <div
-        class="block sm:flex justify-center items-center text-center sm:text-left"
-      >
-        <p class="leading-[18px] text-[12px] sm:text-[14px]">
-          Designed by&nbsp;
-        </p>
+      {
+        !isUpworkBuild && (
+          <div class="block sm:flex justify-center items-center text-center sm:text-left">
+            <p class="leading-[18px] text-[12px] sm:text-[14px]">
+              Designed by&nbsp;
+            </p>
 
-        <span
-          class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]"
-        >
-          <a
-            href="https://www.linkedin.com/in/saif-ullah-khan-740178228/"
-            target="_blank">Saif Ullah Khan</a
-          >
-        </span>
+            <span class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]">
+              <a
+                href="https://www.linkedin.com/in/saif-ullah-khan-740178228/"
+                target="_blank"
+              >
+                Saif Ullah Khan
+              </a>
+            </span>
 
-        <span class="text-[12px] sm:text-[14px] font-bold leading-[18px]"
-          >&nbsp;&&nbsp;</span
-        ><span
-          class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]"
-          ><a
-            href="https://www.linkedin.com/in/areeba-rahila-memon/"
-            target="_blank">Areeba (Rahila) Memon</a
-          ></span
-        >
-      </div>
+            <>
+              <span class="text-[12px] sm:text-[14px] font-bold leading-[18px]">
+                &nbsp;&&nbsp;
+              </span>
+              <span class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]">
+                <a
+                  href="https://www.linkedin.com/in/areeba-rahila-memon/"
+                  target="_blank"
+                >
+                  Areeba (Rahila) Memon
+                </a>
+              </span>
+            </>
+          </div>
+        )
+      }
     </div>
   </footer>
   <Divider />
