@@ -1,9 +1,7 @@
 ---
 import MailIcon from "@/assets/icons/mail-icon.svg";
-import upworkIcon from "@/assets/icons/color-up.svg";
 import githubIcon from "@/assets/icons/color-git.svg";
 import linkedinIcon from "@/assets/icons/color-in.svg";
-import whatsappIcon from "@/assets/icons/color-whatsapp.svg";
 import ConnectButton from "../common/ConnectButton.astro";
 import SocialLink from "../social/SocialLink.astro";
 
@@ -11,27 +9,15 @@ const isUpworkBuild = import.meta.env.VITE_BUILD_TYPE === "UPWORK";
 
 const allSocials = [
   {
-    href: "https://www.upwork.com/freelancers/farhaninfo?mp_source=share",
-    icon: upworkIcon,
-    alt: "Upwork",
-    upworkSafe: true,
-  },
-  {
-    href: "https://github.com/dullfarhan",
+    href: "#",
     icon: githubIcon,
     alt: "GitHub",
     upworkSafe: true,
   },
   {
-    href: "http://www.linkedin.com/in/dullfarhan",
+    href: "https://www.linkedin.com/in/daanyal-rhaila-memon/",
     icon: linkedinIcon,
     alt: "LinkedIn",
-    upworkSafe: false,
-  },
-  {
-    href: "https://wa.me/+923174310868",
-    icon: whatsappIcon,
-    alt: "WhatsApp",
     upworkSafe: false,
   },
 ];
@@ -62,7 +48,7 @@ const socials = isUpworkBuild
           </p>
         </div>
           <ConnectButton
-            email="dullfarhan@gmail.com"
+            email="daanyalhere@gmail.com"
             text="Let’s Connect"
             icon={MailIcon}
             class="p-[12px] sm:px-[16px] sm:py-[13px] rounded-[12px] bg-tertiaryBg w-[146px] sm:w-[171px] flex justify-center items-center gap-[10px]"
