@@ -9,7 +9,7 @@ const isUpworkBuild = import.meta.env.VITE_BUILD_TYPE === "UPWORK";
 
 const allSocials = [
   {
-    href: "#",
+    href: "https://github.com/daanyal-rhaila-memon",
     icon: githubIcon,
     alt: "GitHub",
     upworkSafe: true,
@@ -81,7 +81,7 @@ function updateClock() {
     timeZone: "Asia/Karachi", // GMT+5
     hour: "numeric",
     minute: "2-digit",
-    hour12: true,
+    // hour12: true,
   });
   const gmt5Time = formatter.format(new Date()).toUpperCase();
   el.textContent = `Local Time: ${gmt5Time}`;
