@@ -24,9 +24,10 @@ const isFirstIndex = index === 0;
       width={350}
       height={270}
       alt={title}
-      priority={isFirstIndex}
       loading={isFirstIndex ? "eager" : "lazy"}
       decoding="async"
+      fetchpriority={isFirstIndex ? "high" : "auto"}
+      sizes="(min-width: 640px) 351px, 296px"
       class={`w-full h-full object-cover rounded-[18px] sm:rounded-[20px] ${
         !isFirstIndex
           ? "transition-opacity duration-500 group-hover:opacity-0"
@@ -40,6 +41,7 @@ const isFirstIndex = index === 0;
           alt={title}
           width={350}
           height={270}
+          loading="lazy"
           decoding="async"
           class="absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />

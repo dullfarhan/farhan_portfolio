@@ -3,6 +3,11 @@ import "../styles/global.css";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import { Font } from "astro:assets";
+import { getImage } from "astro:assets";
+import FullFrame1 from "@/assets/images/FullFrame.png";
+
+// Precompute the primary LCP candidate image (first project card)
+const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, height: 270, format: "webp" });
 ---
 
 <!doctype html>
@@ -14,6 +19,14 @@ import { Font } from "astro:assets";
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
     <title>Farhan Portfolio | Full-Stack Developer & DevOps Engineer</title>
+    <link
+      rel="preload"
+      as="image"
+      href={firstProjectLcpImage.src}
+      imagesizes="(min-width: 640px) 351px, 296px"
+      fetchpriority="high"
+      type="image/webp"
+    />
     <meta
       name="description"
       content="Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML. Explore projects, skills, and testimonials."
