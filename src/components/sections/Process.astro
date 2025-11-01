@@ -1,0 +1,81 @@
+---
+import { MessageSquare, Lightbulb, Code, Rocket } from "lucide-react";
+
+const steps = [
+  {
+    icon: MessageSquare,
+    title: "Discovery Call",
+    description: "We discuss your project goals, challenges, and requirements in detail",
+    duration: "30-60 mins"
+  },
+  {
+    icon: Lightbulb,
+    title: "Strategy & Planning",
+    description: "I create a detailed technical roadmap and project timeline",
+    duration: "2-3 days"
+  },
+  {
+    icon: Code,
+    title: "Development & Testing",
+    description: "Agile development with regular updates and testing cycles",
+    duration: "2-8 weeks"
+  },
+  {
+    icon: Rocket,
+    title: "Launch & Support",
+    description: "Smooth deployment with ongoing support and maintenance",
+    duration: "Ongoing"
+  }
+];
+---
+
+<section class="py-16 sm:py-24 bg-gradient-to-br from-gray-50 to-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16 scale-in-animation">
+      <h2 class="gradient-text text-shimmer mb-4">How I Work</h2>
+      <p class="text-lg text-textSecondary max-w-2xl mx-auto">
+        A proven process that ensures successful project delivery every time
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+      <!-- Connection Line -->
+      <div class="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-accent-indigo via-accent-purple to-accent-cyan opacity-20"></div>
+      
+      {steps.map((step, index) => (
+        <div class="relative">
+          <div class="glass-card p-6 text-center h-full hover-lift slide-in-left" style={`animation-delay: ${index * 0.1}s`}>
+            <!-- Step Number -->
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-gradient-to-br from-accent-indigo to-accent-purple rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg z-10">
+              {index + 1}
+            </div>
+            
+            <!-- Icon -->
+            <div class="w-16 h-16 mx-auto mb-4 mt-4 bg-gradient-to-br from-accent-indigo/10 to-accent-purple/10 rounded-full flex items-center justify-center">
+              <step.icon className="w-8 h-8 text-accent-indigo" />
+            </div>
+            
+            <!-- Content -->
+            <h4 class="font-bold text-xl mb-2">{step.title}</h4>
+            <p class="text-sm text-textSecondary mb-3">{step.description}</p>
+            <div class="inline-flex items-center gap-1 px-3 py-1 bg-accent-indigo/10 text-accent-indigo rounded-full text-xs font-medium">
+              ⏱️ {step.duration}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-12">
+      <a 
+        href="#contact" 
+        class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-bold text-lg shadow-premium hover:shadow-glow-indigo hover:scale-105 transition-all"
+      >
+        Let's Start Your Project
+        <Rocket className="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+</section>
+

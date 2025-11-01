@@ -1,0 +1,58 @@
+---
+import { Award, Trophy, BadgeCheck, Star } from "lucide-react";
+
+const achievements = [
+  {
+    icon: Trophy,
+    title: "Top Rated Freelancer",
+    description: "98% client satisfaction rate with 15+ completed projects",
+    year: "2024"
+  },
+  {
+    icon: Award,
+    title: "AI/ML Excellence",
+    description: "Built computer vision system with 98% accuracy for crowd analytics",
+    year: "2023"
+  },
+  {
+    icon: BadgeCheck,
+    title: "AWS Certified",
+    description: "Cloud Solutions Architect - Building scalable infrastructure",
+    year: "2023"
+  },
+  {
+    icon: Star,
+    title: "Open Source Contributor",
+    description: "1200+ contributions across various projects and repositories",
+    year: "2024"
+  }
+];
+---
+
+<section class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 bounce-in">
+      <h2 class="gradient-text text-shimmer mb-4">Awards & Recognition</h2>
+      <p class="text-lg text-textSecondary max-w-2xl mx-auto">
+        Recognized for delivering exceptional results and pushing the boundaries of what's possible
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {achievements.map((achievement, index) => (
+        <div 
+          class="card-premium p-6 text-center group hover-lift flip-in"
+          style={`animation-delay: ${index * 0.15}s`}
+        >
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-accent-indigo to-accent-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <achievement.icon className="w-8 h-8 text-white" />
+          </div>
+          <div class="text-xs text-accent-indigo font-bold mb-2">{achievement.year}</div>
+          <h4 class="font-bold text-lg mb-2">{achievement.title}</h4>
+          <p class="text-sm text-textSecondary leading-relaxed">{achievement.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+

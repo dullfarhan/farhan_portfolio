@@ -1,0 +1,124 @@
+---
+import { Mail, Calendar, MessageCircle } from "lucide-react";
+import MagneticButton from "../interactive/MagneticButton";
+import ConfettiButton from "../ui/ConfettiButton";
+---
+
+<section id="contact" class="py-16 relative overflow-hidden">
+  <!-- Animated background -->
+  <div class="absolute inset-0 animated-gradient-bg opacity-10"></div>
+  
+  <div class="relative z-10 max-w-4xl mx-auto px-4">
+    <div class="glass-card p-8 sm:p-12 text-center fade-in-up">
+      <!-- Availability badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-emerald-50 border border-emerald-200 rounded-full mb-6">
+        <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+        <span class="text-sm font-medium text-emerald-700">Available for new projects</span>
+      </div>
+
+      <!-- Heading -->
+      <h2 class="text-4xl sm:text-5xl font-bold mb-4">
+        <span class="gradient-text">Let's Build Something Amazing Together</span>
+      </h2>
+
+      <p class="text-xl text-textSecondary mb-8 max-w-2xl mx-auto">
+        Whether you need a full-stack web app, AI solution, or DevOps expertise, 
+        I'm here to bring your vision to life with cutting-edge technology.
+      </p>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 gap-4 mb-10 max-w-xl mx-auto">
+        <div class="text-center">
+          <div class="text-3xl font-bold gradient-text">50+</div>
+          <div class="text-sm text-textSecondary">Projects Completed</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold gradient-text">100%</div>
+          <div class="text-sm text-textSecondary">Client Satisfaction</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold gradient-text">4.9/5</div>
+          <div class="text-sm text-textSecondary">Average Rating</div>
+        </div>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <ConfettiButton
+          client:load
+          className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-bold text-lg hover:shadow-glow-indigo transition-all hover:scale-105"
+        >
+          <Mail size={24} />
+          <span>Email Me</span>
+        </ConfettiButton>
+
+        <a
+          href="https://calendly.com/yourname"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-white border-2 border-accent-indigo text-accent-indigo rounded-lg font-bold text-lg hover:bg-accent-indigo hover:text-white transition-all"
+        >
+          <Calendar size={24} />
+          <span>Schedule Call</span>
+        </a>
+      </div>
+
+      <!-- Contact methods -->
+      <div class="grid sm:grid-cols-3 gap-6 pt-8 border-t border-gray-200">
+        <div class="text-center group">
+          <div class="w-12 h-12 bg-gradient-to-br from-accent-indigo to-accent-purple rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+            <Mail size={24} className="text-white" />
+          </div>
+          <div class="font-medium text-textPrimary">Email</div>
+          <a href="mailto:your@email.com" class="text-sm text-accent-indigo hover:underline">
+            your@email.com
+          </a>
+        </div>
+
+        <div class="text-center group">
+          <div class="w-12 h-12 bg-gradient-to-br from-accent-purple to-accent-pink rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+            <MessageCircle size={24} className="text-white" />
+          </div>
+          <div class="font-medium text-textPrimary">WhatsApp</div>
+          <a href="https://wa.me/yourphone" target="_blank" class="text-sm text-accent-purple hover:underline">
+            Chat with me
+          </a>
+        </div>
+
+        <div class="text-center group">
+          <div class="w-12 h-12 bg-gradient-to-br from-accent-cyan to-accent-indigo rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+            <Calendar size={24} className="text-white" />
+          </div>
+          <div class="font-medium text-textPrimary">Schedule</div>
+          <a href="https://calendly.com/yourname" target="_blank" class="text-sm text-accent-cyan hover:underline">
+            Book a meeting
+          </a>
+        </div>
+      </div>
+
+      <!-- Social proof -->
+      <div class="mt-8 pt-8 border-t border-gray-200">
+        <p class="text-sm text-textSecondary mb-4">
+          Trusted by startups and enterprises worldwide
+        </p>
+        <div class="flex justify-center items-center gap-2">
+          <div class="flex -space-x-2">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div 
+                key={i}
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-accent-indigo to-accent-purple border-2 border-white flex items-center justify-center text-white text-xs font-bold"
+              >
+                {String.fromCharCode(64 + i)}
+              </div>
+            ))}
+          </div>
+          <span class="text-sm font-medium text-textSecondary ml-3">
+            Join 50+ satisfied clients
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

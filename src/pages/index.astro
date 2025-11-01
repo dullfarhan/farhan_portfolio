@@ -1,20 +1,272 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
-import HeroSection from "../components/sections/HeroSection.astro";
-import ProjectSection from "../components/sections/ProjectSection.astro";
-import SuperPower from "../components/sections/SuperPower.astro";
+import HeroSectionPremium from "../components/sections/HeroSectionPremium.astro";
+import SectionNumber from "../components/common/SectionNumber.astro";
+import ClientLogos from "../components/sections/ClientLogos.astro";
+import MarqueeLogos from "../components/sections/MarqueeLogos.astro";
+import ProjectCardPremium from "../components/common/ProjectCardPremium";
+import { projects } from "../data/projects";
+import SuperPowerCardPremium from "../components/common/SuperPowerCardPremium";
+import GitHubStats from "../components/sections/GitHubStats";
+import Awards from "../components/sections/Awards.astro";
+import Process from "../components/sections/Process.astro";
+import ParallaxSection from "../components/effects/ParallaxSection";
+import PlaygroundShowcase from "../components/sections/PlaygroundShowcase.astro";
+import ServicesPremium from "../components/sections/ServicesPremium.astro";
+import Timeline from "../components/sections/Timeline.astro";
 import AboutSection from "../components/sections/AboutSection.astro";
-import LoveLetterSection from "../components/sections/LoverLetterSection.astro";
-import ContactCTASection from "../components/sections/ContactCTASection.astro";
+import TestimonialCarousel from "../components/common/TestimonialCarousel";
+import ContactCTAPremium from "../components/sections/ContactCTAPremium.astro";
+import Divider from "../components/common/Divider.astro";
+import { Image } from "astro:assets";
+import DrawLines from "@/assets/icons/drawingLines.svg";
+import SuperIcon from "@/assets/icons/Super-icon.svg";
+import CodeCircle from "@/assets/icons/code-circle.svg";
+import BackEnd from "@/assets/icons/backend-icon.svg";
+import Driver from "@/assets/icons/driver.svg";
+import CloudAdd from "@/assets/icons/cloud-add.svg";
+
+const superPowers = [
+  {
+    title: "Frontend Development",
+    icon: CodeCircle,
+    description: "Creating fast, responsive, and user-friendly interfaces for seamless digital experiences.",
+    bgColor: "bg-[#ECDFE6]",
+    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js"],
+    proficiency: 95,
+  },
+  {
+    title: "Backend Development",
+    icon: BackEnd,
+    description: "Building secure, scalable, and high-performance backend solutions.",
+    bgColor: "bg-[#E9EBE8]",
+    skills: ["Node.js", "Python", "Express", "FastAPI", "PostgreSQL"],
+    proficiency: 92,
+  },
+  {
+    title: "Database Systems",
+    icon: Driver,
+    description: "Efficient, secure, and scalable database solutions for seamless data management.",
+    bgColor: "bg-[#FBEDE0]",
+    skills: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Prisma"],
+    proficiency: 90,
+  },
+  {
+    title: "DevOps & Cloud",
+    icon: CloudAdd,
+    description: "Streamlining deployment, scalability, and security with cutting-edge cloud solutions.",
+    bgColor: "bg-[#e7f0f2]",
+    skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
+    proficiency: 88,
+  },
+];
+
+// Testimonials with correct image paths
+const testimonials = [
+  {
+    name: "Ahmed Hassan",
+    role: "CTO",
+    company: "DevelMo",
+    image: "/assets/images/love-letters/ahmed.png",
+    quote: "Farhan delivered exceptional work on our CrowdIQ platform. His expertise in computer vision and real-time analytics exceeded our expectations. The system now processes video feeds with 98% accuracy.",
+    rating: 5,
+  },
+  {
+    name: "Sarah Mitchell",
+    role: "Product Manager",
+    company: "TechCorp",
+    image: "/assets/images/love-letters/shahzeb.jpeg",
+    quote: "Working with Farhan was a game-changer for our project. He transformed our requirements into a beautiful, performant application. His attention to detail and technical prowess is outstanding.",
+    rating: 5,
+  },
+  {
+    name: "Talha Rahman",
+    role: "Business Owner",
+    company: "MMKEN",
+    image: "/assets/images/love-letters/talha.jpeg",
+    quote: "The marketplace platform Farhan built has been instrumental in our growth. It's handling thousands of transactions seamlessly. His full-stack expertise and problem-solving skills are top-notch.",
+    rating: 5,
+  },
+  {
+    name: "Zach Williams",
+    role: "Startup Founder",
+    company: "InnovateLabs",
+    image: "/assets/images/love-letters/zach.jpeg",
+    quote: "Farhan's ability to understand complex requirements and deliver elegant solutions is remarkable. He built our AI-powered tool from scratch, and it's now our flagship product.",
+    rating: 5,
+  },
+];
 ---
 
 <Layout>
-  <main class="flex flex-col gap-[20px] sm:gap-[40px] pt-[20px] sm:pt-[48px]">
-    <HeroSection />
-    <ProjectSection />
-    <SuperPower />
-    <AboutSection />
-    <LoveLetterSection />
-    <ContactCTASection />
+  <main class="flex flex-col">
+    <!-- Premium Hero Section -->
+    <HeroSectionPremium />
+
+    <!-- Client Logos for Credibility -->
+    <section class="py-12">
+      <ClientLogos />
+      <MarqueeLogos />
+    </section>
+
+    <Divider />
+
+    <!-- 01. About Section -->
+    <section id="about" class="scroll-mt-20 py-24 sm:py-32">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionNumber number="01.">
+          <h2 class="font-heading">About Me</h2>
+        </SectionNumber>
+        <AboutSection />
+      </div>
+    </section>
+
+    <Divider />
+
+    <!-- 02. Experience Section -->
+    <section id="experience" class="scroll-mt-20 py-24 sm:py-32">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionNumber number="02.">
+          <h2 class="font-heading">Where I've Worked</h2>
+        </SectionNumber>
+        <Timeline />
+      </div>
+    </section>
+
+    <Divider />
+
+    <!-- 03. Projects Section -->
+    <section id="projects" class="scroll-mt-20 py-24 sm:py-32">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionNumber number="03.">
+          <h2 class="font-heading">Some Things I've Built</h2>
+        </SectionNumber>
+        
+        <p class="text-body-lg text-textSecondary max-w-2xl mb-16 mt-4">
+          Featured projects showcasing my work on full-stack applications, AI/ML systems, 
+          and cloud infrastructure.
+        </p>
+
+        <!-- Featured Projects - Alternating Layout -->
+        <div class="space-y-32">
+          {projects.filter(p => p.featured).map((project, index) => (
+            <div class={`flex flex-col lg:flex-row gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+              <div class={`flex-1 ${index % 2 === 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+                <ProjectCardPremium client:only="react" project={project} index={index} />
+              </div>
+              <div class={`flex-1 space-y-4 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                <div class="flex items-center gap-3">
+                  <span class="text-code text-accent-indigo opacity-60">Featured Project</span>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-heading font-bold">{project.title}</h3>
+                <div class="glass-card p-6 rounded-lg">
+                  <p class="text-body text-textSecondary mb-4">{project.shortDescription}</p>
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {project.techStack.slice(0, 5).map((tech) => (
+                      <span class="text-code text-accent-purple text-sm">{tech.name}</span>
+                    ))}
+                  </div>
+                  <div class="flex gap-4">
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" 
+                         class="text-accent-indigo hover:text-accent-purple transition-colors">
+                        External Link
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+                         class="text-accent-indigo hover:text-accent-purple transition-colors">
+                        GitHub
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Other Projects Grid -->
+        <div class="mt-32">
+          <h3 class="text-2xl font-heading font-bold mb-8 text-center">Other Noteworthy Projects</h3>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.filter(p => !p.featured).map((project) => (
+              <div class="glass-card p-6 rounded-lg hover-lift transition-all">
+                <h4 class="text-xl font-bold mb-2">{project.title}</h4>
+                <p class="text-sm text-textSecondary mb-4">{project.shortDescription}</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {project.techStack.slice(0, 4).map((tech) => (
+                    <span class="text-xs text-code text-accent-cyan">{tech.name}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Divider />
+
+    <Divider />
+
+    <!-- 04. Skills Section -->
+    <section id="skills" class="scroll-mt-20 py-24 sm:py-32">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionNumber number="04.">
+          <h2 class="font-heading">Skills & Technologies</h2>
+        </SectionNumber>
+        
+        <p class="text-body-lg text-textSecondary max-w-2xl mb-16 mt-4">
+          Technologies and tools I work with to build exceptional digital experiences.
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {superPowers.map((power) => (
+            <div class="glass-card p-6 rounded-lg hover-lift transition-all">
+              <div class="flex items-center gap-3 mb-4">
+                <Image src={power.icon} alt={power.title} class="w-8 h-8" />
+                <h3 class="text-xl font-bold">{power.title}</h3>
+              </div>
+              <p class="text-sm text-textSecondary mb-4">{power.description}</p>
+              <div class="space-y-2">
+                <div class="flex justify-between text-xs mb-1">
+                  <span>Proficiency</span>
+                  <span class="text-code text-accent-indigo">{power.proficiency}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                  <div 
+                    class="bg-gradient-to-r from-accent-indigo to-accent-purple h-2 rounded-full transition-all duration-1000"
+                    style={`width: ${power.proficiency}%`}
+                  />
+                </div>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-4">
+                {power.skills.map((skill) => (
+                  <span class="text-xs px-2 py-1 bg-accent-indigo/10 text-accent-indigo rounded font-mono">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Divider />
+
+    <!-- 05. Contact Section -->
+    <section id="contact" class="scroll-mt-20 py-24 sm:py-32">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionNumber number="05.">
+          <h2 class="font-heading">Get In Touch</h2>
+        </SectionNumber>
+        
+        <div class="mt-16">
+          <ContactCTAPremium />
+        </div>
+      </div>
+    </section>
   </main>
 </Layout>

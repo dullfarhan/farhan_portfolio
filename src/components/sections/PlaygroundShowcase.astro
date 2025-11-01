@@ -1,0 +1,51 @@
+---
+import TypeWriter from "../interactive/TypeWriter";
+import MagneticButton from "../interactive/MagneticButton";
+import AnimatedCounter from "../interactive/AnimatedCounter";
+import ConfettiButton from "../ui/ConfettiButton";
+---
+
+<section class="py-16 sm:py-24 bg-gradient-to-br from-gray-50 to-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="gradient-text text-shimmer mb-4">Interactive Playground</h2>
+      <p class="text-lg text-textSecondary max-w-2xl mx-auto">Explore micro-interactions and effects used across this site.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="glass-card p-6 rounded-xl">
+        <h4 class="font-bold mb-3">Typewriter</h4>
+        <TypeWriter
+          client:load
+          texts={["AI Engineer", "Full-Stack Developer", "Cloud Architect", "Problem Solver"]}
+          className="gradient-text-cyan text-2xl"
+        />
+      </div>
+
+      <div class="glass-card p-6 rounded-xl flex items-center justify-between">
+        <div>
+          <h4 class="font-bold mb-1">Animated Counter</h4>
+          <p class="text-sm text-textSecondary">Smooth incrementing values</p>
+        </div>
+        <AnimatedCounter client:only="react" from={0} to={1248} duration={1500} className="text-3xl font-bold" />
+      </div>
+
+      <div class="glass-card p-6 rounded-xl">
+        <h4 class="font-bold mb-3">Magnetic Buttons</h4>
+        <div class="flex gap-4 flex-wrap">
+          <MagneticButton client:load className="px-6 py-3 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-semibold">Hover me</MagneticButton>
+          <MagneticButton client:load className="px-6 py-3 glass-card border-2 border-accent-indigo text-accent-indigo rounded-lg font-semibold">I'm magnetic</MagneticButton>
+        </div>
+      </div>
+
+      <div class="glass-card p-6 rounded-xl">
+        <h4 class="font-bold mb-3">Confetti Action</h4>
+        <ConfettiButton client:load>
+          <button class="px-6 py-3 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-semibold">Celebrate 🎉</button>
+        </ConfettiButton>
+      </div>
+    </div>
+  </div>
+</section>
+
+
