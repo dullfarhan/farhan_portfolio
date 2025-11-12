@@ -56,51 +56,51 @@ const timeline = [
 <div class="space-y-8">
   <!-- Vertical Timeline -->
   <div class="relative max-w-3xl">
-    <!-- Vertical line -->
-    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-indigo via-accent-purple to-accent-pink hidden md:block"></div>
+    <!-- Vertical line - Apple style subtle -->
+    <div class="absolute left-0 top-0 bottom-0 w-px bg-wash-medium hidden md:block"></div>
 
     <!-- Timeline items -->
     <div class="space-y-12">
       {timeline.map((item, index) => (
-        <div class="relative pl-8 md:pl-12 fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
-          {/* Timeline dot */}
-          <div class="absolute left-0 top-2 w-4 h-4 bg-accent-indigo rounded-full border-4 border-white shadow-glow-indigo hidden md:block"></div>
+        <article class="relative pl-8 md:pl-12 fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
+          {/* Timeline dot - Liquid Glass */}
+          <div class="absolute left-0 top-2 w-4 h-4 bg-accent-blue rounded-full border-2 border-white hidden md:block liquid-glass"></div>
 
           {/* Year */}
-          <div class="text-code text-accent-indigo opacity-60 mb-2 font-mono">
+          <div class="text-code text-accent-blue opacity-70 mb-2 font-mono text-sm">
             {item.year}
           </div>
 
           {/* Role */}
           <div class="mb-3">
-            <h3 class="text-xl md:text-2xl font-bold mb-1">
-              {item.title} <span class="text-accent-indigo">@</span>{" "}
-              <span class="text-code text-accent-purple">{item.company}</span>
+            <h3 class="text-xl md:text-2xl font-bold mb-1 text-textPrimary">
+              {item.title} <span class="text-textSecondary">@</span>{" "}
+              <span class="text-code text-textTertiary">{item.company}</span>
             </h3>
           </div>
 
           {/* Description */}
-          <p class="text-body text-textSecondary mb-4">{item.description}</p>
+          <p class="text-body text-textSecondary mb-4 leading-relaxed">{item.description}</p>
 
-          {/* Tech Stack */}
-          <div class="flex flex-wrap gap-2 mb-4">
+          {/* Tech Stack - Glass badges */}
+          <div class="flex flex-wrap gap-2 mb-4" role="list">
             {item.techStack.map((tech) => (
-              <span class="text-xs px-2 py-1 bg-accent-indigo/10 text-accent-indigo rounded font-mono">
+              <span class="liquid-glass-badge text-textPrimary text-xs font-medium" role="listitem">
                 {tech}
               </span>
             ))}
           </div>
 
           {/* Achievements */}
-          <ul class="space-y-2">
+          <ul class="space-y-2" role="list">
             {item.achievements.map((achievement) => (
-              <li class="flex items-start gap-3 text-sm text-textSecondary">
-                <ChevronRight size={16} class="text-accent-indigo mt-0.5 flex-shrink-0" />
+              <li class="flex items-start gap-3 text-sm text-textSecondary" role="listitem">
+                <ChevronRight size={16} class="text-accent-blue mt-0.5 flex-shrink-0" aria-hidden="true" />
                 <span>{achievement}</span>
               </li>
             ))}
           </ul>
-        </div>
+        </article>
       ))}
     </div>
   </div>

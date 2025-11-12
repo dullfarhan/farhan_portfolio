@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Github, GitBranch, Star, GitPullRequest } from 'lucide-react';
 
 interface GitHubStatsProps {
@@ -23,10 +23,10 @@ export default function GitHubStats({ username = "farhan" }: GitHubStatsProps) {
   }, [username]);
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
+    <section className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h3 className="text-3xl sm:text-4xl font-bold gradient-text mb-4">
+          <h3 className="text-3xl sm:text-4xl font-bold text-textPrimary mb-4">
             Active Open Source Contributor
           </h3>
           <p className="text-textSecondary text-lg">
@@ -35,40 +35,40 @@ export default function GitHubStats({ username = "farhan" }: GitHubStatsProps) {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          <div className="glass-card p-6 text-center group hover:scale-105 transition-transform">
-            <Github className="w-8 h-8 mx-auto mb-3 text-accent-indigo" />
-            <div className="text-3xl font-bold gradient-text mb-2">{stats.repos}+</div>
+          <div className="liquid-glass-card p-6 text-center group liquid-glass-hover transition-all">
+            <Github className="w-8 h-8 mx-auto mb-3 text-accent-blue" />
+            <div className="text-3xl font-bold text-accent-blue mb-2">{stats.repos}+</div>
             <div className="text-sm text-textSecondary">Public Repos</div>
           </div>
 
-          <div className="glass-card p-6 text-center group hover:scale-105 transition-transform">
-            <Star className="w-8 h-8 mx-auto mb-3 text-accent-purple" />
-            <div className="text-3xl font-bold gradient-text mb-2">{stats.stars}+</div>
+          <div className="liquid-glass-card p-6 text-center group liquid-glass-hover transition-all">
+            <Star className="w-8 h-8 mx-auto mb-3 text-accent-blue" />
+            <div className="text-3xl font-bold text-accent-blue mb-2">{stats.stars}+</div>
             <div className="text-sm text-textSecondary">Total Stars</div>
           </div>
 
-          <div className="glass-card p-6 text-center group hover:scale-105 transition-transform">
-            <GitBranch className="w-8 h-8 mx-auto mb-3 text-accent-cyan" />
-            <div className="text-3xl font-bold gradient-text mb-2">{stats.contributions}</div>
+          <div className="liquid-glass-card p-6 text-center group liquid-glass-hover transition-all">
+            <GitBranch className="w-8 h-8 mx-auto mb-3 text-accent-blue" />
+            <div className="text-3xl font-bold text-accent-blue mb-2">{stats.contributions}</div>
             <div className="text-sm text-textSecondary">Contributions</div>
           </div>
 
-          <div className="glass-card p-6 text-center group hover:scale-105 transition-transform">
-            <GitPullRequest className="w-8 h-8 mx-auto mb-3 text-accent-pink" />
-            <div className="text-3xl font-bold gradient-text mb-2">{stats.pullRequests}+</div>
+          <div className="liquid-glass-card p-6 text-center group liquid-glass-hover transition-all">
+            <GitPullRequest className="w-8 h-8 mx-auto mb-3 text-accent-blue" />
+            <div className="text-3xl font-bold text-accent-blue mb-2">{stats.pullRequests}+</div>
             <div className="text-sm text-textSecondary">Pull Requests</div>
           </div>
         </div>
 
         {/* GitHub Contribution Graph Placeholder */}
-        <div className="mt-12 max-w-4xl mx-auto glass-card p-8">
+        <div className="mt-12 max-w-4xl mx-auto liquid-glass-card p-8">
           <div className="flex items-center justify-between mb-6">
-            <h4 className="text-xl font-bold">GitHub Activity</h4>
+            <h4 className="text-xl font-bold text-textPrimary">GitHub Activity</h4>
             <a 
               href={`https://github.com/${username}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-indigo hover:underline flex items-center gap-2"
+              className="text-accent-blue hover:underline flex items-center gap-2 transition-colors duration-300"
             >
               View Profile <Github className="w-4 h-4" />
             </a>

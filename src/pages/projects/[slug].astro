@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/BaseLayout.astro";
 import { projects, getProjectById } from "../../data/projects";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Share2, ChevronRight, Home } from "lucide-react";
 import AnimatedCounter from "../../components/interactive/AnimatedCounter";
 
 export function getStaticPaths() {
@@ -17,19 +17,42 @@ const project = getProjectById(slug);
 if (!project) {
   return Astro.redirect("/404");
 }
+
+// Find current project index for next/prev navigation
+const currentIndex = projects.findIndex(p => p.id === slug);
+const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
+const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
+// Generate dynamic title and description
+const pageTitle = `${project.title} - ${project.category.toUpperCase()} Project | Farhan Portfolio`;
+const pageDescription = project.fullDescription || project.shortDescription;
+const pageOgImage = project.thumbnail.startsWith('http') 
+  ? project.thumbnail 
+  : `https://farhan.info${project.thumbnail}`;
+
+// Social sharing URL
+const shareUrl = `https://farhan.info/projects/${slug}`;
+const shareText = `Check out ${project.title} - ${project.shortDescription}`;
 ---
 
-<Layout>
+<Layout 
+  title={pageTitle}
+  description={pageDescription}
+  ogImage={pageOgImage}
+>
   <main class="min-h-screen py-12">
-    <!-- Back button -->
+    <!-- Breadcrumbs -->
     <div class="max-w-6xl mx-auto px-4 mb-8">
-      <a
-        href="/"
-        class="inline-flex items-center gap-2 text-accent-indigo hover:text-accent-purple transition-colors"
-      >
-        <ArrowLeft size={20} />
-        <span>Back to Portfolio</span>
-      </a>
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-sm text-textSecondary">
+        <a href="/" class="hover:text-accent-blue transition-colors flex items-center gap-1" aria-label="Home">
+          <Home size={16} aria-hidden="true" />
+          <span>Home</span>
+        </a>
+        <ChevronRight size={16} aria-hidden="true" />
+        <a href="/#projects" class="hover:text-accent-blue transition-colors">Projects</a>
+        <ChevronRight size={16} aria-hidden="true" />
+        <span class="text-textPrimary" aria-current="page">{project.title}</span>
+      </nav>
     </div>
 
     <!-- Hero Section -->
@@ -49,16 +72,17 @@ if (!project) {
           {project.fullDescription}
         </p>
 
-        <div class="flex gap-4">
+        <div class="flex flex-wrap gap-4 items-center">
           {
             project.liveUrl && (
               <a
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-medium hover:shadow-glow-indigo transition-all"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-medium hover:shadow-glow-indigo transition-all min-h-[44px]"
+                aria-label="View live project (opens in new tab)"
               >
-                <ExternalLink size={20} />
+                <ExternalLink size={20} aria-hidden="true" />
                 <span>View Live Project</span>
               </a>
             )
@@ -69,13 +93,24 @@ if (!project) {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 px-6 py-3 border-2 border-accent-indigo text-accent-indigo rounded-lg font-medium hover:bg-accent-indigo hover:text-white transition-all"
+                class="inline-flex items-center gap-2 px-6 py-3 border-2 border-accent-indigo text-accent-indigo rounded-lg font-medium hover:bg-accent-indigo hover:text-white transition-all min-h-[44px]"
+                aria-label="View source code on GitHub (opens in new tab)"
               >
-                <Github size={20} />
+                <Github size={20} aria-hidden="true" />
                 <span>View Code</span>
               </a>
             )
           }
+          <!-- Social Sharing -->
+          <button
+            onclick={`if (navigator.share) { navigator.share({title: '${project.title}', text: '${shareText}', url: '${shareUrl}'}).catch(() => {}); } else { navigator.clipboard.writeText('${shareUrl}').then(() => alert('Link copied to clipboard!')).catch(() => {}); }`}
+            class="inline-flex items-center gap-2 px-6 py-3 border-2 border-textSecondary/20 text-textSecondary rounded-lg font-medium hover:bg-glass-tinted hover:border-accent-blue hover:text-accent-blue transition-colors min-h-[44px]"
+            aria-label="Share this project"
+            title="Share project"
+          >
+            <Share2 size={20} aria-hidden="true" />
+            <span>Share</span>
+          </button>
         </div>
       </div>
     </div>
@@ -109,6 +144,8 @@ if (!project) {
                 alt={`${project.title} screenshot ${i + 1}`}
                 class="w-full h-full object-cover"
                 loading="lazy"
+                decoding="async"
+                fetchpriority="auto"
               />
             </div>
           ))
@@ -204,6 +241,45 @@ if (!project) {
       )
     }
 
+    <!-- Next/Previous Navigation -->
+    {(prevProject || nextProject) && (
+      <div class="max-w-6xl mx-auto px-4 my-12">
+        <div class="flex flex-col sm:flex-row gap-4 justify-between">
+          {prevProject ? (
+            <a
+              href={`/projects/${prevProject.id}`}
+              class="group flex items-center gap-3 px-6 py-4 liquid-glass-card rounded-xl hover:bg-glass-tinted transition-all duration-300 flex-1 sm:flex-initial min-h-[44px]"
+              aria-label={`Previous project: ${prevProject.title}`}
+            >
+              <ArrowLeft size={20} class="text-textSecondary group-hover:text-accent-blue transition-colors" aria-hidden="true" />
+              <div class="flex flex-col">
+                <span class="text-xs text-textSecondary uppercase tracking-wider">Previous</span>
+                <span class="text-base font-semibold text-textPrimary group-hover:text-accent-blue transition-colors">{prevProject.title}</span>
+              </div>
+            </a>
+          ) : (
+            <div class="flex-1"></div>
+          )}
+          
+          {nextProject ? (
+            <a
+              href={`/projects/${nextProject.id}`}
+              class="group flex items-center gap-3 px-6 py-4 liquid-glass-card rounded-xl hover:bg-glass-tinted transition-all duration-300 flex-1 sm:flex-initial min-h-[44px] sm:text-right"
+              aria-label={`Next project: ${nextProject.title}`}
+            >
+              <div class="flex flex-col sm:items-end">
+                <span class="text-xs text-textSecondary uppercase tracking-wider">Next</span>
+                <span class="text-base font-semibold text-textPrimary group-hover:text-accent-blue transition-colors">{nextProject.title}</span>
+              </div>
+              <ArrowLeft size={20} class="text-textSecondary group-hover:text-accent-blue transition-colors rotate-180" aria-hidden="true" />
+            </a>
+          ) : (
+            <div class="flex-1"></div>
+          )}
+        </div>
+      </div>
+    )}
+
     <!-- CTA Section -->
     <div class="max-w-4xl mx-auto px-4 fade-in-up">
       <div class="glass-card p-8 text-center animated-gradient-bg text-white">
@@ -215,7 +291,8 @@ if (!project) {
         </p>
         <a
           href="/#contact"
-          class="inline-block px-8 py-4 bg-white text-accent-indigo rounded-lg font-bold hover:scale-105 transition-transform"
+          class="inline-block px-8 py-4 bg-white text-accent-indigo rounded-lg font-bold hover:scale-105 transition-transform min-h-[44px] flex items-center justify-center"
+          aria-label="Get in touch - Navigate to contact section"
         >
           Get In Touch
         </a>

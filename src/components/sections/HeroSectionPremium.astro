@@ -1,31 +1,25 @@
 ---
-import HeroScene from "../three/HeroScene";
 import TypeWriter from "../interactive/TypeWriter";
-import MagneticButton from "../interactive/MagneticButton";
-import ParallaxSection from "../effects/ParallaxSection";
-import { ArrowDown, Mail, Github, Linkedin, ChevronRight } from "lucide-react";
+import { ArrowDown, Github, Linkedin, ChevronRight } from "lucide-react";
 import Divider from "../common/Divider.astro";
 ---
 
-<header class="relative min-h-screen flex items-center overflow-hidden">
-  <!-- Animated background pattern -->
-  <div class="absolute inset-0 opacity-5">
-    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-accent-indigo via-accent-purple to-accent-pink animate-gradient bg-[length:400%_400%]"></div>
-  </div>
-
+<header class="relative min-h-screen flex items-center overflow-hidden" role="banner">
+  <!-- Subtle ambient background (handled by AmbientLight component) -->
+  
   <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
       <!-- Left Column - Content -->
-      <div class="space-y-8">
-        <!-- Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent-emerald/10 border border-accent-emerald/20">
-          <span class="w-2 h-2 bg-accent-emerald rounded-full animate-pulse"></span>
-          <span class="text-sm font-mono text-code">Available for hire</span>
+      <div class="space-y-10">
+        <!-- Badge - Apple Liquid Glass Style -->
+        <div class="inline-flex items-center gap-2 liquid-glass-badge">
+          <span class="w-2 h-2 bg-accent-blue rounded-full"></span>
+          <span class="text-sm font-medium text-textPrimary">Available for hire</span>
         </div>
 
         <!-- Greeting -->
-        <div class="space-y-2">
-          <p class="text-code text-accent-indigo">Hi, my name is</p>
+        <div class="space-y-4">
+          <p class="text-sm text-textSecondary font-medium tracking-wide uppercase">Hi, my name is</p>
           <h1 class="text-display-sm md:text-display font-heading font-bold text-textPrimary">
             Farhan.
           </h1>
@@ -35,89 +29,91 @@ import Divider from "../common/Divider.astro";
         </div>
 
         <!-- Description -->
-        <div class="max-w-xl space-y-4">
+        <div class="max-w-xl space-y-6">
           <p class="text-body-lg text-textSecondary leading-relaxed">
-            I'm a <span class="text-code text-accent-indigo">full-stack engineer</span> specializing in 
-            building (and occasionally designing) exceptional digital experiences. Currently focused on 
-            <span class="text-code text-accent-purple">AI-powered solutions</span> and 
-            <span class="text-code text-accent-cyan">scalable cloud infrastructure</span>.
+            I'm a <span class="text-code">full-stack engineer</span> specializing in 
+            building exceptional digital experiences. Currently focused on 
+            <span class="text-code">AI-powered solutions</span> and 
+            <span class="text-code">scalable cloud infrastructure</span>.
           </p>
         </div>
 
         <!-- Typewriter Role -->
-        <div class="h-12 flex items-center">
+        <div class="min-h-[3rem] flex items-center overflow-visible">
           <TypeWriter
-            client:load
+            client:only="react"
             texts={[
               "Full-Stack Developer",
               "AI/ML Engineer", 
               "Cloud Architect",
               "DevOps Specialist"
             ]}
-            className="text-2xl md:text-3xl font-heading font-bold gradient-text"
+            className="text-2xl md:text-3xl font-heading font-bold text-accent-blue"
           />
         </div>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap gap-4 pt-4">
-          <MagneticButton
-            client:load
-            className="px-6 py-3 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-medium hover:shadow-glow-indigo transition-all inline-flex items-center gap-2"
+        <!-- CTA Buttons - Enhanced Visual Hierarchy -->
+        <div class="flex flex-wrap gap-4 pt-6">
+          <a 
+            href="#contact" 
+            class="cta-primary inline-flex items-center gap-2"
+            aria-label="Navigate to contact section"
           >
-            <a href="#contact" class="flex items-center gap-2">
-              Get In Touch
-              <ChevronRight size={18} />
-            </a>
-          </MagneticButton>
+            Get In Touch
+            <ChevronRight size={20} aria-hidden="true" />
+          </a>
 
-          <MagneticButton
-            client:load
-            className="px-6 py-3 glass-card border border-accent-indigo/30 text-accent-indigo rounded-lg font-medium hover:bg-accent-indigo hover:text-white transition-all inline-flex items-center gap-2"
+          <a 
+            href="#projects" 
+            class="cta-secondary inline-flex items-center gap-2"
+            aria-label="Navigate to projects section"
           >
-            <a href="#projects" class="flex items-center gap-2">
-              View My Work
-            </a>
-          </MagneticButton>
+            View My Work
+          </a>
         </div>
 
-        <!-- Social links -->
-        <div class="flex gap-4 pt-4">
+        <!-- Social links - Apple Liquid Glass -->
+        <div class="flex gap-4 pt-4" role="list">
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/dullfarhan"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-textPrimary hover:text-accent-indigo hover:scale-110 transition-all"
-            aria-label="GitHub"
+            class="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-textSecondary hover:text-accent-blue transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 min-h-[44px] min-w-[44px]"
+            aria-label="Visit Farhan's GitHub profile (opens in new tab)"
+            title="GitHub Profile"
+            role="listitem"
           >
-            <Github size={20} />
+            <Github size={20} aria-hidden="true" />
           </a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/dullfarhan"
             target="_blank"
             rel="noopener noreferrer"
-            class="w-10 h-10 glass-card rounded-full flex items-center justify-center text-textPrimary hover:text-accent-indigo hover:scale-110 transition-all"
-            aria-label="LinkedIn"
+            class="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-textSecondary hover:text-accent-blue transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 min-h-[44px] min-w-[44px]"
+            aria-label="Visit Farhan's LinkedIn profile (opens in new tab)"
+            title="LinkedIn Profile"
+            role="listitem"
           >
-            <Linkedin size={20} />
+            <Linkedin size={20} aria-hidden="true" />
           </a>
         </div>
       </div>
 
-      <!-- Right Column - 3D Scene (more subtle) -->
+      <!-- Right Column - Minimal placeholder (removed 3D for cleaner Apple aesthetic) -->
       <div class="hidden lg:block relative">
-        <ParallaxSection client:only="react" speed={0.2}>
-          <div class="w-full max-w-lg mx-auto opacity-60 hover:opacity-100 transition-opacity">
-            <HeroScene client:only="react" />
+        <div class="w-full max-w-lg mx-auto liquid-glass-card p-12 rounded-3xl">
+          <div class="aspect-square bg-gradient-ambient rounded-2xl flex items-center justify-center">
+            <p class="text-textSecondary text-lg">Portfolio showcase</p>
           </div>
-        </ParallaxSection>
+        </div>
       </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow hidden lg:block">
-      <a href="#about" class="flex flex-col items-center gap-2 text-textSecondary hover:text-accent-indigo transition-colors">
-        <span class="text-xs font-mono">Scroll</span>
-        <ArrowDown size={24} />
+    <!-- Scroll indicator - Minimal Apple style -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block">
+      <a href="#about" class="flex flex-col items-center gap-2 text-textSecondary hover:text-accent-blue transition-colors duration-300">
+        <span class="text-xs font-medium">Scroll</span>
+        <ArrowDown size={20} />
       </a>
     </div>
   </div>

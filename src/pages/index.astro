@@ -3,7 +3,6 @@ import Layout from "../layouts/BaseLayout.astro";
 import HeroSectionPremium from "../components/sections/HeroSectionPremium.astro";
 import SectionNumber from "../components/common/SectionNumber.astro";
 import ClientLogos from "../components/sections/ClientLogos.astro";
-import MarqueeLogos from "../components/sections/MarqueeLogos.astro";
 import ProjectCardPremium from "../components/common/ProjectCardPremium";
 import { projects } from "../data/projects";
 import SuperPowerCardPremium from "../components/common/SuperPowerCardPremium";
@@ -25,11 +24,18 @@ import CodeCircle from "@/assets/icons/code-circle.svg";
 import BackEnd from "@/assets/icons/backend-icon.svg";
 import Driver from "@/assets/icons/driver.svg";
 import CloudAdd from "@/assets/icons/cloud-add.svg";
+import { getImage } from "astro:assets";
+
+// Convert icons to URLs for React components - using Image component to generate URL
+const codeCircleImg = await getImage({ src: CodeCircle });
+const backendImg = await getImage({ src: BackEnd });
+const driverImg = await getImage({ src: Driver });
+const cloudAddImg = await getImage({ src: CloudAdd });
 
 const superPowers = [
   {
     title: "Frontend Development",
-    icon: CodeCircle,
+    icon: codeCircleImg.src,
     description: "Creating fast, responsive, and user-friendly interfaces for seamless digital experiences.",
     bgColor: "bg-[#ECDFE6]",
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js"],
@@ -37,7 +43,7 @@ const superPowers = [
   },
   {
     title: "Backend Development",
-    icon: BackEnd,
+    icon: backendImg.src,
     description: "Building secure, scalable, and high-performance backend solutions.",
     bgColor: "bg-[#E9EBE8]",
     skills: ["Node.js", "Python", "Express", "FastAPI", "PostgreSQL"],
@@ -45,7 +51,7 @@ const superPowers = [
   },
   {
     title: "Database Systems",
-    icon: Driver,
+    icon: driverImg.src,
     description: "Efficient, secure, and scalable database solutions for seamless data management.",
     bgColor: "bg-[#FBEDE0]",
     skills: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Prisma"],
@@ -53,7 +59,7 @@ const superPowers = [
   },
   {
     title: "DevOps & Cloud",
-    icon: CloudAdd,
+    icon: cloudAddImg.src,
     description: "Streamlining deployment, scalability, and security with cutting-edge cloud solutions.",
     bgColor: "bg-[#e7f0f2]",
     skills: ["AWS", "Docker", "Kubernetes", "CI/CD", "Terraform"],
@@ -99,23 +105,24 @@ const testimonials = [
 ---
 
 <Layout>
-  <main class="flex flex-col">
+  <main id="main-content" class="flex flex-col" role="main">
     <!-- Premium Hero Section -->
     <HeroSectionPremium />
 
     <!-- Client Logos for Credibility -->
     <section class="py-12">
       <ClientLogos />
-      <MarqueeLogos />
     </section>
 
     <Divider />
 
     <!-- 01. About Section -->
-    <section id="about" class="scroll-mt-20 py-24 sm:py-32">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" class="scroll-mt-20 py-24 sm:py-32 relative overflow-hidden section-bg-alt" aria-labelledby="about-heading">
+      <!-- Layered approach: gradient wash background -->
+      <div class="absolute inset-0 bg-gradient-wash"></div>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionNumber number="01.">
-          <h2 class="font-heading">About Me</h2>
+          <h2 id="about-heading" class="font-heading">About Me</h2>
         </SectionNumber>
         <AboutSection />
       </div>
@@ -124,10 +131,12 @@ const testimonials = [
     <Divider />
 
     <!-- 02. Experience Section -->
-    <section id="experience" class="scroll-mt-20 py-24 sm:py-32">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" class="scroll-mt-20 py-24 sm:py-32 relative overflow-hidden section-bg-subtle" aria-labelledby="experience-heading">
+      <!-- Layered approach: subtle blue wash -->
+      <div class="absolute inset-0 bg-gradient-wash-subtle-blue"></div>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionNumber number="02.">
-          <h2 class="font-heading">Where I've Worked</h2>
+          <h2 id="experience-heading" class="font-heading">Where I've Worked</h2>
         </SectionNumber>
         <Timeline />
       </div>
@@ -136,10 +145,12 @@ const testimonials = [
     <Divider />
 
     <!-- 03. Projects Section -->
-    <section id="projects" class="scroll-mt-20 py-24 sm:py-32">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" class="scroll-mt-20 py-24 sm:py-32 relative overflow-hidden section-bg-alt" aria-labelledby="projects-heading">
+      <!-- Layered approach: gradient wash -->
+      <div class="absolute inset-0 bg-gradient-wash-light"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionNumber number="03.">
-          <h2 class="font-heading">Some Things I've Built</h2>
+          <h2 id="projects-heading" class="font-heading">Some Things I've Built</h2>
         </SectionNumber>
         
         <p class="text-body-lg text-textSecondary max-w-2xl mb-16 mt-4">
@@ -156,27 +167,39 @@ const testimonials = [
               </div>
               <div class={`flex-1 space-y-4 ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
                 <div class="flex items-center gap-3">
-                  <span class="text-code text-accent-indigo opacity-60">Featured Project</span>
+                  <span class="text-code text-accent-blue opacity-60">Featured Project</span>
                 </div>
-                <h3 class="text-3xl md:text-4xl font-heading font-bold">{project.title}</h3>
-                <div class="glass-card p-6 rounded-lg">
+                <h3 class="text-3xl md:text-4xl font-heading font-bold text-textPrimary">{project.title}</h3>
+                <div class="liquid-glass-card p-6 rounded-3xl">
                   <p class="text-body text-textSecondary mb-4">{project.shortDescription}</p>
                   <div class="flex flex-wrap gap-2 mb-4">
                     {project.techStack.slice(0, 5).map((tech) => (
-                      <span class="text-code text-accent-purple text-sm">{tech.name}</span>
+                      <span class="text-code text-textTertiary text-sm">{tech.name}</span>
                     ))}
                   </div>
                   <div class="flex gap-4">
                     {project.liveUrl && (
                       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" 
-                         class="text-accent-indigo hover:text-accent-purple transition-colors">
-                        External Link
+                         class="text-accent-blue hover:bg-glass-tinted transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded-lg px-3 py-2 min-h-[44px] flex items-center liquid-glass-button"
+                         aria-label={`Visit ${project.title} live demo (opens in new tab)`}>
+                        <span class="flex items-center gap-2">
+                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                          </svg>
+                          View Live
+                        </span>
                       </a>
                     )}
                     {project.githubUrl && (
                       <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
-                         class="text-accent-indigo hover:text-accent-purple transition-colors">
-                        GitHub
+                         class="text-accent-blue hover:bg-glass-tinted transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded-lg px-3 py-2 min-h-[44px] flex items-center liquid-glass-button"
+                         aria-label={`View ${project.title} source code on GitHub (opens in new tab)`}>
+                        <span class="flex items-center gap-2">
+                          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                          </svg>
+                          View Code
+                        </span>
                       </a>
                     )}
                   </div>
@@ -188,15 +211,15 @@ const testimonials = [
 
         <!-- Other Projects Grid -->
         <div class="mt-32">
-          <h3 class="text-2xl font-heading font-bold mb-8 text-center">Other Noteworthy Projects</h3>
+          <h3 class="text-2xl font-heading font-bold mb-8 text-center text-textPrimary">Other Noteworthy Projects</h3>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.filter(p => !p.featured).map((project) => (
-              <div class="glass-card p-6 rounded-lg hover-lift transition-all">
-                <h4 class="text-xl font-bold mb-2">{project.title}</h4>
-                <p class="text-sm text-textSecondary mb-4">{project.shortDescription}</p>
+            {projects.filter(p => !p.featured).map((project, index) => (
+              <div class={`liquid-glass-card p-6 rounded-3xl liquid-glass-hover transition-all`}>
+                <h4 class="text-xl font-bold mb-2 text-textPrimary">{project.title}</h4>
+                <p class="text-sm text-textSecondary mb-4 leading-relaxed">{project.shortDescription}</p>
                 <div class="flex flex-wrap gap-2 mb-4">
                   {project.techStack.slice(0, 4).map((tech) => (
-                    <span class="text-xs text-code text-accent-cyan">{tech.name}</span>
+                    <span class="text-xs text-code text-textTertiary">{tech.name}</span>
                   ))}
                 </div>
               </div>
@@ -208,47 +231,22 @@ const testimonials = [
 
     <Divider />
 
-    <Divider />
-
     <!-- 04. Skills Section -->
-    <section id="skills" class="scroll-mt-20 py-24 sm:py-32">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" class="scroll-mt-20 py-24 sm:py-32 relative overflow-hidden section-bg-subtle" aria-labelledby="skills-heading">
+      <!-- Layered approach: blue radial wash -->
+      <div class="absolute inset-0 bg-gradient-wash-blue"></div>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionNumber number="04.">
-          <h2 class="font-heading">Skills & Technologies</h2>
+          <h2 id="skills-heading" class="font-heading">Skills & Technologies</h2>
         </SectionNumber>
         
         <p class="text-body-lg text-textSecondary max-w-2xl mb-16 mt-4">
           Technologies and tools I work with to build exceptional digital experiences.
         </p>
 
-        <div class="grid md:grid-cols-2 gap-8">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {superPowers.map((power) => (
-            <div class="glass-card p-6 rounded-lg hover-lift transition-all">
-              <div class="flex items-center gap-3 mb-4">
-                <Image src={power.icon} alt={power.title} class="w-8 h-8" />
-                <h3 class="text-xl font-bold">{power.title}</h3>
-              </div>
-              <p class="text-sm text-textSecondary mb-4">{power.description}</p>
-              <div class="space-y-2">
-                <div class="flex justify-between text-xs mb-1">
-                  <span>Proficiency</span>
-                  <span class="text-code text-accent-indigo">{power.proficiency}%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div 
-                    class="bg-gradient-to-r from-accent-indigo to-accent-purple h-2 rounded-full transition-all duration-1000"
-                    style={`width: ${power.proficiency}%`}
-                  />
-                </div>
-              </div>
-              <div class="flex flex-wrap gap-2 mt-4">
-                {power.skills.map((skill) => (
-                  <span class="text-xs px-2 py-1 bg-accent-indigo/10 text-accent-indigo rounded font-mono">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            <SuperPowerCardPremium client:only="react" {...power} />
           ))}
         </div>
       </div>
@@ -256,11 +254,30 @@ const testimonials = [
 
     <Divider />
 
-    <!-- 05. Contact Section -->
-    <section id="contact" class="scroll-mt-20 py-24 sm:py-32">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- 05. Testimonials Section -->
+    <section id="testimonials" class="scroll-mt-20 py-24 sm:py-32 relative overflow-hidden section-bg-alt" aria-labelledby="testimonials-heading">
+      <!-- Layered approach: gradient wash -->
+      <div class="absolute inset-0 bg-gradient-wash-medium"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionNumber number="05.">
-          <h2 class="font-heading">Get In Touch</h2>
+          <h2 id="testimonials-heading" class="font-heading">What Clients Say</h2>
+        </SectionNumber>
+        <p class="text-body-lg text-textSecondary max-w-2xl mb-16 mt-4">
+          Hear directly from clients about their experience working with me and the impact of our collaborations.
+        </p>
+        <TestimonialCarousel client:only="react" testimonials={testimonials} />
+      </div>
+    </section>
+
+    <Divider />
+
+    <!-- 06. Contact Section -->
+    <section id="contact" class="scroll-mt-20 py-24 sm:py-32 relative overflow-hidden section-bg-subtle" aria-labelledby="contact-heading">
+      <!-- Layered approach: subtle blue wash -->
+      <div class="absolute inset-0 bg-gradient-wash-subtle-blue"></div>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <SectionNumber number="06.">
+          <h2 id="contact-heading" class="font-heading">Get In Touch</h2>
         </SectionNumber>
         
         <div class="mt-16">
@@ -270,3 +287,18 @@ const testimonials = [
     </section>
   </main>
 </Layout>
+
+<!-- Expose projects data for search -->
+<script is:inline define:vars={{ projects }}>
+  // Make projects data available for search component
+  if (typeof window !== 'undefined') {
+    (window as any).__PROJECTS_DATA__ = projects.map((p: any) => ({
+      id: p.id,
+      title: p.title,
+      shortDescription: p.shortDescription,
+      description: p.fullDescription,
+      tags: p.tags,
+      techStack: p.techStack,
+    }));
+  }
+</script>

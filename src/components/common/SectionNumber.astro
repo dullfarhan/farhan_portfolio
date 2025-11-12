@@ -8,10 +8,12 @@ interface Props {
 const { number, children, className = '' } = Astro.props;
 ---
 
-<div class={`flex items-baseline gap-4 mb-4 ${className}`}>
-  <span class="text-sm sm:text-base font-mono text-accent-indigo opacity-60">
+<div class={`flex items-baseline gap-4 mb-6 sm:mb-8 ${className}`}>
+  <span class="text-lg sm:text-xl md:text-2xl font-mono font-bold text-accent-blue opacity-80 tracking-tight">
     {number}
   </span>
-  <div class="flex-1">{children}</div>
+  <div class="flex-1 border-l-2 border-accent-blue/20 pl-4 sm:pl-6">
+    {children}
+  </div>
 </div>
 

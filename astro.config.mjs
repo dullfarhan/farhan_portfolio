@@ -12,17 +12,19 @@ export default defineConfig({
     tailwind(), 
     sitemap(), 
     robotsTxt(),
-    react()
+    react({
+      experimentalReactChildren: true,
+    })
   ],
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Inter",
-        weights: [300, 400, 500, 600, 700],
-        display: "swap",
-        cssVariable: "--font-inter",
-      },
-    ],
+  vite: {
+    ssr: {
+      noExternal: ['@react-three/fiber', '@react-three/drei'],
+    },
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'gsap', 'lenis', 'lucide-react'],
+      exclude: ['@react-three/fiber', '@react-three/drei'],
+    },
   },
+  // Font loading optimized - using Google Fonts directly for Space Grotesk and Fira Code
+  // Removed Inter font to eliminate unnecessary preload warnings
 });

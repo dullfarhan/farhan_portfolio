@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface NavItem {
   id: string;
@@ -60,8 +60,8 @@ export default function SideNavigation() {
             onClick={() => handleClick(item.id)}
             className={`group flex items-center gap-3 transition-all duration-300 ${
               activeSection === item.id
-                ? 'text-accent-indigo'
-                : 'text-textSecondary hover:text-accent-indigo'
+                ? 'text-accent-blue'
+                : 'text-textSecondary hover:text-accent-blue'
             }`}
             aria-label={`Navigate to ${item.label}`}
           >
@@ -69,7 +69,7 @@ export default function SideNavigation() {
             <span
               className={`h-0.5 transition-all duration-300 ${
                 activeSection === item.id
-                  ? 'w-8 bg-accent-indigo'
+                  ? 'w-8 bg-accent-blue'
                   : 'w-0 bg-transparent group-hover:w-4'
               }`}
             />

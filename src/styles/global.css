@@ -6,11 +6,11 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
-  color: #0c131c;
+  background-color: #FFFBF5; /* Warm off-white base */
+  color: #1D1D1F;
   scrollbar-width: thin;
   scroll-behavior: smooth;
-  cursor: none; /* Hide default cursor for custom cursor */
+  cursor: default; /* Apple uses default cursor */
 }
 
 /* Marquee animation */
@@ -24,12 +24,23 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Show default cursor on mobile */
-@media (max-width: 768px) {
-  html,
-  body {
-    cursor: default;
-  }
+/* Apple-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D2D2D7;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #86868B;
 }
 
 html.lenis {
@@ -52,36 +63,266 @@ html.lenis {
   pointer-events: none;
 }
 
-/* Typography System - World-Class Portfolio Style */
+/* Typography System - Apple Style with Enhanced Hierarchy */
 h1 {
-  @apply font-heading font-bold text-display-sm md:text-display;
-  letter-spacing: -0.02em;
+  @apply font-heading font-bold text-display-sm md:text-display text-textPrimary;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
 }
 
 h2 {
-  @apply font-heading font-bold text-h2-sm sm:text-h2;
-  letter-spacing: -0.01em;
+  @apply font-heading font-bold text-h2-sm sm:text-h2 text-textPrimary;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.875rem;
 }
 
 h3 {
-  @apply font-heading font-semibold text-2xl sm:text-3xl;
+  @apply font-heading font-semibold text-2xl sm:text-3xl md:text-4xl text-textPrimary;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
 }
 
 h4 {
-  @apply font-heading font-semibold text-xl sm:text-2xl;
+  @apply font-heading font-semibold text-xl sm:text-2xl md:text-3xl text-textPrimary;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 0.625rem;
 }
 
 h5 {
-  @apply font-semibold text-base sm:text-lg;
+  @apply font-semibold text-lg sm:text-xl md:text-2xl text-textPrimary;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
 }
 
 h6 {
-  @apply font-semibold text-sm sm:text-base;
+  @apply font-semibold text-base sm:text-lg md:text-xl text-textPrimary;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
 }
 
 p {
   @apply text-body text-textSecondary;
   line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Apple-style body text */
+.body-text {
+  font-size: 17px;
+  line-height: 1.47059;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  color: #6E6E73;
+}
+
+.body-text-lg {
+  font-size: 21px;
+  line-height: 1.381;
+  font-weight: 400;
+  letter-spacing: 0.011em;
+  color: #6E6E73;
+}
+
+/* Reading time and content helpers */
+.reading-time {
+  @apply text-xs text-textSecondary opacity-70;
+  font-style: italic;
+}
+
+.content-break {
+  @apply my-8 border-t border-gray-200;
+}
+
+.visual-separator {
+  @apply my-12 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent;
+}
+
+/* Improved spacing utilities for better white space */
+.section-spacing {
+  @apply py-16 sm:py-24 lg:py-32;
+}
+
+.content-spacing {
+  @apply mb-8 sm:mb-12;
+}
+
+.card-spacing {
+  @apply p-6 sm:p-8;
+}
+
+/* Consistent spacing scale */
+.spacing-xs {
+  @apply gap-2;
+}
+
+.spacing-sm {
+  @apply gap-4;
+}
+
+.spacing-md {
+  @apply gap-6;
+}
+
+.spacing-lg {
+  @apply gap-8;
+}
+
+.spacing-xl {
+  @apply gap-12;
+}
+
+/* Section padding consistency */
+.section-padding {
+  @apply px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24;
+}
+
+.section-padding-sm {
+  @apply px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16;
+}
+
+/* Enhanced CTA Styling - Visual Hierarchy */
+.cta-primary {
+  @apply text-accent-blue font-semibold text-base sm:text-lg px-8 sm:px-10 py-4 sm:py-5 min-h-[52px] shadow-lg hover:shadow-xl;
+  position: relative;
+  padding: 16px 40px;
+  border-radius: 12px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(0, 81, 213, 0.2);
+  box-shadow: 
+    0 0 1px rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(0, 81, 213, 0.12),
+    inset 0 0 0 0.5px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.cta-primary:hover {
+  background: rgba(0, 81, 213, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 81, 213, 0.2);
+}
+
+.cta-primary:active {
+  transform: scale(0.98);
+}
+
+.cta-secondary {
+  @apply text-textSecondary font-medium text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 min-h-[44px];
+  position: relative;
+  padding: 12px 32px;
+  border-radius: 12px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 0.5px solid rgba(255, 247, 237, 0.4);
+  box-shadow: 
+    0 0 1px rgba(0, 0, 0, 0.04),
+    0 8px 32px rgba(251, 146, 60, 0.12),
+    inset 0 0 0 0.5px rgba(255, 251, 245, 0.8);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.85);
+  color: #0051D5;
+  transform: translateY(-1px);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+}
+
+.cta-secondary:active {
+  transform: scale(0.98);
+}
+
+/* Section Background Variations for Visual Separation */
+.section-bg-alt {
+  background: linear-gradient(180deg, 
+    rgba(255, 251, 245, 0.4) 0%, 
+    rgba(254, 247, 237, 0.6) 50%,
+    rgba(255, 251, 245, 0.4) 100%);
+}
+
+.section-bg-subtle {
+  background: linear-gradient(180deg, 
+    rgba(251, 191, 36, 0.02) 0%, 
+    rgba(251, 146, 60, 0.03) 50%,
+    transparent 100%);
+}
+
+/* Search Highlight */
+.search-highlight {
+  background: rgba(0, 81, 213, 0.2);
+  color: #0051D5;
+  font-weight: 600;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* Smooth page transitions */
+.page-transition {
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Loading state styles */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+}
+
+/* Improved empty states */
+.empty-state {
+  @apply text-center py-12;
+}
+
+.empty-state-icon {
+  @apply w-16 h-16 mx-auto mb-4 text-textSecondary opacity-50;
+}
+
+.empty-state-title {
+  @apply text-xl font-bold mb-2 text-textPrimary;
+}
+
+.empty-state-description {
+  @apply text-textSecondary max-w-md mx-auto;
 }
 
 /* Code-styled text utility */
@@ -89,24 +330,55 @@ p {
   font-family: 'Fira Code', 'JetBrains Mono', monospace;
   font-size: 14px;
   line-height: 1.5;
-  color: #6366F1; /* accent-indigo */
+  color: #007AFF; /* Apple System Blue */
   font-variant-ligatures: none;
 }
 
-/* Enhanced gradient text */
+/* Performance optimizations - Image loading */
+img {
+  content-visibility: auto;
+}
+
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* Prevent layout shifts with aspect ratio */
+.aspect-image {
+  aspect-ratio: attr(width / height);
+}
+
+/* Optimize animations for performance */
+@media (prefers-reduced-motion: no-preference) {
+  .parallax-bg,
+  .parallax-image,
+  .parallax-text {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+}
+
+/* Low performance device optimizations */
+.low-performance * {
+  will-change: auto !important;
+}
+
+.low-performance .parallax-bg,
+.low-performance .parallax-image,
+.low-performance .parallax-text,
+.low-performance .parallax-card {
+  transform: none !important;
+}
+
+/* Apple-style subtle text emphasis - no gradients */
 .gradient-text {
-  background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
+  color: #007AFF;
+  font-weight: 600;
 }
 
 .gradient-text-cyan {
-  background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #007AFF;
+  font-weight: 600;
 }
 
 .dashed-left-right-border {
@@ -166,7 +438,7 @@ p {
 }
 .card {
   @apply gap-[20px] rounded-[20px] p-[12px] sm:p-[10px] bg-surface flex flex-col 
-  hover:shadow-[2px_1px_15px_rgba(0,0,0,0.25)] transition-shadow duration-300
+  hover:shadow-[2px_1px_15px_rgba(251,146,60,0.15)] transition-shadow duration-300
    sm:max-w-[370px] max-w-[320px] ;
 }
 .connect-about-btn {
@@ -174,23 +446,7 @@ p {
   w-[146px] sm:w-[171px] flex flex-row-reverse justify-center items-center gap-[6px] sm:gap-[10px];
 }
 
-/* Glassmorphism Utilities */
-.glass-card {
-  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-glass;
-}
-
-.glass-dark {
-  @apply bg-slate-900/70 backdrop-blur-md border border-white/10 shadow-glass;
-}
-
-/* Premium Gradient Text */
-.gradient-text {
-  @apply bg-gradient-to-r from-accent-indigo via-accent-purple to-accent-pink bg-clip-text text-transparent;
-}
-
-.gradient-text-cyan {
-  @apply bg-gradient-to-r from-accent-cyan via-accent-indigo to-accent-purple bg-clip-text text-transparent;
-}
+/* Legacy support - maps to liquid-glass (defined earlier) */
 
 /* Custom Cursor Styles */
 .custom-cursor {
@@ -201,7 +457,7 @@ p {
   position: fixed;
   width: 8px;
   height: 8px;
-  background: #6366F1;
+  background: #007AFF;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -224,7 +480,7 @@ p {
 .cursor-hover .cursor-dot {
   width: 16px;
   height: 16px;
-  background: #8B5CF6;
+  background: rgba(0, 122, 255, 0.6);
 }
 
 .cursor-hover .cursor-outline {
@@ -246,7 +502,7 @@ p {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,251,245,0.4), transparent); /* Warm shimmer */
   transition: left 0.5s;
 }
 
@@ -255,18 +511,19 @@ p {
 }
 
 .card-premium:hover {
-  @apply shadow-premium-lg;
-  transform: translateY(-4px) scale(1.02);
+  @apply shadow-glass-hover;
+  transform: translateY(-2px);
 }
 
-/* Animated Border */
+/* Animated Border - Apple style (removed vibrant gradients) */
 .animated-border {
   position: relative;
-  background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899, #06B6D4);
+  background: linear-gradient(90deg, #007AFF, rgba(0, 122, 255, 0.6));
   background-size: 200% 200%;
   animation: borderFlow 3s linear infinite;
-  padding: 2px;
+  padding: 1px;
   border-radius: inherit;
+  opacity: 0.5;
 }
 
 .animated-border-content {
@@ -274,42 +531,49 @@ p {
   border-radius: inherit;
 }
 
-/* Scroll Progress Bar */
+/* Scroll Progress Bar - Apple style */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #6366F1, #8B5CF6, #EC4899);
+  background: linear-gradient(90deg, #007AFF 0%, #5AC8FA 100%); /* Apple System Blue gradient */
   transform-origin: 0%;
   z-index: 9999;
+  transition: transform 0.1s ease-out;
+  box-shadow: 0 2px 4px rgba(0, 122, 255, 0.3);
 }
 
-/* Magnetic Button Effect */
-.magnetic-btn {
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+@media (max-width: 768px) {
+  .scroll-progress {
+    height: 4px; /* More prominent on mobile */
+  }
 }
 
-/* Floating Animation */
+/* Magnetic Button Effect - Removed (too flashy for Apple aesthetic) */
+/* .magnetic-btn removed */
+
+/* Floating Animation - Apple style subtle */
 .float-animation {
-  animation: float 3s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
 }
 
-/* Shimmer Effect */
-.shimmer {
-  background: linear-gradient(110deg, transparent 40%, rgba(255,255,255,0.5) 50%, transparent 60%);
-  background-size: 200% 100%;
-  animation: shimmer 2s linear infinite;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-/* Glow Effect */
+/* Shimmer Effect - Removed vibrant shimmer */
+/* .shimmer removed - use liquid-glass instead */
+
+/* Glow Effect - Apple style subtle */
 .glow-hover {
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glow-hover:hover {
-  box-shadow: 0 0 40px rgba(99, 102, 241, 0.6);
+  box-shadow: 0 0 20px rgba(0, 122, 255, 0.2);
 }
 
 /* 3D Card Tilt */
@@ -335,11 +599,12 @@ p {
   animation: fadeUp 0.6s ease-out forwards;
 }
 
-/* Gradient Background Animation */
+/* Gradient Background Animation - Apple style subtle */
 .animated-gradient-bg {
-  background: linear-gradient(270deg, #6366F1, #8B5CF6, #EC4899, #06B6D4);
+  background: linear-gradient(270deg, rgba(0, 122, 255, 0.05), rgba(0, 122, 255, 0.02), rgba(0, 122, 255, 0.05));
   background-size: 400% 400%;
-  animation: gradient 8s ease infinite;
+  animation: gradient 12s ease infinite;
+  opacity: 0.3;
 }
 
 /* Crazy Animation Effects */
@@ -483,32 +748,31 @@ p {
   100% { clip: rect(55px, 9999px, 95px, 0); }
 }
 
-/* Text shimmer effect */
-.text-shimmer {
-  background: linear-gradient(
-    90deg,
-    #6366F1 0%,
-    #8B5CF6 25%,
-    #EC4899 50%,
-    #8B5CF6 75%,
-    #6366F1 100%
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
-}
+/* Text shimmer effect - Removed vibrant shimmer */
+/* .text-shimmer removed - use plain text or liquid-glass accent */
 
-@keyframes shimmer {
-  to { background-position: 200% center; }
-}
-
-/* Back to Top Button */
+/* Back to Top Button - Apple Style */
 .back-to-top {
-  @apply fixed bottom-8 right-8 bg-accent-indigo text-white w-12 h-12 rounded-full shadow-premium 
-  flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-glow-indigo
-  z-50;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  color: #007AFF;
+  border-radius: 50%;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 50;
+}
+
+.back-to-top:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.04), 0 12px 40px rgba(0, 122, 255, 0.15);
 }
 
 /* 3D Card Flip */

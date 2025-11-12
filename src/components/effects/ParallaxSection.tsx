@@ -1,4 +1,4 @@
-import { useEffect, useRef, ReactNode } from 'react';
+import React, { useEffect, useRef, type ReactNode } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -22,8 +22,9 @@ export default function ParallaxSection({
 
     const section = sectionRef.current;
 
+    // Apple style - very subtle parallax (reduced intensity)
     gsap.to(section, {
-      y: () => -100 * speed,
+      y: () => -30 * speed, // Reduced from -100 for subtlety
       ease: 'none',
       scrollTrigger: {
         trigger: section,

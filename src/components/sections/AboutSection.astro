@@ -12,8 +12,8 @@ const quickFacts = [
 ---
 
 <div class="grid md:grid-cols-2 gap-12 items-start">
-  <!-- Left: Text Content -->
-  <div class="space-y-6">
+  <!-- Left: Text Content - Wrapped in secondary glass panel -->
+  <div class="space-y-6 glass-panel-wrapper glass-panel-secondary">
     <div class="space-y-4">
       <p class="text-body-lg text-textSecondary">
         Hello! I'm Farhan, a full-stack software engineer based in Pakistan with a passion for 
@@ -23,41 +23,22 @@ const quickFacts = [
       <p class="text-body-lg text-textSecondary">
         Here's a few technologies I've been working with recently:
       </p>
-      <ul class="grid grid-cols-2 gap-2 text-sm text-textSecondary font-mono">
-        <li class="flex items-center gap-2">
-          <ChevronRight size={14} class="text-accent-indigo" />
-          <span>React & Next.js</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <ChevronRight size={14} class="text-accent-indigo" />
-          <span>Python & FastAPI</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <ChevronRight size={14} class="text-accent-indigo" />
-          <span>TypeScript</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <ChevronRight size={14} class="text-accent-indigo" />
-          <span>AWS & Docker</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <ChevronRight size={14} class="text-accent-indigo" />
-          <span>PostgreSQL</span>
-        </li>
-        <li class="flex items-center gap-2">
-          <ChevronRight size={14} class="text-accent-indigo" />
-          <span>Computer Vision</span>
-        </li>
-      </ul>
+      <div class="flex flex-wrap gap-2">
+        {["React & Next.js", "Python & FastAPI", "TypeScript", "AWS & Docker", "PostgreSQL", "Computer Vision"].map((tech) => (
+          <span class="liquid-glass-badge text-textPrimary text-xs font-medium">
+            {tech}
+          </span>
+        ))}
+      </div>
     </div>
 
-    <!-- Quick Facts -->
-    <div class="pt-6 border-t border-gray-200">
-      <h4 class="text-lg font-bold mb-4">Quick Facts</h4>
-      <ul class="space-y-2">
+    <!-- Quick Facts - Tertiary glass panel -->
+    <div class="pt-6 border-t border-black/5 glass-panel-tertiary rounded-2xl p-6 mt-6">
+      <h4 class="text-lg font-bold mb-4 text-textPrimary">Quick Facts</h4>
+      <ul class="space-y-2" role="list">
         {quickFacts.map((fact) => (
-          <li class="flex items-center gap-2 text-sm text-textSecondary">
-            <span class="text-accent-emerald">→</span>
+          <li class="flex items-center gap-2 text-sm text-textSecondary" role="listitem">
+            <span class="text-accent-blue" aria-hidden="true">→</span>
             <span>{fact}</span>
           </li>
         ))}
@@ -65,9 +46,9 @@ const quickFacts = [
     </div>
   </div>
 
-  <!-- Right: Image/Video -->
+  <!-- Right: Image/Video - Frosted glass -->
   <div class="relative">
-    <div class="glass-card p-4 rounded-lg hover-lift transition-all">
+    <div class="liquid-glass-frosted p-4 rounded-3xl liquid-glass-hover glass-shimmer transition-all">
       <div class="relative rounded-lg overflow-hidden">
         <img
           src={poster.src}

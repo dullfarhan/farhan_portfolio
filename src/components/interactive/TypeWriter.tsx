@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface TypeWriterProps {
   texts: string[];
@@ -18,16 +18,26 @@ export default function TypeWriter({
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isComplete, setIsComplete] = useState(false);
+  const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    if (texts.length === 0) return;
+    
     const currentText = texts[currentIndex];
+    if (!currentText) return;
+
     let timeout: NodeJS.Timeout;
 
     if (!isDeleting && displayText === currentText) {
-      // Pause before deleting
-      timeout = setTimeout(() => setIsDeleting(true), pauseDuration);
+      // Text is complete, pause before deleting
+      setIsComplete(true);
+      timeout = setTimeout(() => {
+        setIsDeleting(true);
+        setIsComplete(false);
+      }, pauseDuration);
     } else if (isDeleting && displayText === '') {
-      // Move to next text
+      // Finished deleting, move to next text
       setIsDeleting(false);
       setCurrentIndex((prev) => (prev + 1) % texts.length);
     } else {
@@ -36,20 +46,35 @@ export default function TypeWriter({
       timeout = setTimeout(() => {
         setDisplayText((prev) => {
           if (isDeleting) {
-            return currentText.substring(0, prev.length - 1);
+            const newText = prev.length > 0 ? prev.substring(0, prev.length - 1) : '';
+            return newText;
+          } else {
+            // Ensure we don't exceed the current text length
+            const nextLength = Math.min(prev.length + 1, currentText.length);
+            return currentText.substring(0, nextLength);
           }
-          return currentText.substring(0, prev.length + 1);
         });
       }, speed);
     }
 
-    return () => clearTimeout(timeout);
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
   }, [displayText, currentIndex, isDeleting, texts, typingSpeed, deletingSpeed, pauseDuration]);
 
   return (
-    <span className={className}>
+    <span 
+      ref={containerRef}
+      className={className}
+      style={{
+        display: 'inline-block',
+        minWidth: 'fit-content',
+        whiteSpace: 'nowrap',
+        overflow: 'visible',
+      }}
+    >
       {displayText}
-      <span className="animate-pulse">|</span>
+      <span className="animate-pulse" aria-hidden="true">|</span>
     </span>
   );
 }

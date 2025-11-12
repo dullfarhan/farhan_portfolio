@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
 
 export default function ThemeToggle() {
@@ -30,7 +30,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative w-14 h-7 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent-indigo"
+      className="relative w-14 h-7 bg-gray-200 dark:bg-gray-700 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue"
       aria-label="Toggle theme"
     >
       <div
@@ -39,7 +39,7 @@ export default function ThemeToggle() {
         }`}
       >
         {isDark ? (
-          <Moon size={14} className="text-accent-indigo" />
+          <Moon size={14} className="text-accent-blue" />
         ) : (
           <Sun size={14} className="text-yellow-500" />
         )}

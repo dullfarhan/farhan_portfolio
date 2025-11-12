@@ -1,16 +1,31 @@
 ---
 import "../styles/global.css";
+import "../styles/liquid-glass.css";
+import "../styles/accessibility.css";
+import "../styles/mobile-ux.css";
+import "../styles/interactions.css";
 import Navigation from "../components/sections/Navigation.astro";
 import Footer from "../components/layout/Footer.astro";
 import ScrollProgress from "../components/ui/ScrollProgress";
 import BackToTop from "../components/ui/BackToTop";
 import CustomCursor from "../components/ui/CustomCursor";
-import ParticleBackground from "../components/effects/ParticleBackground";
-import FloatingShapes from "../components/effects/FloatingShapes";
-import EnhancedCursor from "../components/effects/EnhancedCursor";
-import { Font } from "astro:assets";
+import ActiveSectionIndicator from "../components/ui/ActiveSectionIndicator";
+import AmbientLight from "../components/effects/AmbientLight";
+import SkipToContent from "../components/ui/SkipToContent.astro";
 import { getImage } from "astro:assets";
 import FullFrame1 from "@/assets/images/FullFrame.png";
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { 
+  title = "Farhan Portfolio | Full-Stack Developer & DevOps Engineer",
+  description = "Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML. Explore projects, skills, and testimonials.",
+  ogImage = "https://farhan.info/assets/images/profile.png"
+} = Astro.props;
 
 // Precompute the primary LCP candidate image (first project card)
 const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, height: 270, format: "webp" });
@@ -24,7 +39,7 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
-    <title>Farhan Portfolio | Full-Stack Developer & DevOps Engineer</title>
+    <title>{title}</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,7 +55,7 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
     />
     <meta
       name="description"
-      content="Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML. Explore projects, skills, and testimonials."
+      content={description}
     />
     <meta
       name="keywords"
@@ -50,32 +65,32 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
     <!-- Open Graph / Facebook -->
     <meta
       property="og:title"
-      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
+      content={title}
     />
     <meta
       property="og:description"
-      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+      content={description}
     />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://farhan.info/" />
+    <meta property="og:url" content={`https://farhan.info${Astro.url.pathname}`} />
     <meta
       property="og:image"
-      content="https://farhan.info/assets/images/profile.png"
+      content={ogImage}
     />
     <!-- Twitter -->
     <meta name="twitter:creator" content="@dullfarhan" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta
       name="twitter:title"
-      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
+      content={title}
     />
     <meta
       name="twitter:description"
-      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+      content={description}
     />
     <meta
       name="twitter:image"
-      content="https://farhan.info/assets/images/profile.png"
+      content={ogImage}
     />
     <script is:raw>
       // Load Clarity analytics with error handling
@@ -131,21 +146,23 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
         }
       }
     </script>
-    <Font cssVariable="--font-inter" preload />
-    <style>
-      body {
-        font-family: var(--font-inter);
-      }
-    </style>
   </head>
-  <body class="relative bg-white text-textPrimary">
-    <!-- Crazy Animation Effects (Background Layer) -->
-    <ParticleBackground client:only="react" />
-    <FloatingShapes client:only="react" />
-    <EnhancedCursor client:only="react" />
+  <body class="relative bg-gradient-to-br from-amber-50 via-orange-50/80 to-rose-50/60 text-textPrimary">
+    <!-- Skip to main content link for accessibility -->
+    <SkipToContent />
+    
+    <!-- Warm gradient overlay for depth -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-100/40 via-orange-50/30 to-rose-100/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-tl from-peach-100/30 via-transparent to-amber-50/40"></div>
+      <div class="absolute inset-0 bg-gradient-radial from-orange-100/20 via-transparent to-transparent" style="background: radial-gradient(circle at 30% 20%, rgba(251, 191, 36, 0.15), transparent 60%), radial-gradient(circle at 70% 80%, rgba(251, 146, 60, 0.12), transparent 60%);"></div>
+    </div>
+    <!-- Subtle Apple-style Ambient Effects -->
+    <AmbientLight client:only="react" />
+    <ActiveSectionIndicator client:only="react" />
     
     <!-- Scroll Progress Bar -->
-    <ScrollProgress client:load />
+    <ScrollProgress client:only="react" />
     
     <!-- Premium Navigation -->
     <Navigation />
@@ -161,12 +178,19 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
     <Footer />
     
     <!-- Back to Top Button -->
-    <BackToTop client:load />
+    <BackToTop client:only="react" />
     
     <!-- Initialize smooth scroll and animations -->
     <script>
       import { initSmoothScroll } from '../utils/smooth-scroll';
       import { initScrollAnimations } from '../utils/animations';
+      import { initParallaxEffects } from '../utils/parallax';
+      import { initPerformanceOptimizations } from '../utils/performance';
+      
+      // Initialize performance optimizations immediately
+      if (typeof window !== 'undefined') {
+        initPerformanceOptimizations();
+      }
       
       // Wait for everything to load
       window.addEventListener('load', () => {
@@ -175,6 +199,7 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
           setTimeout(() => {
             initSmoothScroll();
             initScrollAnimations();
+            initParallaxEffects();
           }, 100);
         } catch (error) {
           console.log('Animations initialized');
