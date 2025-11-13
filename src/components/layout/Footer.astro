@@ -1,48 +1,147 @@
 ---
 import Divider from "../common/Divider.astro";
+import { Github, Linkedin, Mail } from "lucide-react";
 const isUpworkBuild = import.meta.env.VITE_BUILD_TYPE === "UPWORK";
 ---
 
-<div class="flex flex-col gap-[20px] sm:gap-[18px]">
+<div class="flex flex-col gap-0">
   <Divider />
-  <footer>
-    <div
-      class="flex flex-col-reverse md:flex-row justify-between gap-[20px] items-center lg:px-[21px] font-normal"
-    >
-      <p class="text-[10px] sm:text-[14px]">© 2025 All rights reserved</p>
-      {
-        !isUpworkBuild && (
-          <div class="block sm:flex justify-center items-center text-center sm:text-left">
-            <p class="leading-[18px] text-[12px] sm:text-[14px]">
-              Designed by&nbsp;
-            </p>
+  
+  <footer class="bg-background mt-16 relative" role="contentinfo">
+    <!-- Subtle glass panel for footer -->
+    <div class="absolute inset-0 liquid-glass-clear opacity-30"></div>
+    <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <!-- Main Footer Content -->
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <!-- Brand Column -->
+        <div class="md:col-span-2 space-y-4">
+          <h3 class="text-2xl font-heading font-bold text-textPrimary">Farhan</h3>
+          <p class="text-body text-textSecondary max-w-md leading-relaxed">
+            Full-stack engineer specializing in building exceptional digital experiences. 
+            Let's create something amazing together.
+          </p>
+          <div class="flex gap-4 pt-2" role="list">
+            <a
+              href="https://github.com/dullfarhan"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-textSecondary hover:text-accent-blue transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 min-h-[44px] min-w-[44px]"
+              aria-label="Visit Farhan's GitHub profile (opens in new tab)"
+              title="GitHub Profile"
+              role="listitem"
+            >
+              <Github size={20} aria-hidden="true" />
+            </a>
+            <a
+              href="https://linkedin.com/in/dullfarhan"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-textSecondary hover:text-accent-blue transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 min-h-[44px] min-w-[44px]"
+              aria-label="Visit Farhan's LinkedIn profile (opens in new tab)"
+              title="LinkedIn Profile"
+              role="listitem"
+            >
+              <Linkedin size={20} aria-hidden="true" />
+            </a>
+            <a
+              href="mailto:dullfarhan@gmail.com"
+              class="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-textSecondary hover:text-accent-blue transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 min-h-[44px] min-w-[44px]"
+              aria-label="Send email to Farhan"
+              title="Email Farhan"
+              role="listitem"
+            >
+              <Mail size={20} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
 
-            <span class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]">
-              <a
-                href="https://www.linkedin.com/in/saif-ullah-khan-740178228/"
-                target="_blank"
-              >
-                Saif Ullah Khan
-              </a>
-            </span>
+        <!-- Quick Links -->
+        <div class="space-y-4">
+          <h4 class="text-lg font-heading font-semibold text-textPrimary">Quick Links</h4>
+          <nav class="flex flex-col gap-2" aria-label="Footer navigation">
+            <a href="#about" class="text-textSecondary hover:text-accent-blue hover:underline transition-all duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded px-1">
+              About
+            </a>
+            <a href="#experience" class="text-textSecondary hover:text-accent-blue hover:underline transition-all duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded px-1">
+              Experience
+            </a>
+            <a href="#projects" class="text-textSecondary hover:text-accent-blue hover:underline transition-all duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded px-1">
+              Projects
+            </a>
+            <a href="#skills" class="text-textSecondary hover:text-accent-blue hover:underline transition-all duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded px-1">
+              Skills
+            </a>
+            <a href="#contact" class="text-textSecondary hover:text-accent-blue hover:underline transition-all duration-300 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded px-1">
+              Contact
+            </a>
+          </nav>
+        </div>
 
-            <>
-              <span class="text-[12px] sm:text-[14px] font-bold leading-[18px]">
-                &nbsp;&&nbsp;
-              </span>
-              <span class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]">
+        <!-- Tech Stack -->
+        <div class="space-y-4">
+          <h4 class="text-lg font-heading font-semibold text-textPrimary">Built With</h4>
+          <div class="flex flex-col gap-2 text-sm">
+            <span class="text-code text-textTertiary">Astro</span>
+            <span class="text-code text-textTertiary">React</span>
+            <span class="text-code text-textTertiary">Tailwind CSS</span>
+            <span class="text-code text-textTertiary">TypeScript</span>
+            <span class="text-code text-textTertiary">Three.js</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar - Clear glass with border -->
+      <div class="liquid-glass-clear border-t border-black/5 pt-8 rounded-lg px-4 py-3">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p class="text-sm text-textSecondary">
+            © <span id="copyright-year">2025</span> <span class="text-code text-accent-blue">Farhan</span>. Crafted with ❤️ and ☕
+          </p>
+          {
+            !isUpworkBuild && (
+              <div class="flex items-center gap-2 text-xs text-textSecondary">
+                <span>Designed by</span>
+                <a
+                  href="https://www.linkedin.com/in/saif-ullah-khan-740178228/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-accent-blue hover:underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded px-1"
+                  aria-label="Visit Saif Ullah Khan's LinkedIn (opens in new tab)"
+                >
+                  Saif Ullah Khan
+                </a>
+                <span aria-hidden="true">&</span>
                 <a
                   href="https://www.linkedin.com/in/areeba-rahila-memon/"
                   target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-accent-blue hover:underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-accent-blue focus:ring-offset-2 rounded px-1"
+                  aria-label="Visit Areeba (Rahila) Memon's LinkedIn (opens in new tab)"
                 >
-                  Areeba (Rahila) Memon
+                  Areeba Memon
                 </a>
-              </span>
-            </>
-          </div>
-        )
-      }
+              </div>
+            )
+          }
+        </div>
+      </div>
     </div>
   </footer>
-  <Divider />
 </div>
+
+<script>
+  // Auto-update copyright year
+  const copyrightYear = document.getElementById('copyright-year');
+  if (copyrightYear) {
+    copyrightYear.textContent = new Date().getFullYear().toString();
+  }
+  
+  // Add hover effects to footer links (already have transition-colors, but ensure they're working)
+  document.querySelectorAll('footer a').forEach(link => {
+    link.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-1px)';
+    });
+    link.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0)';
+    });
+  });
+</script>

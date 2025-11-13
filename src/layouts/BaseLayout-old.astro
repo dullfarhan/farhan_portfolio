@@ -1,0 +1,132 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import { Font } from "astro:assets";
+import { getImage } from "astro:assets";
+import FullFrame1 from "@/assets/images/FullFrame.png";
+
+// Precompute the primary LCP candidate image (first project card)
+const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, height: 270, format: "webp" });
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
+    <title>Farhan Portfolio | Full-Stack Developer & DevOps Engineer</title>
+    <link
+      rel="preload"
+      as="image"
+      href={firstProjectLcpImage.src}
+      imagesizes="(min-width: 640px) 351px, 296px"
+      fetchpriority="high"
+      type="image/webp"
+    />
+    <meta
+      name="description"
+      content="Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML. Explore projects, skills, and testimonials."
+    />
+    <meta
+      name="keywords"
+      content="Farhan, portfolio, web developer, full-stack, DevOps, cloud, AI, ML, projects"
+    />
+    <meta name="author" content="Muhammad Farhan" />
+    <!-- Open Graph / Facebook -->
+    <meta
+      property="og:title"
+      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
+    />
+    <meta
+      property="og:description"
+      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://farhan.info/" />
+    <meta
+      property="og:image"
+      content="https://farhan.info/assets/images/profile.png"
+    />
+    <!-- Twitter -->
+    <meta name="twitter:creator" content="@dullfarhan" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+    />
+    <meta
+      name="twitter:image"
+      content="https://farhan.info/assets/images/profile.png"
+    />
+    <script is:raw>
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "shkxymcvd2");
+    </script>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Muhammad Farhan",
+        "url": "https://farhan.info/",
+        "sameAs": [
+          "https://github.com/dullfarhan",
+          "http://www.linkedin.com/in/dullfarhan"
+        ],
+        "image": "https://farhan.info/assets/images/profile.png",
+        "jobTitle": "Full-Stack Developer, DevOps Engineer",
+        "description": "Portfolio of Muhammad Farhan: Full-Stack Developer, DevOps, Cloud, and AI/ML.",
+        "alumniOf": "FAST, National University of Computer and Emerging Sciences",
+        "knowsAbout": [
+          "JavaScript",
+          "Python",
+          "DevOps",
+          "Cloud Computing",
+          "Kubernetes",
+          "CI/CD",
+          "Astro",
+          "AI/ML"
+        ],
+        "workLocation": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Lahore",
+            "addressCountry": "PK"
+          }
+        }
+      }
+    </script>
+    <Font cssVariable="--font-inter" preload />
+    <style>
+      body {
+        font-family: var(--font-inter);
+      }
+    </style>
+  </head>
+  <body
+    class="relative px-[17.5px] sm:px-[39px] py-[24px] sm:py-[32px] mx-[14.3px] sm:mx-[30px] md:mx-[50px] lg:mx-[100px] dashed-left-right-border max-w-[1440px] items-center xl:mx-auto"
+  >
+    <Navbar />
+    <slot />
+    <Footer />
+  </body>
+</html>
