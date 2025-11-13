@@ -1,0 +1,235 @@
+---
+import Layout from "../../layouts/BaseLayout.astro";
+import { projects, getProjectById } from "../../data/projects";
+import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import AnimatedCounter from "../../components/interactive/AnimatedCounter";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { slug } = Astro.params;
+const project = getProjectById(slug);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+---
+
+<Layout>
+  <main class="min-h-screen py-12">
+    <!-- Back button -->
+    <div class="max-w-6xl mx-auto px-4 mb-8">
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 text-accent-indigo hover:text-accent-purple transition-colors"
+      >
+        <ArrowLeft size={20} />
+        <span>Back to Portfolio</span>
+      </a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="max-w-6xl mx-auto px-4 mb-12">
+      <div class="fade-in-up">
+        <div class="flex items-center gap-3 mb-4">
+          <span
+            class="px-4 py-2 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-full text-sm font-medium"
+          >
+            {project.category.toUpperCase()}
+          </span>
+          <span class="text-textSecondary">{project.year}</span>
+        </div>
+
+        <h1 class="gradient-text mb-6">{project.title}</h1>
+        <p class="text-xl text-textSecondary max-w-3xl mb-8">
+          {project.fullDescription}
+        </p>
+
+        <div class="flex gap-4">
+          {
+            project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-accent-indigo to-accent-purple text-white rounded-lg font-medium hover:shadow-glow-indigo transition-all"
+              >
+                <ExternalLink size={20} />
+                <span>View Live Project</span>
+              </a>
+            )
+          }
+          {
+            project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3 border-2 border-accent-indigo text-accent-indigo rounded-lg font-medium hover:bg-accent-indigo hover:text-white transition-all"
+              >
+                <Github size={20} />
+                <span>View Code</span>
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Metrics Section -->
+    {
+      project.metrics && project.metrics.length > 0 && (
+        <div class="max-w-6xl mx-auto px-4 mb-16">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 fade-in-up">
+            {project.metrics.map((metric) => (
+              <div class="glass-card p-6 text-center">
+                <div class="text-3xl font-bold gradient-text mb-2">
+                  {metric.value}
+                </div>
+                <div class="text-sm text-textSecondary">{metric.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+    }
+
+    <!-- Images Gallery -->
+    <div class="max-w-6xl mx-auto px-4 mb-16">
+      <div class="grid md:grid-cols-2 gap-6 fade-in-up">
+        {
+          project.images.map((image, i) => (
+            <div class="scale-in rounded-2xl overflow-hidden shadow-premium hover:shadow-premium-lg transition-shadow">
+              <img
+                src={image}
+                alt={`${project.title} screenshot ${i + 1}`}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Problem Section -->
+    <div class="max-w-4xl mx-auto px-4 mb-16 fade-in-up">
+      <div class="glass-card p-8">
+        <h2 class="text-3xl font-bold mb-4 flex items-center gap-3">
+          <span class="text-accent-indigo">💡</span> The Challenge
+        </h2>
+        <p class="text-lg text-textSecondary leading-relaxed">
+          {project.problem}
+        </p>
+      </div>
+    </div>
+
+    <!-- Solution Section -->
+    <div class="max-w-4xl mx-auto px-4 mb-16 fade-in-up">
+      <div class="glass-card p-8">
+        <h2 class="text-3xl font-bold mb-4 flex items-center gap-3">
+          <span class="text-accent-purple">🚀</span> The Solution
+        </h2>
+        <p class="text-lg text-textSecondary leading-relaxed mb-6">
+          {project.solution}
+        </p>
+
+        <!-- Tech Stack -->
+        <div class="pt-6 border-t border-gray-200">
+          <h3 class="text-xl font-semibold mb-4">Technology Stack</h3>
+          <div class="flex flex-wrap gap-3">
+            {
+              project.techStack.map((tech) => (
+                <span class="px-4 py-2 bg-white border border-accent-indigo/20 text-accent-indigo rounded-lg font-medium hover:bg-accent-indigo hover:text-white transition-all">
+                  {tech.name}
+                </span>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Section -->
+    <div class="max-w-4xl mx-auto px-4 mb-16 fade-in-up">
+      <div class="glass-card p-8">
+        <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+          <span class="text-accent-emerald">📈</span> The Results
+        </h2>
+        <ul class="space-y-4">
+          {
+            project.results.map((result) => (
+              <li class="flex items-start gap-3">
+                <span class="text-accent-emerald text-xl">✓</span>
+                <span class="text-lg text-textSecondary">{result}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <!-- Testimonial Section -->
+    {
+      project.testimonial && (
+        <div class="max-w-4xl mx-auto px-4 mb-16 fade-in-up">
+          <div class="glass-card p-8 bg-gradient-to-br from-accent-indigo/10 to-accent-purple/10">
+            <div class="text-4xl text-accent-indigo mb-4">"</div>
+            <p class="text-xl text-textPrimary mb-6 italic">
+              {project.testimonial.quote}
+            </p>
+            <div class="flex items-center gap-4">
+              {project.testimonial.image && (
+                <img
+                  src={project.testimonial.image}
+                  alt={project.testimonial.name}
+                  class="w-16 h-16 rounded-full object-cover"
+                />
+              )}
+              <div>
+                <div class="font-semibold text-textPrimary">
+                  {project.testimonial.name}
+                </div>
+                <div class="text-textSecondary">
+                  {project.testimonial.role} at {project.testimonial.company}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+
+    <!-- CTA Section -->
+    <div class="max-w-4xl mx-auto px-4 fade-in-up">
+      <div class="glass-card p-8 text-center animated-gradient-bg text-white">
+        <h2 class="text-3xl font-bold mb-4">
+          Ready to Build Something Amazing?
+        </h2>
+        <p class="text-lg mb-6 opacity-90">
+          Let's discuss how I can help bring your vision to life.
+        </p>
+        <a
+          href="/#contact"
+          class="inline-block px-8 py-4 bg-white text-accent-indigo rounded-lg font-bold hover:scale-105 transition-transform"
+        >
+          Get In Touch
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  import { initScrollAnimations } from "../../utils/animations";
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    initScrollAnimations();
+  });
+</script>
+
+

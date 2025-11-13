@@ -1,0 +1,107 @@
+---
+import { ChevronRight } from "lucide-react";
+
+const timeline = [
+  {
+    year: "2024",
+    title: "Senior Full-Stack Developer",
+    company: "Freelance",
+    description: "Leading development of cutting-edge AI and web applications for global clients. Specialized in building scalable full-stack solutions.",
+    techStack: ["React", "Python", "FastAPI", "AWS", "PostgreSQL"],
+    achievements: [
+      "Built AI-powered platforms processing 50M+ data points",
+      "Achieved 99.9% uptime across multiple production systems",
+      "Delivered 15+ successful projects with 5-star ratings",
+    ],
+  },
+  {
+    year: "2023",
+    title: "Full-Stack Developer",
+    company: "DevelMo & Various Clients",
+    description: "Developed enterprise-grade applications including marketplace platforms, computer vision systems, and AI tools.",
+    techStack: ["YOLOv8", "OpenCV", "Node.js", "Express", "MongoDB"],
+    achievements: [
+      "Created CrowdIQ platform with 98% detection accuracy",
+      "Built multi-vendor marketplace handling thousands of transactions",
+      "Implemented CI/CD pipelines reducing deployment time by 70%",
+    ],
+  },
+  {
+    year: "2022",
+    title: "Software Developer",
+    company: "Tech Startups",
+    description: "Contributed to various web applications and APIs, focusing on modern JavaScript frameworks and cloud technologies.",
+    techStack: ["React", "Node.js", "TypeScript", "Docker"],
+    achievements: [
+      "Optimized application performance by 40%",
+      "Built RESTful APIs serving 100K+ daily requests",
+      "Mentored junior developers in best practices",
+    ],
+  },
+  {
+    year: "2021",
+    title: "Junior Developer",
+    company: "Learning & Building",
+    description: "Started professional journey, learning full-stack development and building personal projects to master the craft.",
+    techStack: ["JavaScript", "HTML", "CSS", "Node.js"],
+    achievements: [
+      "Completed 10+ full-stack projects",
+      "Mastered React, Node.js, and cloud platforms",
+      "Built strong foundation in software architecture",
+    ],
+  },
+];
+---
+
+<div class="space-y-8">
+  <!-- Vertical Timeline -->
+  <div class="relative max-w-3xl">
+    <!-- Vertical line -->
+    <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent-indigo via-accent-purple to-accent-pink hidden md:block"></div>
+
+    <!-- Timeline items -->
+    <div class="space-y-12">
+      {timeline.map((item, index) => (
+        <div class="relative pl-8 md:pl-12 fade-in-up" style={`animation-delay: ${index * 0.1}s`}>
+          {/* Timeline dot */}
+          <div class="absolute left-0 top-2 w-4 h-4 bg-accent-indigo rounded-full border-4 border-white shadow-glow-indigo hidden md:block"></div>
+
+          {/* Year */}
+          <div class="text-code text-accent-indigo opacity-60 mb-2 font-mono">
+            {item.year}
+          </div>
+
+          {/* Role */}
+          <div class="mb-3">
+            <h3 class="text-xl md:text-2xl font-bold mb-1">
+              {item.title} <span class="text-accent-indigo">@</span>{" "}
+              <span class="text-code text-accent-purple">{item.company}</span>
+            </h3>
+          </div>
+
+          {/* Description */}
+          <p class="text-body text-textSecondary mb-4">{item.description}</p>
+
+          {/* Tech Stack */}
+          <div class="flex flex-wrap gap-2 mb-4">
+            {item.techStack.map((tech) => (
+              <span class="text-xs px-2 py-1 bg-accent-indigo/10 text-accent-indigo rounded font-mono">
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          {/* Achievements */}
+          <ul class="space-y-2">
+            {item.achievements.map((achievement) => (
+              <li class="flex items-start gap-3 text-sm text-textSecondary">
+                <ChevronRight size={16} class="text-accent-indigo mt-0.5 flex-shrink-0" />
+                <span>{achievement}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,87 @@
+---
+import { Rocket, Zap, Shield, CheckCircle2 } from "lucide-react";
+
+const tiers = [
+  {
+    name: "Startup",
+    price: "$2.5k - $5k",
+    highlight: "Perfect for MVPs",
+    icon: Rocket,
+    features: [
+      "Rapid MVP or landing page",
+      "Responsive UI with animations",
+      "Basic analytics & SEO",
+      "1 month support",
+    ],
+    cta: "Start MVP",
+  },
+  {
+    name: "Growth",
+    price: "$6k - $12k",
+    highlight: "Scale with confidence",
+    icon: Zap,
+    features: [
+      "Full-stack web app",
+      "API & database integration",
+      "CI/CD & cloud deployment",
+      "Performance & monitoring",
+    ],
+    cta: "Build Product",
+    featured: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    highlight: "Security & compliance",
+    icon: Shield,
+    features: [
+      "AI/ML & Computer Vision",
+      "Multi-region cloud architecture",
+      "Observability & SRE",
+      "Security, SSO & governance",
+    ],
+    cta: "Book Consultation",
+  },
+];
+---
+
+<section class="py-16 sm:py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="gradient-text text-shimmer mb-4">Services & Pricing</h2>
+      <p class="text-lg text-textSecondary max-w-2xl mx-auto">Choose the engagement that fits your goals. Transparent pricing, senior-level delivery.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+      {tiers.map((tier) => (
+        <div class={`relative p-6 rounded-2xl ${tier.featured ? 'card-premium ring-2 ring-accent-indigo' : 'glass-card'}`}>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-accent-indigo to-accent-purple flex items-center justify-center text-white">
+              <tier.icon className="w-6 h-6" />
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">{tier.name}</h3>
+              <p class="text-sm text-textSecondary">{tier.highlight}</p>
+            </div>
+          </div>
+
+          <div class="text-3xl font-bold mb-4">{tier.price}</div>
+
+          <ul class="space-y-3 mb-6">
+            {tier.features.map((f) => (
+              <li class="flex items-center gap-2 text-sm">
+                <CheckCircle2 className="w-4 h-4 text-emerald-500" /> {f}
+              </li>
+            ))}
+          </ul>
+
+          <a href="#contact" class={`inline-flex items-center justify-center w-full px-5 py-3 rounded-lg font-semibold transition-all ${tier.featured ? 'bg-gradient-to-r from-accent-indigo to-accent-purple text-white hover:shadow-glow-indigo' : 'glass-card border-2 border-accent-indigo text-accent-indigo hover:bg-accent-indigo hover:text-white'}`}>
+            {tier.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+

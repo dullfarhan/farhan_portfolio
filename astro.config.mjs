@@ -2,13 +2,18 @@
 import { defineConfig, fontProviders } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-
+import react from "@astrojs/react";
 import robotsTxt from "astro-robots-txt";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://farhan.info',
-  integrations: [tailwind(), sitemap(), robotsTxt()],
+  site: 'https://farhan.info',
+  integrations: [
+    tailwind(), 
+    sitemap(), 
+    robotsTxt(),
+    react()
+  ],
   experimental: {
     fonts: [
       {

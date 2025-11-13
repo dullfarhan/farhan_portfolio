@@ -1,0 +1,17 @@
+---
+interface Props {
+  number: string;
+  children: any;
+  className?: string;
+}
+
+const { number, children, className = '' } = Astro.props;
+---
+
+<div class={`flex items-baseline gap-4 mb-4 ${className}`}>
+  <span class="text-sm sm:text-base font-mono text-accent-indigo opacity-60">
+    {number}
+  </span>
+  <div class="flex-1">{children}</div>
+</div>
+
