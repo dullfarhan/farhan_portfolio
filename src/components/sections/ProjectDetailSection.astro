@@ -20,9 +20,34 @@ const relatedProjects = project.relatedProjects
   .filter((p): p is Project => p !== undefined) || [];
 ---
 
-<section class="flex flex-col gap-[60px] sm:gap-[100px] pb-[100px]">
+<!-- Reading Progress Bar -->
+<div id="reading-progress" class="fixed top-0 left-0 w-full h-[3px] bg-black/5 z-50">
+  <div id="progress-bar" class="h-full bg-gradient-to-r from-tertiaryBg via-purple-500 to-pink-500 transition-all duration-150 ease-out" style="width: 0%"></div>
+</div>
+
+<section class="flex flex-col gap-[60px] sm:gap-[100px] pb-[100px] relative">
   
-  <!-- HERO SECTION -->
+  <!-- Floating Quick Nav -->
+  <div class="fixed right-[40px] top-[50%] translate-y-[-50%] z-40 hidden xl:flex flex-col gap-[12px]" id="quick-nav">
+    <a href="#overview" class="nav-dot group relative" data-section="overview">
+      <div class="w-[12px] h-[12px] rounded-full bg-black/20 group-hover:bg-tertiaryBg transition-all duration-300 group-hover:scale-150"></div>
+      <span class="absolute right-[24px] top-[50%] translate-y-[-50%] bg-textPrimary text-white px-[12px] py-[6px] rounded-[8px] text-[12px] font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Overview</span>
+    </a>
+    <a href="#impact" class="nav-dot group relative" data-section="impact">
+      <div class="w-[12px] h-[12px] rounded-full bg-black/20 group-hover:bg-tertiaryBg transition-all duration-300 group-hover:scale-150"></div>
+      <span class="absolute right-[24px] top-[50%] translate-y-[-50%] bg-textPrimary text-white px-[12px] py-[6px] rounded-[8px] text-[12px] font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Impact</span>
+    </a>
+    <a href="#solution" class="nav-dot group relative" data-section="solution">
+      <div class="w-[12px] h-[12px] rounded-full bg-black/20 group-hover:bg-tertiaryBg transition-all duration-300 group-hover:scale-150"></div>
+      <span class="absolute right-[24px] top-[50%] translate-y-[-50%] bg-textPrimary text-white px-[12px] py-[6px] rounded-[8px] text-[12px] font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Solution</span>
+    </a>
+    <a href="#visuals" class="nav-dot group relative" data-section="visuals">
+      <div class="w-[12px] h-[12px] rounded-full bg-black/20 group-hover:bg-tertiaryBg transition-all duration-300 group-hover:scale-150"></div>
+      <span class="absolute right-[24px] top-[50%] translate-y-[-50%] bg-textPrimary text-white px-[12px] py-[6px] rounded-[8px] text-[12px] font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Visuals</span>
+    </a>
+  </div>
+
+  <!-- HERO SECTION - Enhanced -->
   <div class="flex flex-col gap-[24px] relative">
     <!-- Back Navigation -->
     <div class="absolute top-[-60px] left-0 z-10 hidden lg:block">
@@ -38,35 +63,72 @@ const relatedProjects = project.relatedProjects
       </a>
     </div>
 
-    <div class="relative w-full h-[65vh] min-h-[500px] rounded-[32px] sm:rounded-[48px] overflow-hidden shadow-2xl" id="hero-section">
+    <div class="relative w-full h-[85vh] min-h-[600px] rounded-[32px] sm:rounded-[48px] overflow-hidden shadow-2xl group" id="hero-section">
+      <!-- Animated Background Gradient -->
+      <div class="absolute inset-0 bg-gradient-to-br from-tertiaryBg/20 via-purple-500/20 to-pink-500/20 animate-gradient-shift"></div>
+      
       <Image
         src={project.image1}
         alt={project.title}
-        class="w-full h-full object-cover parallax-image scale-105"
+        class="w-full h-full object-cover parallax-image scale-105 mix-blend-overlay"
         loading="eager"
         fetchpriority="high"
       />
-      <!-- Cinematic Gradient Overlay -->
-      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-[32px] sm:p-[60px] lg:p-[80px]">
-        <div class="apple-reveal max-w-[1100px]">
-           <div class="flex flex-wrap items-center gap-[12px] mb-[24px]">
+      
+      <!-- Enhanced Cinematic Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent flex flex-col justify-end p-[32px] sm:p-[60px] lg:p-[80px]">
+        <div class="apple-reveal max-w-[1200px]">
+           <!-- Enhanced Badge System -->
+           <div class="flex flex-wrap items-center gap-[12px] mb-[32px]">
               {project.role && (
-                <span class="px-[16px] py-[8px] rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white text-[14px] font-medium uppercase tracking-wider">
+                <span class="px-[20px] py-[10px] rounded-full bg-gradient-to-r from-tertiaryBg to-blue-400 backdrop-blur-md border border-white/20 text-white text-[14px] font-bold uppercase tracking-widest shadow-lg animate-badge-glow">
                   {project.role}
                 </span>
               )}
               {project.year && (
-                <span class="px-[16px] py-[8px] rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/80 text-[14px] font-medium">
+                <span class="px-[18px] py-[10px] rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white text-[14px] font-semibold">
                   {project.year}
                 </span>
               )}
+              {project.technologies && project.technologies.slice(0, 3).map(tech => (
+                <span class="px-[16px] py-[8px] rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/70 text-[13px] font-medium">
+                  {tech}
+                </span>
+              ))}
            </div>
-          <h1 class="text-white text-[48px] sm:text-[72px] md:text-[96px] font-bold leading-[0.95] tracking-tight mb-[24px]">
+           
+          <h1 class="text-white text-[52px] sm:text-[84px] md:text-[112px] lg:text-[128px] font-black leading-[0.9] tracking-tighter mb-[32px] hero-title">
             {project.title}
           </h1>
-          <p class="text-white/80 text-[18px] sm:text-[24px] font-light max-w-[700px] leading-relaxed">
+          
+          <p class="text-white/90 text-[20px] sm:text-[28px] font-light max-w-[800px] leading-relaxed mb-[40px]">
             {project.shortDescription}
           </p>
+
+          <!-- Hero Actions -->
+          <div class="flex flex-wrap gap-[16px]">
+            {project.link && (
+              <a href={project.link} target="_blank" rel="noopener noreferrer" class="group/btn px-[32px] py-[16px] bg-white text-textPrimary rounded-full font-bold text-[16px] hover:bg-tertiaryBg hover:text-white transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 flex items-center gap-[12px]">
+                View Live Project
+                <svg class="w-[20px] h-[20px] group-hover/btn:translate-x-1 group-hover/btn:translate-y-[-2px] transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                </svg>
+              </a>
+            )}
+            <a href="#overview" class="px-[32px] py-[16px] bg-white/10 backdrop-blur-xl text-white border-2 border-white/30 rounded-full font-bold text-[16px] hover:bg-white/20 transition-all duration-300 flex items-center gap-[12px]">
+              Explore Details
+              <svg class="w-[20px] h-[20px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M19 12l-7 7-7-7"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-[40px] left-[50%] translate-x-[-50%] animate-bounce">
+        <div class="w-[30px] h-[50px] rounded-full border-2 border-white/50 flex items-start justify-center p-[6px]">
+          <div class="w-[6px] h-[10px] bg-white/70 rounded-full animate-scroll-dot"></div>
         </div>
       </div>
     </div>
@@ -76,21 +138,32 @@ const relatedProjects = project.relatedProjects
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-[60px] lg:gap-[80px]">
     
     <!-- LEFT COLUMN: NARRATIVE -->
-    <div class="lg:col-span-8 flex flex-col gap-[80px]">
+    <div class="lg:col-span-8 flex flex-col gap-[100px]">
       
       <!-- Context & Overview -->
-      <div class="flex flex-col gap-[40px] apple-reveal-section">
+      <div id="overview" class="flex flex-col gap-[40px] apple-reveal-section scroll-mt-[100px]">
          <div class="flex flex-col gap-[24px]">
-            <span class="text-tertiaryBg font-bold uppercase tracking-widest text-[14px]">The Story</span>
-            <h2 class="text-[32px] sm:text-[48px] font-bold text-textPrimary leading-[1.1]">Overview</h2>
+            <div class="flex items-center gap-[16px]">
+              <div class="w-[60px] h-[4px] bg-gradient-to-r from-tertiaryBg to-transparent rounded-full"></div>
+              <span class="text-tertiaryBg font-black uppercase tracking-widest text-[14px]">The Story</span>
+            </div>
+            <h2 class="text-[36px] sm:text-[56px] font-black text-textPrimary leading-[1.05] tracking-tight">
+              Overview
+            </h2>
          </div>
-         <div class="prose prose-xl max-w-prose text-textSecondary leading-relaxed text-[18px] sm:text-[20px]">
-            <p>{project.fullDescription}</p>
+         <div class="relative">
+           <!-- Decorative Quote Mark -->
+           <div class="absolute top-[-20px] left-[-20px] text-[120px] text-tertiaryBg/10 font-serif leading-none">"</div>
+           <div class="prose prose-xl max-w-prose text-textSecondary leading-relaxed text-[20px] sm:text-[22px] relative z-10">
+              <p class="first-letter:text-[72px] first-letter:font-bold first-letter:text-tertiaryBg first-letter:float-left first-letter:mr-[12px] first-letter:leading-none first-letter:mt-[8px]">
+                {project.fullDescription}
+              </p>
+           </div>
          </div>
       </div>
 
       <!-- Video Demo Section -->
-      {project.videoDemo && (
+      {(project as any).videoDemo && (
          <div class="apple-reveal-section flex flex-col gap-[24px]">
             <h3 class="text-[24px] font-bold text-textPrimary">Watch Demo</h3>
             <div class="w-full rounded-[24px] overflow-hidden shadow-2xl border border-black/10 bg-black/5 aspect-video relative group hover:scale-[1.01] transition-transform duration-500 ease-out">
@@ -101,7 +174,7 @@ const relatedProjects = project.relatedProjects
                     <div class="w-[12px] h-[12px] rounded-full bg-[#27C93F] border border-black/5"></div>
                 </div>
                 <video 
-                    src={project.videoDemo} 
+                    src={(project as any).videoDemo} 
                     class="w-full h-full object-cover pt-[40px]" 
                     controls 
                     playsinline
@@ -113,209 +186,597 @@ const relatedProjects = project.relatedProjects
          </div>
       )}
 
-      <!-- Impact Stats (Grid) -->
+      <!-- Impact Stats (Grid) - Enhanced with Animation -->
       {project.metrics && project.metrics.length > 0 && (
-        <div class="grid grid-cols-2 gap-[20px] sm:gap-[30px] apple-reveal-section">
-          {project.metrics.map((metric) => (
-            <div class="bg-surface p-[32px] rounded-[32px] flex flex-col gap-[8px] border border-black/5 hover:border-tertiaryBg/30 transition-all duration-500 hover:translate-y-[-4px] hover:shadow-lg">
-               <span class="text-[48px] sm:text-[64px] font-bold text-textPrimary leading-[1]">{metric.value}</span>
-               <span class="text-textSecondary font-medium text-[16px] uppercase tracking-wide">{metric.label}</span>
+        <div id="impact" class="scroll-mt-[100px] flex flex-col gap-[40px] apple-reveal-section">
+          <div class="flex flex-col gap-[20px]">
+            <div class="flex items-center gap-[16px]">
+              <div class="w-[60px] h-[4px] bg-gradient-to-r from-purple-500 to-transparent rounded-full"></div>
+              <span class="text-purple-600 font-black uppercase tracking-widest text-[14px]">Impact</span>
             </div>
-          ))}
-        </div>
-      )}
-
-      <!-- Problem & Solution (Visual Grid) -->
-      <div class="grid grid-cols-1 gap-[32px] apple-reveal-section">
-         {project.problemStatement && (
-           <div class="bg-surface p-[40px] rounded-[32px] border-l-4 border-red-400 relative overflow-hidden hover:shadow-lg transition-shadow duration-500">
-              <div class="absolute top-0 right-0 p-[40px] opacity-5">
-                  <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-              </div>
-              <h3 class="text-[24px] font-bold text-textPrimary mb-[16px] flex items-center gap-[12px]">
-                  <span class="text-red-500">The Challenge</span>
-              </h3>
-              <p class="text-[18px] sm:text-[20px] leading-relaxed text-textSecondary max-w-prose">{project.problemStatement}</p>
-           </div>
-         )}
-         
-         {project.solution && (
-           <div class="bg-surface p-[40px] rounded-[32px] border-l-4 border-tertiaryBg relative overflow-hidden hover:shadow-lg transition-shadow duration-500">
-              <div class="absolute top-0 right-0 p-[40px] opacity-5">
-                  <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-              </div>
-              <h3 class="text-[24px] font-bold text-textPrimary mb-[16px] flex items-center gap-[12px]">
-                  <span class="text-tertiaryBg">The Solution</span>
-              </h3>
-              <p class="text-[18px] sm:text-[20px] leading-relaxed text-textSecondary max-w-prose">{project.solution}</p>
-           </div>
-         )}
-      </div>
-
-      <!-- Visual Deep Dive -->
-      <div class="flex flex-col gap-[40px] apple-reveal-section">
-         <div class="flex flex-col gap-[16px]">
-            <span class="text-tertiaryBg font-bold uppercase tracking-widest text-[14px]">Visuals</span>
-            <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">Interface Design</h2>
-         </div>
-         <div class="bg-surface p-[16px] rounded-[40px] shadow-xl hover:shadow-2xl transition-shadow duration-700">
-            <div class="rounded-[24px] overflow-hidden relative group">
-              <Image src={project.image2} alt="Main Interface" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
-            </div>
-         </div>
-         <ImageGallery images={[project.image1, project.image2]} altPrefix={project.title} />
-      </div>
-
-      <!-- Process & Timeline -->
-      {project.process && project.process.length > 0 && (
-        <div class="flex flex-col gap-[40px] apple-reveal-section">
-          <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">How We Built It</h2>
-          <div class="relative border-l-2 border-black/5 pl-[40px] sm:pl-[60px] flex flex-col gap-[40px]">
-             {project.process.map((step, index) => (
-                <div class="relative group">
-                   <div class="absolute left-[-49px] sm:left-[-69px] top-[0px] w-[20px] h-[20px] rounded-full bg-white border-[4px] border-tertiaryBg transition-all duration-300 group-hover:scale-125 group-hover:border-tertiaryBg/80"></div>
-                   <h4 class="text-[20px] font-bold text-textPrimary mb-[8px] transition-colors duration-300 group-hover:text-tertiaryBg">{step}</h4>
-                   <p class="text-textSecondary text-[16px]">Phase {index + 1}</p>
+            <h2 class="text-[36px] sm:text-[48px] font-black text-textPrimary leading-[1.1]">
+              By The Numbers
+            </h2>
+          </div>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-[24px]">
+            {project.metrics.map((metric, index) => (
+              <div class="metric-card group relative bg-gradient-to-br from-white to-surface p-[40px] rounded-[40px] flex flex-col gap-[12px] border-2 border-black/5 hover:border-tertiaryBg/40 transition-all duration-500 hover:translate-y-[-8px] hover:shadow-2xl overflow-hidden">
+                <!-- Animated Background -->
+                <div class="absolute inset-0 bg-gradient-to-br from-tertiaryBg/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                <!-- Icon Badge -->
+                <div class="absolute top-[20px] right-[20px] w-[40px] h-[40px] rounded-full bg-tertiaryBg/10 flex items-center justify-center text-tertiaryBg text-[20px] font-bold opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110">
+                  {index + 1}
                 </div>
-             ))}
+                
+                <div class="relative z-10">
+                  <span 
+                    class="counter text-[56px] sm:text-[72px] font-black bg-gradient-to-br from-textPrimary to-tertiaryBg bg-clip-text text-transparent leading-[1] block"
+                    data-target={metric.value}
+                  >
+                    0
+                  </span>
+                  <span class="text-textSecondary font-bold text-[15px] uppercase tracking-widest mt-[8px] block">
+                    {metric.label}
+                  </span>
+                </div>
+
+                <!-- Decorative Element -->
+                <div class="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-tertiaryBg via-purple-500 to-pink-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              </div>
+            ))}
           </div>
         </div>
       )}
 
-      <!-- Technical Challenges -->
+      <!-- Problem & Solution (Visual Grid) - Enhanced -->
+      {(project.problemStatement || project.solution) && (
+        <div id="solution" class="scroll-mt-[100px] flex flex-col gap-[32px] apple-reveal-section">
+           {project.problemStatement && (
+             <div class="group relative bg-gradient-to-br from-red-50 to-orange-50 p-[48px] rounded-[48px] border-2 border-red-200/50 hover:border-red-400 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(239,68,68,0.15)] overflow-hidden">
+                <!-- Animated Background Pattern -->
+                <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(45deg, #ef4444 0, #ef4444 1px, transparent 0, transparent 50%); background-size: 20px 20px;"></div>
+                
+                <!-- Animated Icon -->
+                <div class="absolute top-[30px] right-[30px] opacity-10 group-hover:opacity-20 transition-all duration-500 group-hover:rotate-12 group-hover:scale-110">
+                    <svg width="160" height="160" viewBox="0 0 24 24" fill="currentColor" class="text-red-500">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                    </svg>
+                </div>
+                
+                <div class="relative z-10">
+                  <!-- Badge -->
+                  <div class="inline-flex items-center gap-[12px] bg-red-500 text-white px-[24px] py-[12px] rounded-full text-[14px] font-bold uppercase tracking-wider mb-[24px] shadow-lg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="8" x2="12" y2="12"/>
+                      <line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    The Challenge
+                  </div>
+                  
+                  <p class="text-[20px] sm:text-[24px] leading-relaxed text-gray-800 max-w-prose font-medium">
+                    {project.problemStatement}
+                  </p>
+                </div>
+
+                <!-- Decorative Corner -->
+                <div class="absolute bottom-0 left-0 w-[120px] h-[120px] bg-gradient-to-br from-red-400/20 to-transparent rounded-tr-full"></div>
+             </div>
+           )}
+           
+           {project.solution && (
+             <div class="group relative bg-gradient-to-br from-emerald-50 to-teal-50 p-[48px] rounded-[48px] border-2 border-emerald-200/50 hover:border-tertiaryBg transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,209,232,0.15)] overflow-hidden">
+                <!-- Animated Background Pattern -->
+                <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(-45deg, #00d1e8 0, #00d1e8 1px, transparent 0, transparent 50%); background-size: 20px 20px;"></div>
+                
+                <!-- Animated Icon -->
+                <div class="absolute top-[30px] right-[30px] opacity-10 group-hover:opacity-20 transition-all duration-500 group-hover:scale-110">
+                    <svg width="160" height="160" viewBox="0 0 24 24" fill="currentColor" class="text-tertiaryBg">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                </div>
+                
+                <div class="relative z-10">
+                  <!-- Badge -->
+                  <div class="inline-flex items-center gap-[12px] bg-gradient-to-r from-tertiaryBg to-emerald-500 text-white px-[24px] py-[12px] rounded-full text-[14px] font-bold uppercase tracking-wider mb-[24px] shadow-lg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                    The Solution
+                  </div>
+                  
+                  <p class="text-[20px] sm:text-[24px] leading-relaxed text-gray-800 max-w-prose font-medium">
+                    {project.solution}
+                  </p>
+                </div>
+
+                <!-- Decorative Corner -->
+                <div class="absolute bottom-0 right-0 w-[120px] h-[120px] bg-gradient-to-tl from-tertiaryBg/20 to-transparent rounded-tl-full"></div>
+             </div>
+           )}
+        </div>
+      )}
+
+      <!-- Visual Deep Dive - Enhanced -->
+      <div id="visuals" class="scroll-mt-[100px] flex flex-col gap-[60px] apple-reveal-section">
+         <div class="flex flex-col gap-[24px]">
+            <div class="flex items-center gap-[16px]">
+              <div class="w-[60px] h-[4px] bg-gradient-to-r from-pink-500 to-transparent rounded-full"></div>
+              <span class="text-pink-600 font-black uppercase tracking-widest text-[14px]">Visuals</span>
+            </div>
+            <h2 class="text-[36px] sm:text-[56px] font-black text-textPrimary leading-[1.05]">
+              Interface Design
+            </h2>
+            <p class="text-[18px] text-textSecondary max-w-[600px]">
+              Every pixel crafted with purpose. Explore the visual journey of this project.
+            </p>
+         </div>
+
+         <!-- Featured Image with Device Frame -->
+         <div class="relative group">
+            <!-- MacBook Frame -->
+            <div class="bg-gradient-to-br from-gray-800 via-gray-900 to-black p-[20px] sm:p-[32px] rounded-[32px] shadow-2xl hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-700 hover:scale-[1.01]">
+              <!-- Screen Bezel -->
+              <div class="bg-black p-[8px] rounded-[20px] relative overflow-hidden">
+                <!-- Camera Notch -->
+                <div class="absolute top-0 left-[50%] translate-x-[-50%] w-[120px] h-[20px] bg-black rounded-b-[12px] z-20 flex items-center justify-center">
+                  <div class="w-[6px] h-[6px] rounded-full bg-gray-700"></div>
+                </div>
+                
+                <!-- Screen Content -->
+                <div class="rounded-[16px] overflow-hidden bg-white relative">
+                  <Image 
+                    src={project.image2} 
+                    alt="Main Interface" 
+                    class="w-full h-auto object-cover transition-transform duration-1000 group-hover:scale-[1.03]" 
+                  />
+                  
+                  <!-- Hover Overlay -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-[40px]">
+                    <span class="text-white font-bold text-[16px] bg-white/20 backdrop-blur-md px-[24px] py-[12px] rounded-full border border-white/30">
+                      Click to expand
+                    </span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- MacBook Base -->
+              <div class="h-[20px] bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-[24px] mt-[8px] relative">
+                <div class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] w-[60px] h-[4px] bg-gray-600 rounded-full"></div>
+              </div>
+            </div>
+
+            <!-- Floating Labels -->
+            <div class="absolute top-[40px] left-[-20px] bg-white px-[20px] py-[10px] rounded-full shadow-lg text-[14px] font-bold text-textPrimary opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-[10px]">
+              ✨ Responsive
+            </div>
+            <div class="absolute bottom-[60px] right-[-20px] bg-tertiaryBg text-white px-[20px] py-[10px] rounded-full shadow-lg text-[14px] font-bold opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-x-[-10px]">
+              Modern UI
+            </div>
+         </div>
+
+         <!-- Enhanced Gallery Grid -->
+         <div class="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
+            <div class="group relative rounded-[32px] overflow-hidden aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500">
+              <Image 
+                src={project.image1} 
+                alt={`${project.title} - View 1`} 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="absolute bottom-[24px] left-[24px] text-white font-bold text-[18px] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-[10px] group-hover:translate-y-0">
+                Primary View
+              </div>
+            </div>
+            
+            <div class="group relative rounded-[32px] overflow-hidden aspect-[4/3] shadow-xl hover:shadow-2xl transition-all duration-500">
+              <Image 
+                src={project.image2} 
+                alt={`${project.title} - View 2`} 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="absolute bottom-[24px] left-[24px] text-white font-bold text-[18px] opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-[10px] group-hover:translate-y-0">
+                Detail Shot
+              </div>
+            </div>
+         </div>
+
+         <!-- Full Gallery Component -->
+         <ImageGallery images={[project.image1, project.image2]} altPrefix={project.title} />
+      </div>
+
+      <!-- Process & Timeline - Enhanced -->
+      {project.process && project.process.length > 0 && (
+        <div class="flex flex-col gap-[50px] apple-reveal-section">
+          <div class="flex flex-col gap-[24px]">
+            <div class="flex items-center gap-[16px]">
+              <div class="w-[60px] h-[4px] bg-gradient-to-r from-orange-500 to-transparent rounded-full"></div>
+              <span class="text-orange-600 font-black uppercase tracking-widest text-[14px]">Process</span>
+            </div>
+            <h2 class="text-[36px] sm:text-[56px] font-black text-textPrimary leading-[1.05]">
+              How We Built It
+            </h2>
+          </div>
+
+          <div class="relative">
+            <!-- Animated Progress Line -->
+            <div class="absolute left-[24px] top-[30px] bottom-[30px] w-[4px] bg-gradient-to-b from-tertiaryBg via-purple-500 to-pink-500 rounded-full progress-line"></div>
+            <div class="absolute left-[24px] top-[30px] bottom-[30px] w-[4px] bg-black/5 rounded-full"></div>
+            
+            <div class="flex flex-col gap-[48px]">
+               {project.process.map((step, index) => (
+                  <div class="relative group pl-[80px] process-step" data-step={index}>
+                     <!-- Animated Node -->
+                     <div class="absolute left-[8px] top-[8px] w-[32px] h-[32px] rounded-full bg-white border-[4px] border-tertiaryBg shadow-lg transition-all duration-500 group-hover:scale-150 group-hover:rotate-180 z-10 flex items-center justify-center">
+                        <span class="text-[12px] font-bold text-tertiaryBg">{index + 1}</span>
+                     </div>
+                     
+                     <!-- Glow Effect -->
+                     <div class="absolute left-[8px] top-[8px] w-[32px] h-[32px] rounded-full bg-tertiaryBg/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                     <!-- Content Card -->
+                     <div class="bg-gradient-to-br from-white to-surface p-[32px] rounded-[32px] border-2 border-black/5 group-hover:border-tertiaryBg/30 transition-all duration-500 group-hover:shadow-xl group-hover:translate-x-[8px]">
+                        <div class="flex items-start justify-between gap-[20px] mb-[12px]">
+                           <h4 class="text-[22px] font-bold text-textPrimary transition-colors duration-300 group-hover:text-tertiaryBg flex-1">
+                              {step}
+                           </h4>
+                           <span class="px-[16px] py-[6px] bg-tertiaryBg/10 text-tertiaryBg rounded-full text-[13px] font-bold whitespace-nowrap">
+                              Phase {index + 1}
+                           </span>
+                        </div>
+                        <p class="text-textSecondary text-[16px] leading-relaxed">
+                          Executed with precision and attention to detail, ensuring quality at every stage.
+                        </p>
+
+                        <!-- Progress Indicator -->
+                        <div class="mt-[20px] flex items-center gap-[8px]">
+                           {Array.from({ length: project.process?.length || 0 }).map((_, i) => (
+                              <div class={`h-[4px] flex-1 rounded-full transition-all duration-300 ${i <= index ? 'bg-tertiaryBg' : 'bg-black/10'}`}></div>
+                           ))}
+                        </div>
+                     </div>
+                  </div>
+               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <!-- Technical Challenges - Enhanced -->
       {project.challenges && project.challenges.length > 0 && (
-        <div class="flex flex-col gap-[40px] apple-reveal-section">
-           <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">Technical Deep Dive</h2>
-           <div class="grid grid-cols-1 gap-[24px]">
+        <div class="flex flex-col gap-[50px] apple-reveal-section">
+           <div class="flex flex-col gap-[24px]">
+              <div class="flex items-center gap-[16px]">
+                <div class="w-[60px] h-[4px] bg-gradient-to-r from-yellow-500 to-transparent rounded-full"></div>
+                <span class="text-yellow-600 font-black uppercase tracking-widest text-[14px]">Engineering</span>
+              </div>
+              <h2 class="text-[36px] sm:text-[56px] font-black text-textPrimary leading-[1.05]">
+                Technical Deep Dive
+              </h2>
+              <p class="text-[18px] text-textSecondary max-w-[700px]">
+                Complex problems require elegant solutions. Here's how we tackled the toughest challenges.
+              </p>
+           </div>
+
+           <div class="grid grid-cols-1 gap-[32px]">
               {project.challenges.map((challenge, index) => (
-                 <div class="bg-surface p-[32px] rounded-[32px] group hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-black/5">
-                    <div class="flex flex-col gap-[16px]">
-                       <div class="flex items-center gap-[12px]">
-                          <span class="w-[32px] h-[32px] rounded-full bg-red-100 text-red-500 flex items-center justify-center text-[14px] font-bold transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">!</span>
-                          <h4 class="text-[18px] font-bold text-textPrimary">{challenge}</h4>
+                 <div class="challenge-card group relative bg-white p-[40px] rounded-[40px] border-2 border-black/5 hover:border-yellow-400 transition-all duration-500 hover:shadow-[0_20px_60px_rgba(250,204,21,0.15)] overflow-hidden">
+                    <!-- Background Pattern -->
+                    <div class="absolute inset-0 opacity-[0.02] group-hover:opacity-[0.04] transition-opacity" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
+                    
+                    <!-- Number Badge -->
+                    <div class="absolute top-[30px] right-[30px] w-[60px] h-[60px] rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white text-[24px] font-black shadow-lg opacity-20 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110 group-hover:rotate-12">
+                       {index + 1}
+                    </div>
+
+                    <div class="relative z-10">
+                       <!-- Challenge Header -->
+                       <div class="flex items-start gap-[20px] mb-[24px]">
+                          <div class="flex-shrink-0 w-[48px] h-[48px] rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                             </svg>
+                          </div>
+                          <div class="flex-1">
+                             <h4 class="text-[22px] font-bold text-textPrimary mb-[8px] group-hover:text-orange-600 transition-colors">
+                                {challenge}
+                             </h4>
+                             <span class="text-[14px] text-textSecondary font-medium">Technical Challenge #{index + 1}</span>
+                          </div>
                        </div>
+
+                       {/* Divider */}
+                       <div class="h-[2px] bg-gradient-to-r from-orange-400 via-yellow-400 to-transparent mb-[24px] rounded-full"></div>
+
+                       {/* Solution */}
                        {project.solutions && project.solutions[index] && (
-                          <div class="pl-[44px] text-[16px] text-textSecondary leading-relaxed max-w-prose">
-                             <span class="font-bold text-tertiaryBg">Solution: </span>
-                             {project.solutions[index]}
+                          <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-[24px] rounded-[24px] border border-green-200/50">
+                             <div class="flex items-start gap-[16px]">
+                                <div class="flex-shrink-0 w-[36px] h-[36px] rounded-full bg-gradient-to-br from-tertiaryBg to-emerald-500 flex items-center justify-center text-white">
+                                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                      <polyline points="20 6 9 17 4 12"/>
+                                   </svg>
+                                </div>
+                                <div>
+                                   <h5 class="text-[16px] font-bold text-tertiaryBg mb-[8px]">Our Solution</h5>
+                                   <p class="text-[16px] text-gray-700 leading-relaxed">
+                                      {project.solutions[index]}
+                                   </p>
+                                </div>
+                             </div>
                           </div>
                        )}
                     </div>
+
+                    <!-- Decorative Corner -->
+                    <div class="absolute bottom-0 right-0 w-[100px] h-[100px] bg-gradient-to-tl from-yellow-400/10 to-transparent rounded-tl-full"></div>
                  </div>
               ))}
            </div>
         </div>
       )}
       
-      <!-- Key Takeaways (Growth) -->
-      {project.keyTakeaways && project.keyTakeaways.length > 0 && (
-         <div class="bg-surface rounded-[32px] p-[40px] sm:p-[60px] apple-reveal-section relative overflow-hidden group">
-            <div class="absolute top-0 right-0 p-[40px] opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500">
-               <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.45l8.55 14.8H3.45L12 5.45z"/></svg>
-            </div>
-            <h2 class="text-[32px] font-bold text-textPrimary mb-[32px]">Key Takeaways</h2>
-            <div class="grid gap-[20px]">
-               {project.keyTakeaways.map(takeaway => (
-                  <div class="flex gap-[16px] items-start">
-                     <div class="w-[24px] h-[24px] rounded-full bg-tertiaryBg/20 text-tertiaryBg flex items-center justify-center flex-shrink-0 mt-[2px]">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+      <!-- Key Takeaways (Growth) - Enhanced -->
+      {(project as any).keyTakeaways && (project as any).keyTakeaways.length > 0 && (
+         <div class="apple-reveal-section">
+            <div class="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-[48px] p-[48px] sm:p-[70px] overflow-hidden border-2 border-purple-200/50">
+               <!-- Animated Background -->
+               <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+               
+               <!-- Decorative Icon -->
+               <div class="absolute top-[40px] right-[40px] w-[120px] h-[120px] opacity-10">
+                  <svg viewBox="0 0 24 24" fill="currentColor" class="text-purple-600">
+                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                  </svg>
+               </div>
+
+               <div class="relative z-10">
+                  <!-- Header -->
+                  <div class="flex items-center gap-[20px] mb-[40px]">
+                     <div class="w-[64px] h-[64px] rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                           <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                           <path d="M2 17l10 5 10-5"/>
+                           <path d="M2 12l10 5 10-5"/>
+                        </svg>
                      </div>
-                     <p class="text-[18px] text-textSecondary leading-relaxed max-w-prose">{takeaway}</p>
+                     <div>
+                        <span class="text-purple-600 font-bold uppercase tracking-widest text-[14px] block mb-[8px]">Learnings</span>
+                        <h2 class="text-[36px] sm:text-[48px] font-black text-textPrimary leading-[1]">
+                           Key Takeaways
+                        </h2>
+                     </div>
                   </div>
-               ))}
+
+                  <!-- Takeaways Grid -->
+                  <div class="grid gap-[24px]">
+                     {(project as any).keyTakeaways?.map((takeaway: string, index: number) => (
+                        <div class="group flex gap-[24px] items-start bg-white/60 backdrop-blur-sm p-[28px] rounded-[28px] border border-purple-200/30 hover:border-purple-400 hover:bg-white/80 transition-all duration-500 hover:shadow-xl hover:translate-x-[8px]">
+                           <!-- Animated Checkmark -->
+                           <div class="flex-shrink-0 w-[40px] h-[40px] rounded-full bg-gradient-to-br from-tertiaryBg to-emerald-500 flex items-center justify-center text-white shadow-lg group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                 <polyline points="20 6 9 17 4 12"/>
+                              </svg>
+                           </div>
+                           
+                           <!-- Content -->
+                           <div class="flex-1">
+                              <p class="text-[19px] text-gray-800 leading-relaxed font-medium">
+                                 {takeaway}
+                              </p>
+                           </div>
+
+                           <!-- Index Badge -->
+                           <div class="flex-shrink-0 w-[32px] h-[32px] rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-[14px] font-bold opacity-50 group-hover:opacity-100 transition-opacity">
+                              {index + 1}
+                           </div>
+                        </div>
+                     ))}
+                  </div>
+               </div>
+
+               <!-- Decorative Corners -->
+               <div class="absolute top-0 left-0 w-[150px] h-[150px] bg-gradient-to-br from-purple-400/20 to-transparent rounded-br-full"></div>
+               <div class="absolute bottom-0 right-0 w-[150px] h-[150px] bg-gradient-to-tl from-pink-400/20 to-transparent rounded-tl-full"></div>
             </div>
          </div>
       )}
 
-      <!-- Testimonial (Social Proof) -->
+      <!-- Testimonial (Social Proof) - Enhanced -->
       {project.testimonials && project.testimonials.length > 0 && (
          <div class="my-[40px] apple-reveal-section">
-            <div class="bg-textPrimary text-white rounded-[40px] p-[40px] sm:p-[60px] relative overflow-hidden">
-               <svg class="absolute top-[40px] left-[40px] text-white/10 w-[100px] h-[100px]" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"></path></svg>
+            <div class="relative bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white rounded-[48px] p-[48px] sm:p-[70px] overflow-hidden shadow-2xl">
+               <!-- Animated Background Pattern -->
+               <div class="absolute inset-0 opacity-5">
+                  <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px);"></div>
+               </div>
+
+               <!-- Decorative Quote Mark -->
+               <svg class="absolute top-[30px] left-[30px] text-tertiaryBg/20 w-[140px] h-[140px]" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/>
+               </svg>
+
+               <!-- 5 Stars Rating -->
+               <div class="relative z-10 flex gap-[8px] mb-[32px]">
+                  {Array.from({ length: 5 }).map(() => (
+                     <svg class="w-[28px] h-[28px] text-yellow-400" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                     </svg>
+                  ))}
+               </div>
                
-               <blockquote class="relative z-10 text-[24px] sm:text-[32px] font-medium leading-relaxed mb-[32px] font-heading">
+               <!-- Quote -->
+               <blockquote class="relative z-10 text-[26px] sm:text-[36px] font-medium leading-[1.4] mb-[40px] italic">
                   "{project.testimonials[0].quote}"
                </blockquote>
                
-               <div class="flex items-center gap-[16px] relative z-10">
-                  <div class="w-[50px] h-[50px] rounded-full bg-white/20 flex items-center justify-center text-[20px] font-bold uppercase">
+               <!-- Author Card -->
+               <div class="relative z-10 flex items-center gap-[20px] bg-white/10 backdrop-blur-md p-[24px] rounded-[24px] border border-white/20 max-w-fit">
+                  <div class="w-[64px] h-[64px] rounded-full bg-gradient-to-br from-tertiaryBg to-purple-500 flex items-center justify-center text-[28px] font-black uppercase shadow-xl">
                      {project.testimonials[0].name.charAt(0)}
                   </div>
                   <div class="flex flex-col">
-                     <cite class="not-italic font-bold text-[18px]">{project.testimonials[0].name}</cite>
-                     <span class="text-white/60 text-[14px]">{project.testimonials[0].role}</span>
+                     <cite class="not-italic font-bold text-[20px] text-white">{project.testimonials[0].name}</cite>
+                     <span class="text-white/70 text-[15px] font-medium">{project.testimonials[0].role}</span>
+                  </div>
+                  
+                  <!-- Verified Badge -->
+                  <div class="ml-[12px] bg-green-500 text-white px-[12px] py-[6px] rounded-full text-[12px] font-bold flex items-center gap-[6px]">
+                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="20 6 9 17 4 12"/>
+                     </svg>
+                     Verified
                   </div>
                </div>
+
+               <!-- Decorative Gradient Orbs -->
+               <div class="absolute bottom-[-50px] right-[-50px] w-[300px] h-[300px] bg-gradient-to-br from-tertiaryBg/30 to-purple-500/30 rounded-full blur-[100px]"></div>
             </div>
          </div>
       )}
 
     </div>
 
-    <!-- RIGHT COLUMN: STICKY INFO -->
+    <!-- RIGHT COLUMN: STICKY INFO - Enhanced -->
     <div class="lg:col-span-4 relative">
-      <div class="sticky top-[40px] flex flex-col gap-[40px] apple-reveal-section">
+      <div class="sticky top-[40px] flex flex-col gap-[32px] apple-reveal-section">
         
-        <!-- Action Card -->
-        <div class="bg-white rounded-[32px] p-[32px] border border-black/5 shadow-[0_20px_40px_rgba(0,0,0,0.05)] flex flex-col gap-[24px]">
-           <div class="flex items-center justify-between">
-               <h3 class="text-[18px] font-bold text-textPrimary uppercase tracking-wider">
-                  Project Info
-               </h3>
-               <div class="w-[8px] h-[8px] rounded-full bg-green-500 animate-pulse"></div>
-           </div>
+        <!-- Action Card - Enhanced -->
+        <div class="relative bg-gradient-to-br from-white to-gray-50 rounded-[40px] p-[36px] border-2 border-black/5 shadow-[0_20px_60px_rgba(0,0,0,0.08)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.12)] transition-all duration-500 overflow-hidden group">
+           <!-- Animated Background -->
+           <div class="absolute inset-0 bg-gradient-to-br from-tertiaryBg/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
            
-           <div class="flex flex-col gap-[20px] text-[16px]">
-              {project.role && (
-                 <div class="flex justify-between items-center pb-[16px] border-b border-black/5">
-                    <span class="text-textSecondary">Role</span>
-                    <span class="font-medium text-textPrimary text-right max-w-[60%]">{project.role}</span>
-                 </div>
-              )}
-              {project.teamSize && (
-                 <div class="flex justify-between items-center pb-[16px] border-b border-black/5">
-                    <span class="text-textSecondary">Team Size</span>
-                    <span class="font-medium text-textPrimary">{project.teamSize}</span>
-                 </div>
-              )}
-              {project.timeline && (
-                 <div class="flex justify-between items-center pb-[16px] border-b border-black/5">
-                    <span class="text-textSecondary">Timeline</span>
-                    <span class="font-medium text-textPrimary">{project.timeline}</span>
-                 </div>
+           <div class="relative z-10">
+              <div class="flex items-center justify-between mb-[28px]">
+                  <h3 class="text-[18px] font-black text-textPrimary uppercase tracking-wider">
+                     Project Info
+                  </h3>
+                  <div class="flex items-center gap-[8px]">
+                     <div class="w-[10px] h-[10px] rounded-full bg-green-500 animate-pulse"></div>
+                     <span class="text-[12px] font-bold text-green-600">Live</span>
+                  </div>
+              </div>
+              
+              <div class="flex flex-col gap-[20px] text-[16px] mb-[28px]">
+                 {project.role && (
+                    <div class="flex justify-between items-center pb-[18px] border-b-2 border-black/5 group/item hover:border-tertiaryBg/30 transition-colors">
+                       <span class="text-textSecondary font-medium flex items-center gap-[8px]">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                             <circle cx="12" cy="7" r="4"/>
+                          </svg>
+                          Role
+                       </span>
+                       <span class="font-bold text-textPrimary text-right max-w-[60%]">{project.role}</span>
+                    </div>
+                 )}
+                 {project.teamSize && (
+                    <div class="flex justify-between items-center pb-[18px] border-b-2 border-black/5 group/item hover:border-tertiaryBg/30 transition-colors">
+                       <span class="text-textSecondary font-medium flex items-center gap-[8px]">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                             <circle cx="9" cy="7" r="4"/>
+                             <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                          </svg>
+                          Team
+                       </span>
+                       <span class="font-bold text-textPrimary">{project.teamSize}</span>
+                    </div>
+                 )}
+                 {project.timeline && (
+                    <div class="flex justify-between items-center pb-[18px] border-b-2 border-black/5 group/item hover:border-tertiaryBg/30 transition-colors">
+                       <span class="text-textSecondary font-medium flex items-center gap-[8px]">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                             <circle cx="12" cy="12" r="10"/>
+                             <polyline points="12 6 12 12 16 14"/>
+                          </svg>
+                          Timeline
+                       </span>
+                       <span class="font-bold text-textPrimary">{project.timeline}</span>
+                    </div>
+                 )}
+              </div>
+
+              {project.link && (
+                 <ExternalLink 
+                   href={project.link} 
+                   title="Visit Live Site"
+                   className="w-full py-[20px] flex justify-center items-center gap-[12px] bg-gradient-to-r from-textPrimary to-gray-800 text-white rounded-[24px] font-bold hover:from-tertiaryBg hover:to-blue-500 hover:scale-[1.03] transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-tertiaryBg/30"
+                 />
               )}
            </div>
-
-           {project.link && (
-              <ExternalLink 
-                href={project.link} 
-                title="Visit Live Site"
-                className="w-full py-[18px] flex justify-center items-center bg-textPrimary text-white rounded-[20px] font-bold hover:bg-tertiaryBg hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-tertiaryBg/20"
-              />
-           )}
         </div>
 
-        <!-- Technologies -->
+        <!-- Technologies - Enhanced -->
         {project.technologies && project.technologies.length > 0 && (
-           <div class="flex flex-col gap-[20px]">
-              <h3 class="text-[16px] font-bold text-textSecondary uppercase tracking-wider pl-[12px]">Tech Stack</h3>
-              <div class="flex flex-wrap gap-[10px]">
-                 {project.technologies.map(tech => (
-                    <span class="px-[16px] py-[10px] bg-surface rounded-[16px] text-[15px] font-medium text-textPrimary border border-black/5 hover:border-tertiaryBg hover:text-tertiaryBg transition-all duration-300 cursor-default">
+           <div class="bg-white rounded-[40px] p-[32px] border-2 border-black/5 shadow-lg">
+              <div class="flex items-center gap-[12px] mb-[24px]">
+                 <div class="w-[40px] h-[40px] rounded-full bg-gradient-to-br from-tertiaryBg to-blue-500 flex items-center justify-center">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                       <polyline points="16 18 22 12 16 6"/>
+                       <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                 </div>
+                 <h3 class="text-[18px] font-black text-textPrimary uppercase tracking-wider">Tech Stack</h3>
+              </div>
+              
+              <div class="flex flex-wrap gap-[12px]">
+                 {project.technologies.map((tech, index) => (
+                    <span class="group/tech relative px-[18px] py-[12px] bg-gradient-to-br from-surface to-gray-100 rounded-[18px] text-[15px] font-bold text-textPrimary border-2 border-black/5 hover:border-tertiaryBg hover:text-tertiaryBg hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-default">
                        {tech}
+                       <div class="absolute -top-1 -right-1 w-[20px] h-[20px] bg-tertiaryBg text-white rounded-full flex items-center justify-center text-[10px] font-bold opacity-0 group-hover/tech:opacity-100 transition-opacity">
+                          {index + 1}
+                       </div>
                     </span>
                  ))}
               </div>
            </div>
         )}
 
-        <!-- Contact Snippet -->
-        <div class="bg-surface rounded-[32px] p-[32px] text-center flex flex-col gap-[16px] items-center mt-[20px]">
-           <div class="w-[48px] h-[48px] rounded-full bg-tertiaryBg/10 text-tertiaryBg flex items-center justify-center mb-[8px]">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+        <!-- Share Card -->
+        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-[32px] p-[28px] border-2 border-purple-200/50">
+           <h3 class="text-[16px] font-black text-purple-900 uppercase tracking-wider mb-[20px]">Share This Project</h3>
+           <div class="flex gap-[12px]">
+              <button class="flex-1 py-[14px] bg-white rounded-[16px] font-bold text-[14px] text-gray-700 hover:bg-purple-100 hover:text-purple-600 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 flex items-center justify-center gap-[8px]">
+                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+                 </svg>
+                 Share
+              </button>
+              <button class="flex-1 py-[14px] bg-white rounded-[16px] font-bold text-[14px] text-gray-700 hover:bg-pink-100 hover:text-pink-600 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 flex items-center justify-center gap-[8px]">
+                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                 </svg>
+                 Save
+              </button>
            </div>
-           <p class="text-[16px] text-textSecondary font-medium">Need a similar solution?</p>
-           <a href="mailto:dullfarhan@gmail.com" class="text-tertiaryBg font-bold hover:underline">Let's talk</a>
+        </div>
+
+        <!-- Contact Snippet - Enhanced -->
+        <div class="relative bg-gradient-to-br from-tertiaryBg to-blue-500 rounded-[40px] p-[36px] text-center flex flex-col gap-[20px] items-center overflow-hidden group">
+           <!-- Animated Background -->
+           <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle, white 1px, transparent 1px); background-size: 30px 30px;"></div>
+           
+           <div class="relative z-10">
+              <div class="w-[64px] h-[64px] rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center mb-[16px] mx-auto group-hover:scale-110 transition-transform duration-300">
+                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                 </svg>
+              </div>
+              <p class="text-[18px] text-white font-bold mb-[8px]">Need a similar solution?</p>
+              <p class="text-white/80 text-[14px] mb-[20px]">Let's discuss your project</p>
+              <a href="mailto:dullfarhan@gmail.com" class="inline-block bg-white text-tertiaryBg px-[28px] py-[14px] rounded-full font-bold hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-xl">
+                 Let's Talk →
+              </a>
+           </div>
         </div>
 
       </div>
@@ -368,13 +829,14 @@ const relatedProjects = project.relatedProjects
 </section>
 
 <style>
+  /* Apple-style Reveal Animations */
   .apple-reveal,
   .apple-reveal-section {
     opacity: 0;
-    transform: translateY(30px) scale(0.98);
+    transform: translateY(40px) scale(0.97);
     will-change: opacity, transform;
-    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
   .apple-reveal.is-visible,
@@ -385,15 +847,186 @@ const relatedProjects = project.relatedProjects
 
   /* Staggered delays for children */
   .apple-reveal-section:nth-child(1) { transition-delay: 0ms; }
-  .apple-reveal-section:nth-child(2) { transition-delay: 100ms; }
-  .apple-reveal-section:nth-child(3) { transition-delay: 200ms; }
+  .apple-reveal-section:nth-child(2) { transition-delay: 150ms; }
+  .apple-reveal-section:nth-child(3) { transition-delay: 300ms; }
+  .apple-reveal-section:nth-child(4) { transition-delay: 450ms; }
+  .apple-reveal-section:nth-child(5) { transition-delay: 600ms; }
+
+  /* Hero Title Animation */
+  .hero-title {
+    animation: heroTitleFade 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes heroTitleFade {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Gradient Animation */
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  .animate-gradient-shift {
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  /* Badge Glow Animation */
+  @keyframes badge-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(0, 209, 232, 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px rgba(0, 209, 232, 0.6), 0 0 60px rgba(0, 209, 232, 0.3);
+    }
+  }
+
+  .animate-badge-glow {
+    animation: badge-glow 2s ease-in-out infinite;
+  }
+
+  /* Scroll Indicator Animation */
+  @keyframes scroll-dot {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(15px);
+      opacity: 0.3;
+    }
+  }
+
+  .animate-scroll-dot {
+    animation: scroll-dot 2s ease-in-out infinite;
+  }
+
+  /* Quick Navigation Dots */
+  .nav-dot.active .w-\[12px\] {
+    background-color: var(--color-tertiaryBg);
+    transform: scale(1.5);
+  }
+
+  /* Process Step Animation */
+  .process-step {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .process-step.is-visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Progress Line Animation */
+  .progress-line {
+    transform-origin: top;
+    transform: scaleY(0);
+    animation: progressLineGrow 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes progressLineGrow {
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  /* Metric Card Hover Effect */
+  .metric-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+
+  .metric-card:hover {
+    transform: translateY(-8px) rotateX(2deg) rotateY(-2deg);
+  }
+
+  /* Challenge Card Animation */
+  .challenge-card {
+    transform-origin: left center;
+  }
+
+  /* Counter Animation (handled by JS) */
+  .counter {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00d1e8, #8b5cf6);
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00b8cc, #7c3aed);
+  }
+
+  /* Image Zoom Effect */
+  @keyframes imageZoom {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.05);
+    }
+  }
+
+  /* Pulse Animation for Live Indicator */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
 </style>
 
 <script>
-  // Premium Apple-style Intersection Observer
+  // ============================================
+  // READING PROGRESS BAR
+  // ============================================
+  function updateReadingProgress() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrolled = window.pageYOffset;
+    const progress = (scrolled / documentHeight) * 100;
+    
+    const progressBar = document.getElementById("progress-bar");
+    if (progressBar) {
+      progressBar.style.width = `${Math.min(progress, 100)}%`;
+    }
+  }
+
+  // ============================================
+  // INTERSECTION OBSERVER - Enhanced
+  // ============================================
   const observerOptions = {
     threshold: 0.1,
-    rootMargin: "0px 0px -10% 0px" // Trigger slightly before element is fully in view
+    rootMargin: "0px 0px -10% 0px"
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -411,7 +1044,52 @@ const relatedProjects = project.relatedProjects
   const elements = document.querySelectorAll(".apple-reveal, .apple-reveal-section");
   elements.forEach((el) => observer.observe(el));
 
-  // Parallax Effect (Refined)
+  // ============================================
+  // ANIMATED COUNTERS
+  // ============================================
+  function animateCounter(element: HTMLElement, target: string) {
+    const numericPart = target.match(/[\d,.]+/)?.[0] || "0";
+    const suffix = target.replace(numericPart, "");
+    const numericValue = parseFloat(numericPart.replace(/,/g, ""));
+    
+    let current = 0;
+    const increment = numericValue / 60; // 60 frames for smooth animation
+    const duration = 2000; // 2 seconds
+    const frameTime = duration / 60;
+    
+    const counter = setInterval(() => {
+      current += increment;
+      if (current >= numericValue) {
+        element.textContent = target;
+        clearInterval(counter);
+      } else {
+        const displayValue = Math.floor(current).toLocaleString();
+        element.textContent = displayValue + suffix;
+      }
+    }, frameTime);
+  }
+
+  // Observe metric cards for counter animation
+  const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const counter = entry.target as HTMLElement;
+        const target = counter.getAttribute("data-target");
+        if (target) {
+          animateCounter(counter, target);
+        }
+        metricObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll(".counter").forEach((counter) => {
+    metricObserver.observe(counter);
+  });
+
+  // ============================================
+  // PARALLAX EFFECT - Enhanced
+  // ============================================
   const heroSection = document.getElementById("hero-section");
   const parallaxImage = heroSection?.querySelector(".parallax-image") as HTMLElement | null;
   
@@ -421,11 +1099,12 @@ const relatedProjects = project.relatedProjects
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrolled = window.pageYOffset;
-          if (scrolled < window.innerHeight) {
-            // Subtle parallax with slight scale for depth
-            const yPos = scrolled * 0.35;
-            const scale = 1.05 + (scrolled * 0.0002);
+          if (scrolled < window.innerHeight * 1.5) {
+            const yPos = scrolled * 0.4;
+            const scale = 1.05 + (scrolled * 0.0001);
+            const opacity = Math.max(1 - (scrolled / (window.innerHeight * 0.8)), 0.3);
             parallaxImage.style.transform = `translate3d(0, ${yPos}px, 0) scale(${scale})`;
+            parallaxImage.style.opacity = opacity.toString();
           }
           ticking = false;
         });
@@ -433,4 +1112,145 @@ const relatedProjects = project.relatedProjects
       }
     }, { passive: true });
   }
+
+  // ============================================
+  // QUICK NAVIGATION - Active State
+  // ============================================
+  const sections = document.querySelectorAll('[id]');
+  const navDots = document.querySelectorAll('.nav-dot');
+
+  function updateActiveNav() {
+    const scrollPosition = window.pageYOffset + 200;
+
+    sections.forEach((section) => {
+      const sectionTop = (section as HTMLElement).offsetTop;
+      const sectionHeight = (section as HTMLElement).offsetHeight;
+      const sectionId = section.getAttribute('id');
+
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+        navDots.forEach((dot) => {
+          dot.classList.remove('active');
+          if (dot.getAttribute('data-section') === sectionId) {
+            dot.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  // ============================================
+  // PROCESS STEPS ANIMATION
+  // ============================================
+  const processSteps = document.querySelectorAll('.process-step');
+  const processObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('is-visible');
+        }, index * 150);
+        processObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  processSteps.forEach((step) => processObserver.observe(step));
+
+  // ============================================
+  // SMOOTH SCROLL FOR ANCHOR LINKS
+  // ============================================
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if (targetId && targetId !== '#') {
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }
+    });
+  });
+
+  // ============================================
+  // MOUSE PARALLAX ON CARDS
+  // ============================================
+  const cards = document.querySelectorAll('.metric-card, .challenge-card');
+  
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e: Event) => {
+      const mouseEvent = e as MouseEvent;
+      const rect = (card as HTMLElement).getBoundingClientRect();
+      const x = mouseEvent.clientX - rect.left;
+      const y = mouseEvent.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / 20;
+      const rotateY = (centerX - x) / 20;
+      
+      (card as HTMLElement).style.transform = `
+        perspective(1000px) 
+        rotateX(${rotateX}deg) 
+        rotateY(${rotateY}deg) 
+        translateY(-8px)
+        scale3d(1.02, 1.02, 1.02)
+      `;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      (card as HTMLElement).style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale3d(1, 1, 1)';
+    });
+  });
+
+  // ============================================
+  // EVENT LISTENERS
+  // ============================================
+  let scrollTimeout: number;
+  window.addEventListener('scroll', () => {
+    updateReadingProgress();
+    
+    clearTimeout(scrollTimeout);
+    scrollTimeout = window.setTimeout(() => {
+      updateActiveNav();
+    }, 50);
+  }, { passive: true });
+
+  // Initial calls
+  updateReadingProgress();
+  updateActiveNav();
+
+  // ============================================
+  // PAGE LOAD ANIMATION
+  // ============================================
+  window.addEventListener('load', () => {
+    document.body.classList.add('page-loaded');
+  });
+
+  // ============================================
+  // SHARE FUNCTIONALITY
+  // ============================================
+  const shareButtons = document.querySelectorAll('[data-action="share"]');
+  shareButtons.forEach((button) => {
+    button.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: document.title,
+            text: 'Check out this amazing project!',
+            url: window.location.href,
+          });
+        } catch (err) {
+          console.log('Share cancelled');
+        }
+      } else {
+        // Fallback: Copy to clipboard
+        navigator.clipboard.writeText(window.location.href);
+        alert('Link copied to clipboard!');
+      }
+    });
+  });
 </script>
