@@ -1,0 +1,436 @@
+---
+import { Image } from "astro:assets";
+import type { Project } from "@/data/projects";
+import ExternalLink from "../common/ExternalLink.astro";
+import Divider from "../common/Divider.astro";
+import ConnectButton from "../common/ConnectButton.astro";
+import MailIcon from "@/assets/icons/mail-icon.svg";
+import ImageGallery from "../common/ImageGallery.astro";
+import { getProjectBySlug } from "@/data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+
+// Get related projects
+const relatedProjects = project.relatedProjects
+  ?.map((slug) => getProjectBySlug(slug))
+  .filter((p): p is Project => p !== undefined) || [];
+---
+
+<section class="flex flex-col gap-[60px] sm:gap-[100px] pb-[100px]">
+  
+  <!-- HERO SECTION -->
+  <div class="flex flex-col gap-[24px] relative">
+    <!-- Back Navigation -->
+    <div class="absolute top-[-60px] left-0 z-10 hidden lg:block">
+      <a
+        href="/"
+        class="group flex items-center gap-[12px] text-textSecondary hover:text-textPrimary transition-all duration-300"
+      >
+        <div class="w-[48px] h-[48px] rounded-full bg-white border border-black/5 flex items-center justify-center shadow-sm group-hover:shadow-md group-hover:scale-110 transition-all duration-300">
+           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-textPrimary">
+             <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+           </svg>
+        </div>
+      </a>
+    </div>
+
+    <div class="relative w-full h-[65vh] min-h-[500px] rounded-[32px] sm:rounded-[48px] overflow-hidden shadow-2xl" id="hero-section">
+      <Image
+        src={project.image1}
+        alt={project.title}
+        class="w-full h-full object-cover parallax-image scale-105"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <!-- Cinematic Gradient Overlay -->
+      <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-[32px] sm:p-[60px] lg:p-[80px]">
+        <div class="apple-reveal max-w-[1100px]">
+           <div class="flex flex-wrap items-center gap-[12px] mb-[24px]">
+              {project.role && (
+                <span class="px-[16px] py-[8px] rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white text-[14px] font-medium uppercase tracking-wider">
+                  {project.role}
+                </span>
+              )}
+              {project.year && (
+                <span class="px-[16px] py-[8px] rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/80 text-[14px] font-medium">
+                  {project.year}
+                </span>
+              )}
+           </div>
+          <h1 class="text-white text-[48px] sm:text-[72px] md:text-[96px] font-bold leading-[0.95] tracking-tight mb-[24px]">
+            {project.title}
+          </h1>
+          <p class="text-white/80 text-[18px] sm:text-[24px] font-light max-w-[700px] leading-relaxed">
+            {project.shortDescription}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID LAYOUT -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-[60px] lg:gap-[80px]">
+    
+    <!-- LEFT COLUMN: NARRATIVE -->
+    <div class="lg:col-span-8 flex flex-col gap-[80px]">
+      
+      <!-- Context & Overview -->
+      <div class="flex flex-col gap-[40px] apple-reveal-section">
+         <div class="flex flex-col gap-[24px]">
+            <span class="text-tertiaryBg font-bold uppercase tracking-widest text-[14px]">The Story</span>
+            <h2 class="text-[32px] sm:text-[48px] font-bold text-textPrimary leading-[1.1]">Overview</h2>
+         </div>
+         <div class="prose prose-xl max-w-prose text-textSecondary leading-relaxed text-[18px] sm:text-[20px]">
+            <p>{project.fullDescription}</p>
+         </div>
+      </div>
+
+      <!-- Video Demo Section -->
+      {project.videoDemo && (
+         <div class="apple-reveal-section flex flex-col gap-[24px]">
+            <h3 class="text-[24px] font-bold text-textPrimary">Watch Demo</h3>
+            <div class="w-full rounded-[24px] overflow-hidden shadow-2xl border border-black/10 bg-black/5 aspect-video relative group hover:scale-[1.01] transition-transform duration-500 ease-out">
+                <!-- Mac Window Header -->
+                <div class="absolute top-0 left-0 right-0 h-[40px] bg-white/90 backdrop-blur-sm border-b border-black/5 flex items-center px-[16px] gap-[8px] z-10">
+                    <div class="w-[12px] h-[12px] rounded-full bg-[#FF5F56] border border-black/5"></div>
+                    <div class="w-[12px] h-[12px] rounded-full bg-[#FFBD2E] border border-black/5"></div>
+                    <div class="w-[12px] h-[12px] rounded-full bg-[#27C93F] border border-black/5"></div>
+                </div>
+                <video 
+                    src={project.videoDemo} 
+                    class="w-full h-full object-cover pt-[40px]" 
+                    controls 
+                    playsinline
+                    poster={project.image1.src}
+                >
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+         </div>
+      )}
+
+      <!-- Impact Stats (Grid) -->
+      {project.metrics && project.metrics.length > 0 && (
+        <div class="grid grid-cols-2 gap-[20px] sm:gap-[30px] apple-reveal-section">
+          {project.metrics.map((metric) => (
+            <div class="bg-surface p-[32px] rounded-[32px] flex flex-col gap-[8px] border border-black/5 hover:border-tertiaryBg/30 transition-all duration-500 hover:translate-y-[-4px] hover:shadow-lg">
+               <span class="text-[48px] sm:text-[64px] font-bold text-textPrimary leading-[1]">{metric.value}</span>
+               <span class="text-textSecondary font-medium text-[16px] uppercase tracking-wide">{metric.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <!-- Problem & Solution (Visual Grid) -->
+      <div class="grid grid-cols-1 gap-[32px] apple-reveal-section">
+         {project.problemStatement && (
+           <div class="bg-surface p-[40px] rounded-[32px] border-l-4 border-red-400 relative overflow-hidden hover:shadow-lg transition-shadow duration-500">
+              <div class="absolute top-0 right-0 p-[40px] opacity-5">
+                  <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+              </div>
+              <h3 class="text-[24px] font-bold text-textPrimary mb-[16px] flex items-center gap-[12px]">
+                  <span class="text-red-500">The Challenge</span>
+              </h3>
+              <p class="text-[18px] sm:text-[20px] leading-relaxed text-textSecondary max-w-prose">{project.problemStatement}</p>
+           </div>
+         )}
+         
+         {project.solution && (
+           <div class="bg-surface p-[40px] rounded-[32px] border-l-4 border-tertiaryBg relative overflow-hidden hover:shadow-lg transition-shadow duration-500">
+              <div class="absolute top-0 right-0 p-[40px] opacity-5">
+                  <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+              </div>
+              <h3 class="text-[24px] font-bold text-textPrimary mb-[16px] flex items-center gap-[12px]">
+                  <span class="text-tertiaryBg">The Solution</span>
+              </h3>
+              <p class="text-[18px] sm:text-[20px] leading-relaxed text-textSecondary max-w-prose">{project.solution}</p>
+           </div>
+         )}
+      </div>
+
+      <!-- Visual Deep Dive -->
+      <div class="flex flex-col gap-[40px] apple-reveal-section">
+         <div class="flex flex-col gap-[16px]">
+            <span class="text-tertiaryBg font-bold uppercase tracking-widest text-[14px]">Visuals</span>
+            <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">Interface Design</h2>
+         </div>
+         <div class="bg-surface p-[16px] rounded-[40px] shadow-xl hover:shadow-2xl transition-shadow duration-700">
+            <div class="rounded-[24px] overflow-hidden relative group">
+              <Image src={project.image2} alt="Main Interface" class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.02]" />
+            </div>
+         </div>
+         <ImageGallery images={[project.image1, project.image2]} altPrefix={project.title} />
+      </div>
+
+      <!-- Process & Timeline -->
+      {project.process && project.process.length > 0 && (
+        <div class="flex flex-col gap-[40px] apple-reveal-section">
+          <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">How We Built It</h2>
+          <div class="relative border-l-2 border-black/5 pl-[40px] sm:pl-[60px] flex flex-col gap-[40px]">
+             {project.process.map((step, index) => (
+                <div class="relative group">
+                   <div class="absolute left-[-49px] sm:left-[-69px] top-[0px] w-[20px] h-[20px] rounded-full bg-white border-[4px] border-tertiaryBg transition-all duration-300 group-hover:scale-125 group-hover:border-tertiaryBg/80"></div>
+                   <h4 class="text-[20px] font-bold text-textPrimary mb-[8px] transition-colors duration-300 group-hover:text-tertiaryBg">{step}</h4>
+                   <p class="text-textSecondary text-[16px]">Phase {index + 1}</p>
+                </div>
+             ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Technical Challenges -->
+      {project.challenges && project.challenges.length > 0 && (
+        <div class="flex flex-col gap-[40px] apple-reveal-section">
+           <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">Technical Deep Dive</h2>
+           <div class="grid grid-cols-1 gap-[24px]">
+              {project.challenges.map((challenge, index) => (
+                 <div class="bg-surface p-[32px] rounded-[32px] group hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-black/5">
+                    <div class="flex flex-col gap-[16px]">
+                       <div class="flex items-center gap-[12px]">
+                          <span class="w-[32px] h-[32px] rounded-full bg-red-100 text-red-500 flex items-center justify-center text-[14px] font-bold transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">!</span>
+                          <h4 class="text-[18px] font-bold text-textPrimary">{challenge}</h4>
+                       </div>
+                       {project.solutions && project.solutions[index] && (
+                          <div class="pl-[44px] text-[16px] text-textSecondary leading-relaxed max-w-prose">
+                             <span class="font-bold text-tertiaryBg">Solution: </span>
+                             {project.solutions[index]}
+                          </div>
+                       )}
+                    </div>
+                 </div>
+              ))}
+           </div>
+        </div>
+      )}
+      
+      <!-- Key Takeaways (Growth) -->
+      {project.keyTakeaways && project.keyTakeaways.length > 0 && (
+         <div class="bg-surface rounded-[32px] p-[40px] sm:p-[60px] apple-reveal-section relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-[40px] opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500">
+               <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.45l8.55 14.8H3.45L12 5.45z"/></svg>
+            </div>
+            <h2 class="text-[32px] font-bold text-textPrimary mb-[32px]">Key Takeaways</h2>
+            <div class="grid gap-[20px]">
+               {project.keyTakeaways.map(takeaway => (
+                  <div class="flex gap-[16px] items-start">
+                     <div class="w-[24px] h-[24px] rounded-full bg-tertiaryBg/20 text-tertiaryBg flex items-center justify-center flex-shrink-0 mt-[2px]">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                     </div>
+                     <p class="text-[18px] text-textSecondary leading-relaxed max-w-prose">{takeaway}</p>
+                  </div>
+               ))}
+            </div>
+         </div>
+      )}
+
+      <!-- Testimonial (Social Proof) -->
+      {project.testimonials && project.testimonials.length > 0 && (
+         <div class="my-[40px] apple-reveal-section">
+            <div class="bg-textPrimary text-white rounded-[40px] p-[40px] sm:p-[60px] relative overflow-hidden">
+               <svg class="absolute top-[40px] left-[40px] text-white/10 w-[100px] h-[100px]" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"></path></svg>
+               
+               <blockquote class="relative z-10 text-[24px] sm:text-[32px] font-medium leading-relaxed mb-[32px] font-heading">
+                  "{project.testimonials[0].quote}"
+               </blockquote>
+               
+               <div class="flex items-center gap-[16px] relative z-10">
+                  <div class="w-[50px] h-[50px] rounded-full bg-white/20 flex items-center justify-center text-[20px] font-bold uppercase">
+                     {project.testimonials[0].name.charAt(0)}
+                  </div>
+                  <div class="flex flex-col">
+                     <cite class="not-italic font-bold text-[18px]">{project.testimonials[0].name}</cite>
+                     <span class="text-white/60 text-[14px]">{project.testimonials[0].role}</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      )}
+
+    </div>
+
+    <!-- RIGHT COLUMN: STICKY INFO -->
+    <div class="lg:col-span-4 relative">
+      <div class="sticky top-[40px] flex flex-col gap-[40px] apple-reveal-section">
+        
+        <!-- Action Card -->
+        <div class="bg-white rounded-[32px] p-[32px] border border-black/5 shadow-[0_20px_40px_rgba(0,0,0,0.05)] flex flex-col gap-[24px]">
+           <div class="flex items-center justify-between">
+               <h3 class="text-[18px] font-bold text-textPrimary uppercase tracking-wider">
+                  Project Info
+               </h3>
+               <div class="w-[8px] h-[8px] rounded-full bg-green-500 animate-pulse"></div>
+           </div>
+           
+           <div class="flex flex-col gap-[20px] text-[16px]">
+              {project.role && (
+                 <div class="flex justify-between items-center pb-[16px] border-b border-black/5">
+                    <span class="text-textSecondary">Role</span>
+                    <span class="font-medium text-textPrimary text-right max-w-[60%]">{project.role}</span>
+                 </div>
+              )}
+              {project.teamSize && (
+                 <div class="flex justify-between items-center pb-[16px] border-b border-black/5">
+                    <span class="text-textSecondary">Team Size</span>
+                    <span class="font-medium text-textPrimary">{project.teamSize}</span>
+                 </div>
+              )}
+              {project.timeline && (
+                 <div class="flex justify-between items-center pb-[16px] border-b border-black/5">
+                    <span class="text-textSecondary">Timeline</span>
+                    <span class="font-medium text-textPrimary">{project.timeline}</span>
+                 </div>
+              )}
+           </div>
+
+           {project.link && (
+              <ExternalLink 
+                href={project.link} 
+                title="Visit Live Site"
+                className="w-full py-[18px] flex justify-center items-center bg-textPrimary text-white rounded-[20px] font-bold hover:bg-tertiaryBg hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-tertiaryBg/20"
+              />
+           )}
+        </div>
+
+        <!-- Technologies -->
+        {project.technologies && project.technologies.length > 0 && (
+           <div class="flex flex-col gap-[20px]">
+              <h3 class="text-[16px] font-bold text-textSecondary uppercase tracking-wider pl-[12px]">Tech Stack</h3>
+              <div class="flex flex-wrap gap-[10px]">
+                 {project.technologies.map(tech => (
+                    <span class="px-[16px] py-[10px] bg-surface rounded-[16px] text-[15px] font-medium text-textPrimary border border-black/5 hover:border-tertiaryBg hover:text-tertiaryBg transition-all duration-300 cursor-default">
+                       {tech}
+                    </span>
+                 ))}
+              </div>
+           </div>
+        )}
+
+        <!-- Contact Snippet -->
+        <div class="bg-surface rounded-[32px] p-[32px] text-center flex flex-col gap-[16px] items-center mt-[20px]">
+           <div class="w-[48px] h-[48px] rounded-full bg-tertiaryBg/10 text-tertiaryBg flex items-center justify-center mb-[8px]">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+           </div>
+           <p class="text-[16px] text-textSecondary font-medium">Need a similar solution?</p>
+           <a href="mailto:dullfarhan@gmail.com" class="text-tertiaryBg font-bold hover:underline">Let's talk</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <Divider />
+
+  <!-- NEXT PROJECTS (Discovery) -->
+  {relatedProjects.length > 0 && (
+    <div class="flex flex-col gap-[40px] apple-reveal-section">
+       <div class="flex justify-between items-end">
+          <h2 class="text-[32px] sm:text-[48px] font-bold text-textPrimary">More Projects</h2>
+          <a href="/" class="group flex items-center gap-[8px] text-[16px] font-bold text-tertiaryBg">
+             View All 
+             <span class="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
+       </div>
+       
+       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+          {relatedProjects.map(p => (
+             <a href={`/projects/${p.slug}`} class="group block">
+                <div class="rounded-[24px] overflow-hidden mb-[20px] relative aspect-[4/3]">
+                   <Image src={p.image1} alt={p.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                   <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300"></div>
+                </div>
+                <h3 class="text-[24px] font-bold text-textPrimary mb-[8px] group-hover:text-tertiaryBg transition-colors">{p.title}</h3>
+                <p class="text-textSecondary line-clamp-2">{p.shortDescription}</p>
+             </a>
+          ))}
+       </div>
+    </div>
+  )}
+
+  <!-- FOOTER CTA -->
+  <div class="bg-textPrimary rounded-[48px] p-[40px] sm:p-[80px] text-center flex flex-col items-center gap-[32px] apple-reveal-section relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full bg-[url('/grid-pattern.svg')] opacity-10"></div>
+    <h2 class="text-[36px] sm:text-[56px] font-bold text-white relative z-10">Ready to start?</h2>
+    <p class="text-white/70 text-[18px] sm:text-[20px] max-w-[600px] relative z-10">
+      Let's turn your ideas into reality. I'm currently available for freelance work and full-time positions.
+    </p>
+    <ConnectButton
+      email="dullfarhan@gmail.com"
+      text="Get in Touch"
+      icon={MailIcon}
+      class="bg-tertiaryBg text-textPrimary px-[48px] py-[20px] rounded-full font-bold text-[18px] hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(0,209,232,0.3)] relative z-10 flex items-center gap-[12px]"
+    />
+  </div>
+
+</section>
+
+<style>
+  .apple-reveal,
+  .apple-reveal-section {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    will-change: opacity, transform;
+    transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  .apple-reveal.is-visible,
+  .apple-reveal-section.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Staggered delays for children */
+  .apple-reveal-section:nth-child(1) { transition-delay: 0ms; }
+  .apple-reveal-section:nth-child(2) { transition-delay: 100ms; }
+  .apple-reveal-section:nth-child(3) { transition-delay: 200ms; }
+</style>
+
+<script>
+  // Premium Apple-style Intersection Observer
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -10% 0px" // Trigger slightly before element is fully in view
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        requestAnimationFrame(() => {
+          entry.target.classList.add("is-visible");
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observe all reveal elements
+  const elements = document.querySelectorAll(".apple-reveal, .apple-reveal-section");
+  elements.forEach((el) => observer.observe(el));
+
+  // Parallax Effect (Refined)
+  const heroSection = document.getElementById("hero-section");
+  const parallaxImage = heroSection?.querySelector(".parallax-image") as HTMLElement | null;
+  
+  if (heroSection && parallaxImage) {
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrolled = window.pageYOffset;
+          if (scrolled < window.innerHeight) {
+            // Subtle parallax with slight scale for depth
+            const yPos = scrolled * 0.35;
+            const scale = 1.05 + (scrolled * 0.0002);
+            parallaxImage.style.transform = `translate3d(0, ${yPos}px, 0) scale(${scale})`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+</script>

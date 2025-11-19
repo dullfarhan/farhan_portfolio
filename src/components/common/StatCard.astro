@@ -1,0 +1,28 @@
+---
+interface Props {
+  label: string;
+  value: string;
+  icon?: string;
+}
+
+const { label, value, icon } = Astro.props;
+---
+
+<div class="stat-card bg-surface rounded-[20px] p-[24px] sm:p-[32px] flex flex-col gap-[12px] items-center text-center hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] transition-all duration-300 group">
+  {icon && (
+    <div class="w-[48px] h-[48px] rounded-[12px] bg-tertiaryBg/10 flex items-center justify-center mb-[8px] group-hover:scale-110 transition-transform duration-300">
+      <span class="text-tertiaryBg text-[24px]">{icon}</span>
+    </div>
+  )}
+  <div class="text-tertiaryBg font-semibold text-[32px] sm:text-[40px] md:text-[48px] leading-[1.1]">
+    {value}
+  </div>
+  <div class="text-textSecondary text-[14px] sm:text-[16px] font-medium">
+    {label}
+  </div>
+</div>
+
+
+
+
+

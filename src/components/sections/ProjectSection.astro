@@ -1,55 +1,10 @@
 ---
 // components/sections/SelectedProjects.astro
 import { Image } from "astro:assets";
-import FullFrame1 from "@/assets/images/FullFrame.png";
-import FullFrame2 from "@/assets/images/FullFrame-2.png";
-import DevelMo1 from "@/assets/images/DevelMo.png";
-import DevelMo2 from "@/assets/images/DevelMo-2.png";
-import Walqalum1 from "@/assets/images/Walqalum.png";
-import Walqalum2 from "@/assets/images/Walqalum-2.png";
-import AIChreades1 from "@/assets/images/AI-Chreades.png";
-import AIChreades2 from "@/assets/images/AI-Chreades-2.png";
 import DrawLines from "@/assets/icons/drawingLines.svg";
 import ProjectCard from "../common/ProjectCard.astro";
 import Divider from "../common/Divider.astro";
-
-const projects = [
-  {
-    title: "FullFrame",
-    description:
-      "A secure AI-powered tool that generates fast summaries of scripts and books, enhanced with deep character description and visualized headshots/scenes.",
-    image1: FullFrame1,
-    image2: FullFrame2,
-    link: "https://fullfr.me/",
-    tags: ["AI Summarization", "Secure", "Full-Stack"],
-  },
-  {
-    title: "DevelMo - CrowdIQ",
-    description:
-      "CrowdIQ turns standard cameras into smart AI analytics tools for real-time people counting, heatmaps, and demographics insights.",
-    image1: DevelMo1,
-    image2: DevelMo2,
-    link: "https://develmo.com/our-products/crowdiq/",
-    tags: ["Comp. Vision", "YOLO11x", "Analytics"],
-  },
-  {
-    title: "MMKEN",
-    description:
-      "A complete digital marketplace with dedicated seller, buyer, and admin portals. Features include product management, order processing, secure payments, CRM, and real-time dashboards.",
-    image1: Walqalum1,
-    image2: Walqalum2,
-    link: "https://mmken.co/",
-    tags: ["B2B2C",  "Secure Payments", "Multi-Vendor"],
-  },
-  {
-    title: "AI Chreade",
-    description:
-      "An Azure-powered image generation tool using DALL·E to create visuals from text prompts, supporting advanced prompt engineering.",
-    image1: AIChreades1,
-    image2: AIChreades2,
-    tags: [ "Azure", "Image Gene", "Prompt Engg."],
-  },
-];
+import { projects } from "@/data/projects";
 ---
 
 <section class="flex flex-col gap-[20px] sm:gap-[32px]">
@@ -76,7 +31,16 @@ const projects = [
   <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px]">
     {
       projects.map((project, index) => (
-        <ProjectCard index={index} {...project} />
+        <ProjectCard
+          index={index}
+          title={project.title}
+          description={project.shortDescription}
+          image1={project.image1}
+          image2={project.image2}
+          tags={project.tags}
+          link={project.link}
+          slug={project.slug}
+        />
       ))
     }
   </div>

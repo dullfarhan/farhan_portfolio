@@ -1,0 +1,63 @@
+---
+import Layout from "@/layouts/BaseLayout.astro";
+import ProjectDetailSection from "@/components/sections/ProjectDetailSection.astro";
+import { getProjectBySlug, getAllProjectSlugs } from "@/data/projects";
+import { getImage } from "astro:assets";
+
+export async function getStaticPaths() {
+  const slugs = getAllProjectSlugs();
+  return slugs.map((slug) => ({
+    params: { slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const project = getProjectBySlug(slug!);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+const title = `${project.title} | Farhan Portfolio`;
+const description = project.fullDescription || project.shortDescription;
+const ogImage = await getImage({ src: project.image1, width: 1200, height: 630, format: "webp" });
+---
+
+<Layout>
+  <main class="flex flex-col gap-[20px] sm:gap-[40px] pt-[20px] sm:pt-[48px]">
+    <ProjectDetailSection project={project} />
+  </main>
+</Layout>
+
+<script is:inline define:vars={{ title, description, ogImageUrl: ogImage.src }}>
+  // Update page title and meta
+  document.title = title;
+  
+  // Update meta description
+  let metaDescription = document.querySelector('meta[name="description"]');
+  if (metaDescription) {
+    metaDescription.setAttribute("content", description);
+  } else {
+    metaDescription = document.createElement("meta");
+    metaDescription.setAttribute("name", "description");
+    metaDescription.setAttribute("content", description);
+    document.head.appendChild(metaDescription);
+  }
+  
+  // Update Open Graph tags
+  let ogTitle = document.querySelector('meta[property="og:title"]');
+  if (ogTitle) {
+    ogTitle.setAttribute("content", title);
+  }
+  
+  let ogDesc = document.querySelector('meta[property="og:description"]');
+  if (ogDesc) {
+    ogDesc.setAttribute("content", description);
+  }
+  
+  let ogImage = document.querySelector('meta[property="og:image"]');
+  if (ogImage) {
+    ogImage.setAttribute("content", `https://farhan.info${ogImageUrl}`);
+  }
+</script>
+

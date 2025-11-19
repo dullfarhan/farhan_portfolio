@@ -1,0 +1,238 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  images: ImageMetadata[];
+  altPrefix?: string;
+}
+
+const { images, altPrefix = "" } = Astro.props;
+---
+
+<div class="image-gallery">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[16px] sm:gap-[20px]">
+    {images.map((image, index) => (
+      <button
+        class="gallery-item group relative w-full aspect-[4/3] overflow-hidden rounded-[16px] sm:rounded-[20px] bg-surface cursor-pointer focus:outline-none focus:ring-2 focus:ring-tertiaryBg focus:ring-offset-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
+        data-image-index={index}
+        aria-label={`View image ${index + 1} in lightbox`}
+      >
+        <Image
+          src={image}
+          alt={`${altPrefix} - Image ${index + 1}`}
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          loading={index < 3 ? "eager" : "lazy"}
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-textPrimary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+          <div class="w-full p-[16px]">
+            <div class="w-[32px] h-[32px] rounded-full bg-white/90 flex items-center justify-center">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 2L12.5 7.5L18.5 8.5L14.5 12.5L15.5 18.5L10 15.5L4.5 18.5L5.5 12.5L1.5 8.5L7.5 7.5L10 2Z"
+                  fill="currentColor"
+                  class="text-textPrimary"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </button>
+    ))}
+  </div>
+</div>
+
+<!-- Lightbox Modal -->
+<div
+  id="lightbox-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-textPrimary/95 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image lightbox"
+>
+  <button
+    id="lightbox-close"
+    class="absolute top-[24px] right-[24px] z-10 w-[48px] h-[48px] rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-textPrimary"
+    aria-label="Close lightbox"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M18 6L6 18M6 6L18 18"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  <button
+    id="lightbox-prev"
+    class="absolute left-[24px] top-1/2 -translate-y-1/2 z-10 w-[48px] h-[48px] rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-textPrimary"
+    aria-label="Previous image"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M15 18L9 12L15 6"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  <button
+    id="lightbox-next"
+    class="absolute right-[24px] top-1/2 -translate-y-1/2 z-10 w-[48px] h-[48px] rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-textPrimary"
+    aria-label="Next image"
+  >
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 18L15 12L9 6"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  <div class="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center">
+    <img
+      id="lightbox-image"
+      src=""
+      alt=""
+      class="max-w-full max-h-[90vh] object-contain rounded-[8px]"
+    />
+  </div>
+
+  <div
+    id="lightbox-counter"
+    class="absolute bottom-[24px] left-1/2 -translate-x-1/2 text-white text-[14px] font-medium"
+  ></div>
+</div>
+
+<script>
+  const galleryItems = document.querySelectorAll(".gallery-item");
+  const modal = document.getElementById("lightbox-modal");
+  const modalImage = document.getElementById("lightbox-image");
+  const modalClose = document.getElementById("lightbox-close");
+  const modalPrev = document.getElementById("lightbox-prev");
+  const modalNext = document.getElementById("lightbox-next");
+  const modalCounter = document.getElementById("lightbox-counter");
+  let currentImageIndex = 0;
+  const images: string[] = [];
+
+  // Collect image sources
+  galleryItems.forEach((item) => {
+    const img = item.querySelector("img");
+    if (img) {
+      images.push(img.src);
+    }
+  });
+
+  function openLightbox(index: number) {
+    currentImageIndex = index;
+    if (modal && modalImage && modalCounter) {
+      modalImage.src = images[index];
+      modalImage.alt = `Gallery image ${index + 1}`;
+      modalCounter.textContent = `${index + 1} / ${images.length}`;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+  }
+
+  function closeLightbox() {
+    if (modal) {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+  }
+
+  function showNext() {
+    currentImageIndex = (currentImageIndex + 1) % images.length;
+    openLightbox(currentImageIndex);
+  }
+
+  function showPrev() {
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+    openLightbox(currentImageIndex);
+  }
+
+  // Event listeners
+  galleryItems.forEach((item, index) => {
+    item.addEventListener("click", () => openLightbox(index));
+    item.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox(index);
+      }
+    });
+  });
+
+  if (modalClose) {
+    modalClose.addEventListener("click", closeLightbox);
+  }
+
+  if (modalPrev) {
+    modalPrev.addEventListener("click", showPrev);
+  }
+
+  if (modalNext) {
+    modalNext.addEventListener("click", showNext);
+  }
+
+  // Keyboard navigation
+  document.addEventListener("keydown", (e) => {
+    if (!modal?.classList.contains("hidden")) {
+      if (e.key === "Escape") {
+        closeLightbox();
+      } else if (e.key === "ArrowLeft") {
+        showPrev();
+      } else if (e.key === "ArrowRight") {
+        showNext();
+      }
+    }
+  });
+
+  // Close on backdrop click
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        closeLightbox();
+      }
+    });
+  }
+</script>
+
+
+
+
+
