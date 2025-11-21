@@ -7,7 +7,12 @@ import { getImage } from "astro:assets";
 import FullFrame1 from "@/assets/images/FullFrame.png";
 
 // Precompute the primary LCP candidate image (first project card)
-const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, height: 270, format: "webp" });
+const firstProjectLcpImage = await getImage({
+  src: FullFrame1,
+  width: 350,
+  height: 270,
+  format: "webp",
+});
 ---
 
 <!doctype html>
@@ -18,7 +23,7 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
-    <title>Farhan Portfolio | Full-Stack Developer & DevOps Engineer</title>
+    <title>DaanFr | Full-Stack Development & DevOps Solutions</title>
     <link
       rel="preload"
       as="image"
@@ -28,22 +33,16 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
       type="image/webp"
     />
     <meta
-      name="description"
-      content="Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML. Explore projects, skills, and testimonials."
+      content="DaanFr: Professional software development company specializing in Full-Stack Development, DevOps, Cloud, and AI/ML. Explore our projects, capabilities, and client testimonials."
     />
     <meta
-      name="keywords"
-      content="Farhan, portfolio, web developer, full-stack, DevOps, cloud, AI, ML, projects"
+      content="DaanFr, software development, web development, full-stack, DevOps, cloud, AI, ML, React, Next.js, NestJS, Django"
     />
-    <meta name="author" content="Muhammad Farhan" />
+    <meta name="author" content="DaanFr" />
     <!-- Open Graph / Facebook -->
+    <meta content="DaanFr | Full-Stack Development & DevOps Solutions" />
     <meta
-      property="og:title"
-      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
-    />
-    <meta
-      property="og:description"
-      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+      content="Professional software development company specializing in Full-Stack Development, DevOps, Cloud, and AI/ML projects."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://farhan.info/" />
@@ -52,15 +51,11 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
       content="https://farhan.info/assets/images/profile.png"
     />
     <!-- Twitter -->
-    <meta name="twitter:creator" content="@dullfarhan" />
+    <meta name="twitter:creator" content="@daanfr" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta content="DaanFr | Full-Stack Development & DevOps Solutions" />
     <meta
-      name="twitter:title"
-      content="Farhan Portfolio | Full-Stack Developer & DevOps Engineer"
-    />
-    <meta
-      name="twitter:description"
-      content="Explore Farhan's portfolio: Full-Stack Developer, DevOps, Cloud, and AI/ML projects."
+      content="Professional software development company specializing in Full-Stack Development, DevOps, Cloud, and AI/ML projects."
     />
     <meta
       name="twitter:image"
@@ -84,34 +79,32 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Muhammad Farhan",
+        "@type": "Organization",
+        "name": "DaanFr",
         "url": "https://farhan.info/",
-        "sameAs": [
-          "https://github.com/dullfarhan",
-          "http://www.linkedin.com/in/dullfarhan"
-        ],
-        "image": "https://farhan.info/assets/images/profile.png",
-        "jobTitle": "Full-Stack Developer, DevOps Engineer",
-        "description": "Portfolio of Muhammad Farhan: Full-Stack Developer, DevOps, Cloud, and AI/ML.",
-        "alumniOf": "FAST, National University of Computer and Emerging Sciences",
+        "logo": "https://farhan.info/assets/logos/logo.svg",
+        "description": "Professional software development company specializing in Full-Stack Development, DevOps, Cloud, and AI/ML solutions.",
+        "foundingDate": "2019",
         "knowsAbout": [
           "JavaScript",
+          "TypeScript",
           "Python",
+          "React",
+          "Next.js",
+          "NestJS",
+          "Django",
           "DevOps",
           "Cloud Computing",
+          "AWS",
+          "Azure",
           "Kubernetes",
           "CI/CD",
-          "Astro",
           "AI/ML"
         ],
-        "workLocation": {
-          "@type": "Place",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Lahore",
-            "addressCountry": "PK"
-          }
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Lahore",
+          "addressCountry": "PK"
         }
       }
     </script>

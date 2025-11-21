@@ -50,11 +50,6 @@ const relatedProjects = project.relatedProjects
       <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-[32px] sm:p-[60px] lg:p-[80px]">
         <div class="apple-reveal max-w-[1100px]">
            <div class="flex flex-wrap items-center gap-[12px] mb-[24px]">
-              {project.role && (
-                <span class="px-[16px] py-[8px] rounded-full bg-white/20 backdrop-blur-md border border-white/10 text-white text-[14px] font-medium uppercase tracking-wider">
-                  {project.role}
-                </span>
-              )}
               {project.year && (
                 <span class="px-[16px] py-[8px] rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/80 text-[14px] font-medium">
                   {project.year}
@@ -166,66 +161,6 @@ const relatedProjects = project.relatedProjects
          <ImageGallery images={[project.image1, project.image2]} altPrefix={project.title} />
       </div>
 
-      <!-- Process & Timeline -->
-      {project.process && project.process.length > 0 && (
-        <div class="flex flex-col gap-[40px] apple-reveal-section">
-          <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">How We Built It</h2>
-          <div class="relative border-l-2 border-black/5 pl-[40px] sm:pl-[60px] flex flex-col gap-[40px]">
-             {project.process.map((step, index) => (
-                <div class="relative group">
-                   <div class="absolute left-[-49px] sm:left-[-69px] top-[0px] w-[20px] h-[20px] rounded-full bg-white border-[4px] border-tertiaryBg transition-all duration-300 group-hover:scale-125 group-hover:border-tertiaryBg/80"></div>
-                   <h4 class="text-[20px] font-bold text-textPrimary mb-[8px] transition-colors duration-300 group-hover:text-tertiaryBg">{step}</h4>
-                   <p class="text-textSecondary text-[16px]">Phase {index + 1}</p>
-                </div>
-             ))}
-          </div>
-        </div>
-      )}
-
-      <!-- Technical Challenges -->
-      {project.challenges && project.challenges.length > 0 && (
-        <div class="flex flex-col gap-[40px] apple-reveal-section">
-           <h2 class="text-[32px] sm:text-[40px] font-bold text-textPrimary">Technical Deep Dive</h2>
-           <div class="grid grid-cols-1 gap-[24px]">
-              {project.challenges.map((challenge, index) => (
-                 <div class="bg-surface p-[32px] rounded-[32px] group hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-black/5">
-                    <div class="flex flex-col gap-[16px]">
-                       <div class="flex items-center gap-[12px]">
-                          <span class="w-[32px] h-[32px] rounded-full bg-red-100 text-red-500 flex items-center justify-center text-[14px] font-bold transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">!</span>
-                          <h4 class="text-[18px] font-bold text-textPrimary">{challenge}</h4>
-                       </div>
-                       {project.solutions && project.solutions[index] && (
-                          <div class="pl-[44px] text-[16px] text-textSecondary leading-relaxed max-w-prose">
-                             <span class="font-bold text-tertiaryBg">Solution: </span>
-                             {project.solutions[index]}
-                          </div>
-                       )}
-                    </div>
-                 </div>
-              ))}
-           </div>
-        </div>
-      )}
-      
-      <!-- Key Takeaways (Growth) -->
-      {project.keyTakeaways && project.keyTakeaways.length > 0 && (
-         <div class="bg-surface rounded-[32px] p-[40px] sm:p-[60px] apple-reveal-section relative overflow-hidden group">
-            <div class="absolute top-0 right-0 p-[40px] opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500">
-               <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.45l8.55 14.8H3.45L12 5.45z"/></svg>
-            </div>
-            <h2 class="text-[32px] font-bold text-textPrimary mb-[32px]">Key Takeaways</h2>
-            <div class="grid gap-[20px]">
-               {project.keyTakeaways.map(takeaway => (
-                  <div class="flex gap-[16px] items-start">
-                     <div class="w-[24px] h-[24px] rounded-full bg-tertiaryBg/20 text-tertiaryBg flex items-center justify-center flex-shrink-0 mt-[2px]">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                     </div>
-                     <p class="text-[18px] text-textSecondary leading-relaxed max-w-prose">{takeaway}</p>
-                  </div>
-               ))}
-            </div>
-         </div>
-      )}
 
       <!-- Testimonial (Social Proof) -->
       {project.testimonials && project.testimonials.length > 0 && (
@@ -243,7 +178,7 @@ const relatedProjects = project.relatedProjects
                   </div>
                   <div class="flex flex-col">
                      <cite class="not-italic font-bold text-[18px]">{project.testimonials[0].name}</cite>
-                     <span class="text-white/60 text-[14px]">{project.testimonials[0].role}</span>
+                     {/* <span class="text-white/60 text-[14px]">{project.testimonials[0].role}</span> */}
                   </div>
                </div>
             </div>

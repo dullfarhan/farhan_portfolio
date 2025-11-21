@@ -7,6 +7,9 @@ import Walqalum1 from "@/assets/images/Walqalum.png";
 import Walqalum2 from "@/assets/images/Walqalum-2.png";
 import AIChreades1 from "@/assets/images/AI-Chreades.png";
 import AIChreades2 from "@/assets/images/AI-Chreades-2.png";
+import FlowStack from "@/assets/images/FlowStack.png";
+import NovaTech from "@/assets/images/NovaTech.png";
+import ProductLead from "@/assets/images/ProductLead.png";
 
 export interface Project {
   slug: string;
@@ -42,7 +45,7 @@ export const projects: Project[] = [
     shortDescription:
       "A secure AI-powered tool that generates fast summaries of scripts and books, enhanced with deep character description and visualized headshots/scenes.",
     fullDescription:
-      "FullFrame is an innovative AI-powered platform designed to revolutionize how scripts and books are analyzed and summarized. The tool leverages advanced AI algorithms to generate comprehensive summaries while providing deep character descriptions and visual representations. Built with security and performance in mind, FullFrame offers a seamless experience for writers, producers, and content creators who need quick insights into lengthy documents.",
+      "FullFrame is an innovative AI-powered platform designed to revolutionize how scripts and books are analyzed and summarized. The tool leverages advanced AI algorithms to generate comprehensive summaries while providing deep character descriptions and visual representations. Built with security and performance in mind by DaanFr, FullFrame offers a seamless experience for writers, producers, and content creators who need quick insights into lengthy documents, capable of processing 1,000+ pages with parallel analysis pipelines.",
     image1: FullFrame1,
     image2: FullFrame2,
     link: "https://fullfr.me/",
@@ -50,12 +53,14 @@ export const projects: Project[] = [
     tags: ["AI Summarization", "Secure", "Full-Stack"],
     technologies: [
       "React",
-      "Next.js",
-      "TypeScript",
-      "OpenAI API",
-      "Node.js",
-      "PostgreSQL",
-      "AWS",
+      "Context API",
+      "Tailwind CSS",
+      "Django",
+      "LangChain",
+      "Google Maps API",
+      "MongoDB",
+      "GitHub Actions",
+      "Azure",
     ],
     features: [
       "AI-powered script and book summarization",
@@ -78,11 +83,11 @@ export const projects: Project[] = [
       "Optimized API calls and caching strategies",
     ],
     year: "2024",
-    role: "Full-Stack Developer",
+    role: "Full Stack Team Lead",
     problemStatement:
       "Content creators and producers needed a faster way to analyze lengthy scripts and books. Manual reading and analysis was time-consuming, and existing tools lacked the depth needed for character analysis and visual representation.",
     solution:
-      "We developed an AI-powered platform that uses advanced natural language processing to automatically generate comprehensive summaries, extract character details, and create visual representations. The solution combines OpenAI's GPT models with custom algorithms for document processing and image generation.",
+      "DaanFr developed an AI-powered platform that uses advanced natural language processing to automatically generate comprehensive summaries, extract character details, and create visual representations. The solution combines OpenAI's GPT models with custom algorithms for document processing and image generation.",
     process: [
       "Research & Discovery",
       "AI Model Selection & Training",
@@ -94,10 +99,10 @@ export const projects: Project[] = [
       "Deployment & Launch",
     ],
     metrics: [
-      { label: "Processing Speed", value: "10x faster" },
-      { label: "User Satisfaction", value: "4.9/5" },
-      { label: "Accuracy Rate", value: "95%" },
-      { label: "Active Users", value: "5,000+" },
+      { label: "Processing Speed", value: "45% reduction" },
+      { label: "Deployment Time", value: "60% reduction" },
+      { label: "Reliability", value: "50+ zero-downtime releases" },
+      { label: "Scale", value: "1,000+ page docs" },
     ],
     testimonials: [
       {
@@ -110,10 +115,10 @@ export const projects: Project[] = [
     timeline: "6 months",
     relatedProjects: ["develmo-crowdiq", "ai-chreade"],
     keyTakeaways: [
-        "Mastered advanced prompt engineering for complex narrative structures.",
-        "Learned to balance AI creativity with factual accuracy in summaries.",
-        "Deepened understanding of secure document handling in cloud environments.",
-        "Improved skills in visualizing abstract data points into character portraits."
+        "Architected a scalable Django backend and integrated AI-driven analysis pipelines.",
+        "Implemented secure enterprise authentication using Azure AD B2C.",
+        "Established CI/CD pipelines, automated testing, and production deployment workflows.",
+        "Mastered advanced prompt engineering for complex narrative structures."
     ]
   },
   {
@@ -122,7 +127,7 @@ export const projects: Project[] = [
     shortDescription:
       "CrowdIQ turns standard cameras into smart AI analytics tools for real-time people counting, heatmaps, and demographics insights.",
     fullDescription:
-      "CrowdIQ is a cutting-edge computer vision solution that transforms standard cameras into intelligent analytics systems. Using advanced YOLO11x models, the platform provides real-time people counting, generates heatmaps for crowd analysis, and delivers detailed demographics insights. This powerful tool helps businesses understand customer behavior, optimize space utilization, and make data-driven decisions.",
+      "CrowdIQ is a cutting-edge computer vision solution developed by DaanFr that transforms standard cameras into intelligent analytics systems. Using advanced YOLO11x models, the platform provides real-time people counting, generates heatmaps for crowd analysis, and delivers detailed demographics insights. This powerful tool helps businesses understand customer behavior, optimize space utilization, and make data-driven decisions.",
     image1: DevelMo1,
     image2: DevelMo2,
     link: "https://develmo.com/our-products/crowdiq/",
@@ -158,11 +163,11 @@ export const projects: Project[] = [
       "Ensured GDPR compliance with anonymization",
     ],
     year: "2024",
-    role: "Full-Stack Developer & AI Engineer",
+    role: "DaanFr AI & Development Team",
     problemStatement:
       "Businesses needed real-time insights into customer behavior and crowd patterns but existing solutions were expensive, required specialized hardware, and lacked real-time processing capabilities.",
     solution:
-      "We created a computer vision platform that transforms standard cameras into intelligent analytics systems using YOLO11x models. The solution processes video streams in real-time, generates heatmaps, and provides demographics insights without requiring expensive hardware upgrades.",
+      "DaanFr created a computer vision platform that transforms standard cameras into intelligent analytics systems using YOLO11x models. The solution processes video streams in real-time, generates heatmaps, and provides demographics insights without requiring expensive hardware upgrades.",
     process: [
       "Computer Vision Research",
       "YOLO Model Optimization",
@@ -190,10 +195,10 @@ export const projects: Project[] = [
     timeline: "8 months",
     relatedProjects: ["fullframe", "mmken"],
     keyTakeaways: [
-        "Gained expertise in optimizing computer vision models for edge deployment.",
+        "Developed expertise in optimizing computer vision models for edge deployment.",
         "Solved complex challenges in multi-camera synchronization and tracking.",
         "Navigated the complexities of privacy-compliant data collection in public spaces.",
-        "Enhanced ability to visualize real-time spatial data effectively."
+        "Created effective visualizations for real-time spatial data."
     ]
   },
   {
@@ -202,7 +207,7 @@ export const projects: Project[] = [
     shortDescription:
       "A complete digital marketplace with dedicated seller, buyer, and admin portals. Features include product management, order processing, secure payments, CRM, and real-time dashboards.",
     fullDescription:
-      "MMKEN is a comprehensive B2B2C digital marketplace platform that connects sellers, buyers, and administrators through dedicated portals. The platform features robust product management, streamlined order processing, secure payment integration, comprehensive CRM capabilities, and real-time analytics dashboards. Built to handle high transaction volumes, MMKEN provides a seamless experience for all stakeholders in the marketplace ecosystem.",
+      "MMKEN is a comprehensive B2B2C digital marketplace platform developed by DaanFr that connects sellers, buyers, and administrators through dedicated portals. The platform features robust product management, streamlined order processing, secure payment integration, comprehensive CRM capabilities, and real-time analytics dashboards. Built to handle high transaction volumes, MMKEN provides a seamless experience for all stakeholders in the marketplace ecosystem.",
     image1: Walqalum1,
     image2: Walqalum2,
     link: "https://mmken.co/",
@@ -214,7 +219,9 @@ export const projects: Project[] = [
       "PostgreSQL",
       "Redis",
       "Stripe",
-      "AWS",
+      "URWAY",
+      "Zatica",
+      "Alibaba Cloud",
       "Docker",
     ],
     features: [
@@ -240,11 +247,11 @@ export const projects: Project[] = [
       "Designed scalable microservices architecture",
     ],
     year: "2023-2024",
-    role: "Full-Stack Developer & Team Lead",
+    role: "DaanFr Development & Leadership Team",
     problemStatement:
       "The marketplace needed a scalable platform to handle multiple vendors, complex transactions, and real-time inventory management while ensuring secure payments and seamless user experience across different user roles.",
     solution:
-      "We built a comprehensive B2B2C marketplace using microservices architecture with NestJS and React. The solution includes dedicated portals for sellers, buyers, and admins, with Redis for caching, Stripe for payments, and real-time inventory synchronization.",
+      "DaanFr built a comprehensive B2B2C marketplace using microservices architecture with NestJS and React. The solution includes dedicated portals for sellers, buyers, and admins, with Redis for caching, Stripe for payments, and real-time inventory synchronization.",
     process: [
       "Requirements Analysis",
       "System Architecture Design",
@@ -258,10 +265,10 @@ export const projects: Project[] = [
       "Launch & Monitoring",
     ],
     metrics: [
-      { label: "Transaction Volume", value: "$2M+ monthly" },
+      { label: "Adoption Rate", value: "45% improved" },
+      { label: "Response Time", value: "0.6s (from 1.8s)" },
+      { label: "Reconciliation", value: "Automated" },
       { label: "Vendor Count", value: "500+" },
-      { label: "Uptime", value: "99.9%" },
-      { label: "Response Time", value: "< 200ms" },
     ],
     testimonials: [
       {
@@ -274,10 +281,10 @@ export const projects: Project[] = [
     timeline: "12 months",
     relatedProjects: ["fullframe", "develmo-crowdiq"],
     keyTakeaways: [
-        "Led a large development team through a complex full-stack build.",
-        "Architected a highly scalable microservices backend for high-volume transactions.",
-        "Mastered the intricacies of multi-vendor payment flows and financial reconciliation.",
-        "Developed a deep appreciation for user role management and permission hierarchies."
+        "Designed and directed the full-scale redevelopment of MMKEN 2.0.",
+        "Integrated payment and invoice-clearance APIs (URWAY, Zatica).",
+        "Optimized database queries and cache strategies, cutting response time by 66%.",
+        "Delivered a real-time buyer dashboard with analytics and automated notifications."
     ]
   },
   {
@@ -286,9 +293,10 @@ export const projects: Project[] = [
     shortDescription:
       "An Azure-powered image generation tool using DALL·E to create visuals from text prompts, supporting advanced prompt engineering.",
     fullDescription:
-      "AI Chreade is an innovative image generation platform powered by Azure and DALL·E technology. The tool enables users to create stunning visuals from text prompts with support for advanced prompt engineering techniques. Whether for creative projects, marketing materials, or conceptual designs, AI Chreade makes professional image generation accessible and efficient.",
+      "AI Chreade is an innovative image generation platform developed by DaanFr, powered by Azure and DALL·E technology. The tool enables users to create stunning visuals from text prompts with support for advanced prompt engineering techniques. Whether for creative projects, marketing materials, or conceptual designs, AI Chreade makes professional image generation accessible and efficient.",
     image1: AIChreades1,
     image2: AIChreades2,
+    link: "https://image-generator.azurewebsites.net/",
     tags: ["Azure", "Image Gene", "Prompt Engg."],
     technologies: [
       "React",
@@ -320,11 +328,11 @@ export const projects: Project[] = [
       "Created prompt templates and suggestions",
     ],
     year: "2024",
-    role: "Full-Stack Developer",
+    role: "DaanFr Development Team",
     problemStatement:
       "Users needed an accessible way to generate high-quality images from text prompts without technical expertise in prompt engineering, while managing costs and storage efficiently.",
     solution:
-      "We developed an Azure-powered platform that simplifies image generation using DALL·E API with intelligent prompt engineering, request queuing, and Azure Blob Storage for efficient image management. The solution includes a template library and batch processing capabilities.",
+      "DaanFr developed an Azure-powered platform that simplifies image generation using DALL·E API with intelligent prompt engineering, request queuing, and Azure Blob Storage for efficient image management. The solution includes a template library and batch processing capabilities.",
     process: [
       "API Integration Research",
       "Prompt Engineering System",
@@ -345,10 +353,10 @@ export const projects: Project[] = [
     timeline: "4 months",
     relatedProjects: ["fullframe"],
     keyTakeaways: [
-        "Learned to optimize cloud resource costs for generative AI applications.",
+        "Optimized cloud resource costs for generative AI applications.",
         "Built robust asynchronous processing pipelines for long-running tasks.",
-        "Explored the UX challenges of AI-assisted creative tools.",
-        "Deepened knowledge of Azure cloud services and integration patterns."
+        "Addressed the UX challenges of AI-assisted creative tools.",
+        "Leveraged Azure cloud services and integration patterns effectively."
     ]
   },
 ];

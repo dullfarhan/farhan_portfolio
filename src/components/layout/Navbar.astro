@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import logo from "@/assets/logos/logo.svg";
+import logo from "@/assets/logos/daanfr_logo.png";
 import Divider from "../common/Divider.astro";
 import Header from "./Header.astro";
 ---
@@ -8,10 +8,15 @@ import Header from "./Header.astro";
 <div class="flex flex-col gap-[10px] sm:gap-[18px]">
   <Divider />
   <nav>
-    <div class="flex justify-between items-center ">
+    <div class="flex justify-between items-center">
       <div class="flex items-center justify-between space-x-2">
-        <Image src={logo} alt={"Logo"} class="h-6 sm:w-5" loading="eager"/>
-        <span class="text-[12px] sm:text-[14px]">Code by Farhan</span>
+        <Image
+          src={logo}
+          alt={"DaanFr Logo"}
+          class="h-8 sm:w-auto"
+          loading="eager"
+        />
+        <span class="text-[12px] sm:text-[14px] font-medium">DaanFr</span>
       </div>
       <Header />
     </div>

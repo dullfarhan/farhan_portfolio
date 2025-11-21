@@ -18,9 +18,14 @@ if (!project) {
   return Astro.redirect("/404");
 }
 
-const title = `${project.title} | Farhan Portfolio`;
+const title = `${project.title} |  Portfolio`;
 const description = project.fullDescription || project.shortDescription;
-const ogImage = await getImage({ src: project.image1, width: 1200, height: 630, format: "webp" });
+const ogImage = await getImage({
+  src: project.image1,
+  width: 1200,
+  height: 630,
+  format: "webp",
+});
 ---
 
 <Layout>
@@ -32,7 +37,7 @@ const ogImage = await getImage({ src: project.image1, width: 1200, height: 630, 
 <script is:inline define:vars={{ title, description, ogImageUrl: ogImage.src }}>
   // Update page title and meta
   document.title = title;
-  
+
   // Update meta description
   let metaDescription = document.querySelector('meta[name="description"]');
   if (metaDescription) {
@@ -43,21 +48,20 @@ const ogImage = await getImage({ src: project.image1, width: 1200, height: 630, 
     metaDescription.setAttribute("content", description);
     document.head.appendChild(metaDescription);
   }
-  
+
   // Update Open Graph tags
   let ogTitle = document.querySelector('meta[property="og:title"]');
   if (ogTitle) {
     ogTitle.setAttribute("content", title);
   }
-  
+
   let ogDesc = document.querySelector('meta[property="og:description"]');
   if (ogDesc) {
     ogDesc.setAttribute("content", description);
   }
-  
+
   let ogImage = document.querySelector('meta[property="og:image"]');
   if (ogImage) {
     ogImage.setAttribute("content", `https://farhan.info${ogImageUrl}`);
   }
 </script>
-
