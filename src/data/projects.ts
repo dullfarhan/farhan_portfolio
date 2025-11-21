@@ -373,6 +373,7 @@ export const projects: Project[] = [
     image1: StriveFit1,
     image2: StriveFit2,
     tags: ["Fitness", "HealthTech", "SaaS"],
+    link:"https://pricewards-ten.vercel.app/",
     technologies: [
       "Next.js",
       "Tailwind CSS",
@@ -417,6 +418,7 @@ export const projects: Project[] = [
     image1: Pricewards1,
     image2: Pricewards2,
     tags: ["E-commerce", "Fashion", "Marketplace"],
+    link:"https://strive-fit.vercel.app",
     technologies: [
       "Next.js",
       "Tailwind CSS",
