@@ -14,23 +14,60 @@ export interface Props {
   slug?: string;
 }
 
-const { title, description, image1, image2, tags, index, link, slug } = Astro.props;
+const { title, description, image1, image2, tags, index, link, slug } =
+  Astro.props;
 const isFirstIndex = index === 0;
 const detailLink = slug ? `/projects/${slug}` : null;
 ---
 
 <div class="card group relative">
-  {detailLink ? (
-    <a href={detailLink} class="block">
+  {
+    detailLink ? (
+      <a href={detailLink} class="block">
+        <div class="relative w-full max-w-[296px] sm:max-w-[351px] aspect-[4/3]">
+          <Image
+            src={image1}
+            alt={title}
+            widths={[350, 700, 1050]}
+            sizes="(max-width: 640px) 100vw, 350px"
+            format="webp"
+            quality={90}
+            priority={isFirstIndex}
+            loading={isFirstIndex ? "eager" : "lazy"}
+            decoding="async"
+            class={`w-full h-full object-cover rounded-[18px] sm:rounded-[20px] ${
+              !isFirstIndex
+                ? "transition-opacity duration-500 group-hover:opacity-0"
+                : ""
+            }`}
+          />
+          {!isFirstIndex && (
+            <Image
+              src={image2}
+              alt={title}
+              widths={[350, 700, 1050]}
+              sizes="(max-width: 640px) 100vw, 350px"
+              format="webp"
+              quality={90}
+              loading="lazy"
+              decoding="async"
+              class="absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            />
+          )}
+        </div>
+      </a>
+    ) : (
       <div class="relative w-full max-w-[296px] sm:max-w-[351px] aspect-[4/3]">
         <Image
           src={image1}
-          width={350}
-          height={270}
           alt={title}
+          widths={[350, 700, 1050]}
+          sizes="(max-width: 640px) 100vw, 350px"
+          format="webp"
+          quality={90}
+          priority={isFirstIndex}
           loading={isFirstIndex ? "eager" : "lazy"}
           decoding="async"
-          fetchpriority={isFirstIndex ? "high" : "auto"}
           sizes="(min-width: 640px) 351px, 296px"
           class={`w-full h-full object-cover rounded-[18px] sm:rounded-[20px] ${
             !isFirstIndex
@@ -38,40 +75,7 @@ const detailLink = slug ? `/projects/${slug}` : null;
               : ""
           }`}
         />
-        {
-          !isFirstIndex && (
-            <Image
-              src={image2}
-              alt={title}
-              width={350}
-              height={270}
-              loading="lazy"
-              decoding="async"
-              class="absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            />
-          )
-        }
-      </div>
-    </a>
-  ) : (
-    <div class="relative w-full max-w-[296px] sm:max-w-[351px] aspect-[4/3]">
-      <Image
-        src={image1}
-        width={350}
-        height={270}
-        alt={title}
-        loading={isFirstIndex ? "eager" : "lazy"}
-        decoding="async"
-        fetchpriority={isFirstIndex ? "high" : "auto"}
-        sizes="(min-width: 640px) 351px, 296px"
-        class={`w-full h-full object-cover rounded-[18px] sm:rounded-[20px] ${
-          !isFirstIndex
-            ? "transition-opacity duration-500 group-hover:opacity-0"
-            : ""
-        }`}
-      />
-      {
-        !isFirstIndex && (
+        {!isFirstIndex && (
           <Image
             src={image2}
             alt={title}
@@ -81,28 +85,30 @@ const detailLink = slug ? `/projects/${slug}` : null;
             decoding="async"
             class="absolute inset-0 w-full h-full object-cover rounded-[18px] sm:rounded-[20px] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           />
-        )
-      }
-    </div>
-  )}
+        )}
+      </div>
+    )
+  }
 
   <div
     class="flex flex-col gap-[16px] p-0 sm:pr-[10px] sm:pb-[10px] sm:pl-[10px]"
   >
     <div class="flex flex-col gap-[16px]">
       <h3 class="text-[18px] sm:text-[20px] font-semibold">
-        {detailLink ? (
-          <a
-            href={detailLink}
-            class="inline-flex gap-1.5 transition-all duration-200 ease-in-out hover:underline hover:underline-offset-4 hover:decoration-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:rounded-sm"
-          >
-            {title}
-          </a>
-        ) : link ? (
-          <ExternalLink href={link} title={title} />
-        ) : (
-          title
-        )}
+        {
+          detailLink ? (
+            <a
+              href={detailLink}
+              class="inline-flex gap-1.5 transition-all duration-200 ease-in-out hover:underline hover:underline-offset-4 hover:decoration-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:rounded-sm"
+            >
+              {title}
+            </a>
+          ) : link ? (
+            <ExternalLink href={link} title={title} />
+          ) : (
+            title
+          )
+        }
       </h3>
       <p class="leading-[1.2] text-sm sm:text-base">{description}</p>
     </div>

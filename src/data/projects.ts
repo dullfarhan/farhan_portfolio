@@ -7,6 +7,10 @@ import Walqalum1 from "@/assets/images/Walqalum.png";
 import Walqalum2 from "@/assets/images/Walqalum-2.png";
 import AIChreades1 from "@/assets/images/AI-Chreades.png";
 import AIChreades2 from "@/assets/images/AI-Chreades-2.png";
+import Pricewards1 from "@/assets/images/Pricewards1.jpeg";
+import Pricewards2 from "@/assets/images/Pricewards2.jpeg";
+import StriveFit1 from "@/assets/images/StriveFit1.jpeg";
+import StriveFit2 from "@/assets/images/StriveFit2.jpeg";
 import FlowStack from "@/assets/images/FlowStack.png";
 import NovaTech from "@/assets/images/NovaTech.png";
 import ProductLead from "@/assets/images/ProductLead.png";
@@ -358,6 +362,93 @@ export const projects: Project[] = [
         "Addressed the UX challenges of AI-assisted creative tools.",
         "Leveraged Azure cloud services and integration patterns effectively."
     ]
+  },
+  {
+    slug: "strivefit",
+    title: "StriveFit",
+    shortDescription:
+      "Strive Fit is a fitness platform that offers online training sessions, customized workout plans, and professional trainers to help users achieve their goals.",
+    fullDescription:
+      "StriveFit is a comprehensive fitness platform designed to bridge the gap between professional trainers and fitness enthusiasts. It offers personalized workout plans, live interactive training sessions, and progress tracking tools. Whether you're a beginner looking to get started or an athlete aiming for peak performance, StriveFit connects you with the right resources and expertise to achieve your health goals.",
+    image1: StriveFit1,
+    image2: StriveFit2,
+    tags: ["Fitness", "HealthTech", "SaaS"],
+    technologies: [
+      "Next.js",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "MongoDB",
+      "Google API",
+      "WebRTC",
+      "Stripe",
+    ],
+    features: [
+      "Personalized workout plans",
+      "Live 1-on-1 training sessions",
+      "Progress tracking and analytics",
+      "Nutrition planning tools",
+      "Trainer marketplace",
+    ],
+    challenges: [
+      "Real-time video latency for live sessions",
+      "Managing complex recurring schedules",
+      "Scalable video storage for recorded sessions",
+    ],
+    solutions: [
+      "Implemented WebRTC for low-latency streaming",
+      "Built a custom calendar system with timezone support",
+      "Integrated cloud storage with CDN delivery",
+    ],
+    year: "2024",
+    role: "Full Stack Developer",
+    problemStatement:
+      "Finding the right personal trainer and maintaining a consistent workout routine remotely was difficult due to disjointed tools and lack of real-time interaction.",
+    solution:
+      "Developed an all-in-one fitness platform that combines trainer matching, live video sessions, and workout management to create a seamless remote training experience.",
+    relatedProjects: [ "fullframe"],
+  },
+  {
+    slug: "pricewards",
+    title: "Pricewards",
+    shortDescription:
+      "An online marketplace focused on custom clothing offering suits, shirts, coats, and more; using tech-driven sizing for a perfect fit, sustainable one-of-a-kind production, and a wide range of quality fabrics.",
+    fullDescription:
+      "Pricewards is a unique online marketplace dedicated to custom-tailored clothing. It revolutionizes the way people buy suits, shirts, and coats by integrating tech-driven sizing for a perfect fit. The platform focuses on sustainable, made-to-order production, connecting customers with skilled artisans and offering a wide range of premium fabrics.",
+    image1: Pricewards1,
+    image2: Pricewards2,
+    tags: ["E-commerce", "Fashion", "Marketplace"],
+    technologies: [
+      "Next.js",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "MongoDB",
+      "Google API",
+      "Stripe",
+    ],
+    features: [
+      "AI-powered body sizing tool",
+      "Custom garment configurator",
+      "Multi-vendor marketplace for tailors",
+      "Fabric visualization",
+      "Order tracking",
+    ],
+    challenges: [
+      "Accurate remote sizing",
+      "Managing complex product variations (fabrics, cuts, styles)",
+      "Coordinating logistics between customers and multiple vendors",
+    ],
+    solutions: [
+      "Integrated AI sizing API for measurements",
+      "Developed a dynamic product configurator",
+      "Built a robust vendor portal for order management",
+    ],
+    year: "2024",
+    role: "Full Stack Developer",
+    problemStatement:
+      "Buying custom-fitted clothing online was risky due to sizing uncertainties and the lack of a centralized platform for quality tailors.",
+    solution:
+      "Created a tech-enabled marketplace that solves the sizing problem with AI and provides a streamlined platform for ordering custom garments from verified tailors.",
+    relatedProjects: ["mmken"],
   },
 ];
 
