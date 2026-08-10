@@ -4,6 +4,7 @@ import Icon1 from "@/assets/icons/hero-icon-1.svg";
 import Icon2 from "@/assets/icons/hero-icon-2.svg";
 import Icon3 from "@/assets/icons/hero-icon-3.svg";
 import Icon4 from "@/assets/icons/hero-icon-4.svg";
+import Icon5 from "@/assets/icons/hero-icon-5.svg";
 
 const heroIcons = [
   {
@@ -22,21 +23,81 @@ const heroIcons = [
     iconClass: "w-[77.07px] h-[15.98px] sm:w-[131.24px] sm:h-[27.1px]",
   },
   {
+    icon: Icon5,
+    label: "Icon 5",
+    iconClass: "w-[24px] h-[28px] sm:w-[40px] sm:h-[45px]",
+  },
+  {
     icon: Icon4,
     label: "Icon 4",
     iconClass: "w-[70.11px] h-[16.65px] sm:w-[118.9px] sm:h-[28.24px]",
   },
 ];
+
+const group = [...heroIcons, ...heroIcons, ...heroIcons];
+const loop = [...group, ...group];
 ---
 
-<ul class="flex justify-center items-center space-x-2 list-none sm:space-x-4">
-  {
-    heroIcons.map((i) => {
-      return (
-        <li>
-          <Image src={i.icon} alt={i.label} class={i.iconClass} loading="eager"/>
+<div class="hero-marquee w-full overflow-hidden" aria-label="Technology logos">
+  <ul
+    class="hero-marquee-track flex items-center list-none gap-8 sm:gap-12 w-max"
+  >
+    {
+      loop.map((i, index) => (
+        <li
+          class="shrink-0"
+          aria-hidden={index >= heroIcons.length ? "true" : undefined}
+        >
+          <Image
+            src={i.icon}
+            alt={index >= heroIcons.length ? "" : i.label}
+            class={i.iconClass}
+            loading="eager"
+          />
         </li>
-      );
-    })
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  .hero-marquee {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
   }
-</ul>
+
+  .hero-marquee-track {
+    animation: hero-marquee 18s linear infinite;
+  }
+
+  .hero-marquee:hover .hero-marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes hero-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-marquee-track {
+      animation: none;
+    }
+  }
+</style>

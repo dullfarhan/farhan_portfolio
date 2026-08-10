@@ -1,18 +1,42 @@
-<div class="flex justify-center items-center flex-col gap-[20px]">
+<div
+  class="flex justify-center lg:justify-start items-center lg:items-start flex-col gap-[20px]"
+>
   <h6
-    class="bg-surface py-[6px] px-[3px] rounded-[20px] font-normal sm:font-medium text-[10px] sm:text-[14px] md:text-[18px] sm:leading-[34px] leading-[100%] sm:px-[16px] sm:py-[5px] text-center"
+    class="hero-chip py-[6px] px-[3px] rounded-[20px] font-normal sm:font-medium text-[10px] sm:text-[14px] md:text-[18px] sm:leading-[34px] leading-[100%] sm:px-[16px] sm:py-[5px] text-center lg:text-left"
   >
     <span class="gradient-text-vertical px-1 sm:px-0">
       Full-Stack Dev, DevOps & Cloud, AI & ML, Team Leadership
     </span>
   </h6>
-  <h1 class="font-semibold gradient-text-vertical leading-[100%] sm:leading-[55px] md:leading-[110px] mx-0 sm:mx-2">
-    Code that Powers <br class="hidden sm:block md:hidden lg:block">Systems that Last.
+  <h1
+    class="font-semibold gradient-text-vertical leading-[100%] sm:leading-[55px] md:leading-[1.05] mx-0 sm:mx-2 lg:mx-0 text-center lg:text-left text-[36px] sm:text-[56px] md:text-[72px] lg:text-[64px]"
+  >
+    Code that Powers <br class="hidden sm:block" />Systems that Last.
   </h1>
   <p
-    class="font-normal text-center max-w-[282px] sm:max-w-[646px] leading-[1.15] text-[11px] sm:text-[18px]"
+    class="font-normal text-center lg:text-left max-w-[282px] sm:max-w-[520px] leading-[1.15] text-[11px] sm:text-[18px]"
   >
     Crafting seamless web applications with robust backends, intuitive frontends
     and scalable cloud solutions.
   </p>
 </div>
+
+<style>
+  .hero-chip {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    box-shadow:
+      0 8px 32px rgba(12, 19, 28, 0.08),
+      0 1px 0 rgba(255, 255, 255, 0.8) inset,
+      0 -1px 0 rgba(12, 19, 28, 0.04) inset;
+  }
+
+  @supports not (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    .hero-chip {
+      background: rgba(245, 245, 245, 0.92);
+    }
+  }
+</style>
