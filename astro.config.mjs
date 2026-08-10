@@ -7,7 +7,7 @@ import robotsTxt from "astro-robots-txt";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://farhan.info',
+    site: 'https://Daanyal.info',
   integrations: [tailwind(), sitemap(), robotsTxt()],
   experimental: {
     fonts: [
