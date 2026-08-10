@@ -38,21 +38,7 @@ p {
   @apply font-normal text-[14px] leading-[100%] tracking-[0] align-bottom sm:text-[16px];
 }
 
-.dashed-left-right-border {
-  /* height: 100%; */
-  border-left: 2px solid transparent;
-  border-right: 2px solid transparent;
 
-  border-image: repeating-linear-gradient(
-    to bottom,
-    #e8e8e8 0,
-    #e8e8e8 12px,
-    transparent 12px,
-    transparent 24px
-  );
-  border-image-slice: 1;
-  top: 0;
-}
 
 .dashed-line-horizontal {
   height: 1px;
