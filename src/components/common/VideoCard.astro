@@ -1,36 +1,44 @@
 ---
-import poster from "@/assets/images/daan2.jpg";
+import poster from "@/assets/images/daan2.png";
 import { Image } from "astro:assets";
 ---
 
-<div class="max-w-[280px] sm:max-w-[510px] h-[354px] sm:h-[528px] relative">
-  <Image src={poster} alt="poster" class="w-full h-full object-cover rounded-[16px] sm:rounded-[20px]" />
+<div
+  class="w-full lg:flex-1 lg:min-w-0 lg:max-w-[610px] relative aspect-[510/528] lg:aspect-auto"
+>
+  <Image
+    src={poster}
+    alt="poster"
+    loading="lazy"
+    decoding="async"
+    class="w-full h-full object-cover rounded-[16px] sm:rounded-[20px]"
+  />
 </div>
 
 <script is:inline>
-const video = document.getElementById("myVideo");
-const playBtn = document.getElementById("playBtn");
-const playIcon = document.getElementById("playIcon");
+  const video = document.getElementById("myVideo");
+  const playBtn = document.getElementById("playBtn");
+  const playIcon = document.getElementById("playIcon");
 
-const volumeBtn = document.getElementById("volumeBtn");
-const volumeIcon = document.getElementById("volumeIcon");
+  const volumeBtn = document.getElementById("volumeBtn");
+  const volumeIcon = document.getElementById("volumeIcon");
 
-playBtn.addEventListener("click", () => {
-  if (video.paused) {
-    video.play();
-    playIcon.src = "/assets/icons/pause-Icon.svg";
-  } else {
-    video.pause();
+  playBtn.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+      playIcon.src = "/assets/icons/pause-Icon.svg";
+    } else {
+      video.pause();
+      playIcon.src = "/assets/icons/play_arrow_filled.svg";
+    }
+  });
+  volumeBtn.addEventListener("click", () => {
+    video.muted = !video.muted;
+    volumeIcon.src = video.muted
+      ? "/assets/icons/volume-x.svg"
+      : "/assets/icons/volume-max.svg";
+  });
+  video.addEventListener("ended", () => {
     playIcon.src = "/assets/icons/play_arrow_filled.svg";
-  }
-});
-volumeBtn.addEventListener("click", () => {
-  video.muted = !video.muted;
-  volumeIcon.src = video.muted
-    ? "/assets/icons/volume-x.svg"
-    : "/assets/icons/volume-max.svg";
-});
-video.addEventListener("ended", () => {
-  playIcon.src = "/assets/icons/play_arrow_filled.svg";
-});
+  });
 </script>

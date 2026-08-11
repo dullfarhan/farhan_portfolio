@@ -5,6 +5,7 @@ import Footer from "../components/layout/Footer.astro";
 import { Font } from "astro:assets";
 import { getImage } from "astro:assets";
 import FullFrame1 from "@/assets/images/FullFrame.png";
+import logoFavicon from "@/assets/logos/logo.webp";
 
 // Precompute the primary LCP candidate image (first project card)
 const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, height: 270, format: "webp" });
@@ -17,7 +18,7 @@ const firstProjectLcpImage = await getImage({ src: FullFrame1, width: 350, heigh
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="icon" type="image/svg+xml" href="/assets/logos/logo.svg" />
+    <link rel="icon" type="image/webp" href={logoFavicon.src} />
     <title>Daanyal Memon | Full-Stack Developer & Google Cloud Lead</title>
     <meta
       name="description"
