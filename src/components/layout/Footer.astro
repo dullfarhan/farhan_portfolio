@@ -19,7 +19,7 @@ const homeLinks = [
 >
   <!-- Mobile: stacked & centered. Desktop: 3-col with sections truly centered -->
   <div
-    class="grid w-full grid-cols-1 gap-[20px] sm:gap-[16px] md:grid-cols-[1fr_auto_1fr] md:items-center"
+    class="w-full md:items-center flex  justify-around gap-[16px] sm:gap-[24px]"
   >
     <!-- Logo + year -->
     <div
@@ -54,33 +54,5 @@ const homeLinks = [
         ))
       }
     </nav>
-
-    <!-- Credits -->
-    {
-      !isUpworkBuild ? (
-        <div class="flex flex-wrap items-center justify-center gap-x-1 text-center text-[12px] sm:text-[14px] leading-[18px] text-textSecondary md:justify-end md:justify-self-end md:text-right">
-          <span>Designed by&nbsp;</span>
-          <a
-            href="https://www.linkedin.com/in/saif-ullah-khan-740178228/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-bold underline text-textPrimary"
-          >
-            Saif Ullah Khan
-          </a>
-          <span class="font-bold text-textPrimary">&nbsp;&&nbsp;</span>
-          <a
-            href="https://www.linkedin.com/in/areeba-rahila-memon/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-bold underline text-textPrimary"
-          >
-            Areeba (Rahila) Memon
-          </a>
-        </div>
-      ) : (
-        <div class="hidden md:block" aria-hidden="true" />
-      )
-    }
   </div>
 </footer>
