@@ -12,6 +12,13 @@ body {
   scrollbar-width: thin;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+[id] {
+  scroll-margin-top: 100px;
+}
+
 h1 {
   @apply text-[40px] text-center md:text-[96px];
 }
