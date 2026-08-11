@@ -11,7 +11,8 @@ export default {
         tertiaryBg: "#00D1E8",
       },
       screens: {
-        xl: "1600px",
+        xl: "1340px",
+        xxl: "1600px",
       },
     },
   },

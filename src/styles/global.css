@@ -12,6 +12,13 @@ body {
   scrollbar-width: thin;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+[id] {
+  scroll-margin-top: 100px;
+}
+
 h1 {
   @apply text-[40px] text-center md:text-[96px];
 }
@@ -38,21 +45,7 @@ p {
   @apply font-normal text-[14px] leading-[100%] tracking-[0] align-bottom sm:text-[16px];
 }
 
-.dashed-left-right-border {
-  /* height: 100%; */
-  border-left: 2px solid transparent;
-  border-right: 2px solid transparent;
 
-  border-image: repeating-linear-gradient(
-    to bottom,
-    #e8e8e8 0,
-    #e8e8e8 12px,
-    transparent 12px,
-    transparent 24px
-  );
-  border-image-slice: 1;
-  top: 0;
-}
 
 .dashed-line-horizontal {
   height: 1px;
@@ -96,7 +89,7 @@ p {
 .card {
   @apply gap-[20px] rounded-[20px] p-[12px] sm:p-[10px] bg-surface flex flex-col 
   hover:shadow-[2px_1px_15px_rgba(0,0,0,0.25)] transition-shadow duration-300
-   sm:max-w-[370px] max-w-[320px] ;
+   sm:max-w-[438px] max-w-[320px] ;
 }
 .connect-about-btn {
   @apply px-[12px] py-[8px] sm:px-[16px] sm:py-[12px] rounded-[12px] 

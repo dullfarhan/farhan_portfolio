@@ -39,7 +39,7 @@ const superPowers = [
 ];
 ---
 
-<section>
+<section id="skills" class="mb-[20px] sm:mb-[40px]">
   <div class="flex flex-col gap-[20px]">
     <div class="flex justify-center flex-col gap-[12px] sm:gap-[16px]">
       <div class="flex justify-center items-center gap-[8px] sm:gap-[16px]">
@@ -58,9 +58,8 @@ const superPowers = [
       </p>
     </div>
 
-    <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[21px] xl:gap-[24px]">
+    <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[21px] xxl:gap-[24px]">
       {superPowers.map((power) => <SuperPowerCard {...power} />)}
     </div>
   </div>
 </section>
-<Divider />

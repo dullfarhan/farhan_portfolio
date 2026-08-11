@@ -9,76 +9,258 @@ import Walqalum1 from "@/assets/images/Walqalum.png";
 import Walqalum2 from "@/assets/images/Walqalum-2.png";
 import AIChreades1 from "@/assets/images/AI-Chreades.png";
 import AIChreades2 from "@/assets/images/AI-Chreades-2.png";
+import Pricewards1 from "@/assets/images/Pricewards1.jpeg";
+import Pricewards2 from "@/assets/images/Pricewards2.jpeg";
+import StriveFit1 from "@/assets/images/StriveFit1.jpeg";
+import StriveFit2 from "@/assets/images/StriveFit2.jpeg";
 import DrawLines from "@/assets/icons/drawingLines.svg";
 import ProjectCard from "../common/ProjectCard.astro";
 import Divider from "../common/Divider.astro";
+
+const categories = ["All", "AI", "Marketplace", "SaaS"] as const;
 
 const projects = [
   {
     title: "FullFrame",
     description:
-      "A secure AI-powered tool that generates fast summaries of scripts and books, enhanced with deep character description and visualized headshots/scenes.",
+      "FullFrame uses AI to read screenplays and books in minutes, producing the professional coverage reports that used to take days. It enables executives to evaluate 10x more content, ensuring no hit is missed while maintaining rigorous enterprise security standards.",
     image1: FullFrame1,
     image2: FullFrame2,
     link: "https://fullfr.me/",
-    tags: ["AI Summarization", "Secure", "Full-Stack"],
+    category: "AI",
+    tags: ["AI Coverage", "SaaS", "LangChain"],
   },
   {
     title: "DevelMo - CrowdIQ",
     description:
-      "CrowdIQ turns standard cameras into smart AI analytics tools for real-time people counting, heatmaps, and demographics insights.",
+      "CrowdIQ turns standard cameras into intelligent AI analytics tools for real-time people counting, heatmaps, and demographic insights. Utilizing YOLO11x, it empowers businesses to optimize space, improve flow, and make informed decisions with spatial data.",
     image1: DevelMo1,
     image2: DevelMo2,
     link: "https://develmo.com/our-products/crowdiq/",
+    category: "AI",
     tags: ["Comp. Vision", "YOLO11x", "Analytics"],
   },
   {
     title: "MMKEN",
     description:
-      "A complete digital marketplace with dedicated seller, buyer, and admin portals. Features include product management, order processing, secure payments, CRM, and real-time dashboards.",
+      "A multi-sided online marketplace for Saudi buyers and verified sellers of products, services, franchises, and investment opportunities with built-in deal negotiation, government integrations (Nafath, Wathq, Absher), and a full CRM for platform operators.",
     image1: Walqalum1,
     image2: Walqalum2,
     link: "https://mmken.co/",
-    tags: ["B2B2C",  "Secure Payments", "Multi-Vendor"],
+    category: "Marketplace",
+    tags: ["B2B2C Marketplace", "FinTech", "CRM"],
+  },
+  {
+    title: "Pricewards",
+    description:
+      "Pricewards is a tech-enabled marketplace for custom clothing, offering premium suits and shirts with a focus on sustainable production. By integrating AI-powered sizing and fabric visualization, it ensures a perfect fit for one-of-a-kind garments every time.",
+    image1: Pricewards1,
+    image2: Pricewards2,
+    category: "Marketplace",
+    tags: ["E-commerce", "Fashion", "Marketplace"],
   },
   {
     title: "AI Chreade",
     description:
-      "An Azure-powered image generation tool using DALL·E to create visuals from text prompts, supporting advanced prompt engineering.",
+      "AI Chreade is an Azure-powered platform utilizing DALL·E to create stunning visuals from text. Supporting advanced prompt engineering, it enables users to generate various variations, batch process images, and manage creative conceptual designs efficiently.",
     image1: AIChreades1,
     image2: AIChreades2,
-    tags: [ "Azure", "Image Gene", "Prompt Engg."],
+    category: "AI",
+    tags: ["Azure", "Image Gene", "Prompt Engg."],
+  },
+  {
+    title: "StriveFit",
+    description:
+      "StriveFit is a health platform connecting users with professional trainers for live 1-on-1 sessions and custom workout plans. It combines real-time video streaming with nutrition planning and progress analytics to create a seamless personal training experience.",
+    image1: StriveFit1,
+    image2: StriveFit2,
+    category: "SaaS",
+    tags: ["Fitness", "HealthTech", "SaaS"],
   },
 ];
 ---
 
-<section class="flex flex-col gap-[20px] sm:gap-[32px]">
-  <div
-    class="flex flex-col justify-center items-center gap-[4px] sm:gap-[13px]"
-  >
-    <h2 class="relative">
-      <span class="inline-block">
-        Selected
-        <Image
-          src={DrawLines}
-          alt="underline"
-          class="-translate-x-2 sm:-translate-x-5 sm:translate-y-[0.2rem] w-[100px] h-[15px] sm:w-[207px]"
-        />
-      </span>
-      <span>Projects</span>
-    </h2>
+<section class="flex flex-col gap-[20px] sm:gap-[32px] mb-[20px] sm:mb-[40px]" id="projects">
+  <div class="flex flex-wrap flex-col xl:flex-row justify-between gap-[24px]">
+    <div class="flex flex-col gap-[4px] justify-center items-center xl:items-start sm:gap-[13px]">
+      <h2 class="relative text-center xl:text-left">
+        <span class="inline-block">
+          Selected
+          <Image
+            src={DrawLines}
+            alt="underline"
+            class="-translate-x-2 sm:-translate-x-5 sm:translate-y-[0.2rem] w-[100px] h-[15px] sm:w-[207px]"
+          />
+        </span>
+        <span>Projects</span>
+      </h2>
 
-    <h5 class="text-center w-[256px] sm:w-auto">
-      Every dev has their origin story — here are mine.
-    </h5>
+      <h5 class="w-[256px] sm:w-auto text-center xl:text-left">
+        Every dev has their origin story — here are mine.
+      </h5>
+    </div>
+
+    <div
+      class="flex gap-[12px] flex-wrap sm:items-center justify-center xl:justify-between sm:gap-[16px]"
+    >
+      <div
+        class="flex flex-wrap gap-[8px] sm:gap-[10px]"
+        role="group"
+        aria-label="Project categories"
+      >
+        {
+          categories.map((category) => (
+            <button
+              type="button"
+              data-filter={category}
+              class:list={[
+                "project-filter-chip text-[12px] sm:text-[14px] font-normal px-[12px] py-[8px] rounded-full leading-[100%] transition-colors duration-200",
+                category === "All" && "is-active",
+              ]}
+            >
+              {category}
+            </button>
+          ))
+        }
+      </div>
+
+      <label class="relative w-[240px] sm:shrink-0">
+        <span class="sr-only">Search projects</span>
+        <svg
+          class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-textSecondary"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input
+          id="project-search"
+          type="search"
+          placeholder="Search projects…"
+          autocomplete="off"
+          class="project-search-input w-full rounded-full border-0 bg-surface px-[12px] py-[8px] pl-[36px] text-[12px] sm:text-[14px] text-textPrimary placeholder:text-textSecondary/60 outline-none ring-0 transition-shadow duration-200 focus:shadow-[0_0_0_2px_theme(colors.textPrimary)]"
+        />
+      </label>
+    </div>
   </div>
 
-  <div class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px]">
+  <div
+    id="projects-grid"
+    class="flex flex-wrap justify-center gap-[20px] sm:gap-[24px]"
+  >
     {
       projects.map((project, index) => (
         <ProjectCard index={index} {...project} />
       ))
     }
   </div>
+
+  <p
+    id="projects-empty"
+    class="projects-empty text-center text-textSecondary text-sm sm:text-base"
+  >
+    No projects match your filters.
+  </p>
 </section>
-<Divider />
+
+<style>
+  .project-filter-chip {
+    background-color: #f5f5f5;
+    color: #0c131c;
+  }
+
+  .project-filter-chip:hover {
+    background-color: #e8e8e8;
+  }
+
+  .project-filter-chip.is-active,
+  .project-filter-chip.is-active:hover {
+    background-color: #0c131c;
+    color: #ffffff;
+  }
+
+  /* .card sets display:flex after Tailwind utilities, so .hidden loses */
+  :global(.project-card.is-filtered-out) {
+    display: none !important;
+  }
+
+  .projects-empty {
+    display: none;
+  }
+
+  .projects-empty.is-visible {
+    display: block;
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    function initProjectFilters() {
+      const section = document.getElementById("projects");
+      if (!section || section.dataset.filtersReady === "1") return;
+      section.dataset.filtersReady = "1";
+
+      const chips = section.querySelectorAll(".project-filter-chip");
+      const cards = section.querySelectorAll(".project-card");
+      const search = document.getElementById("project-search");
+      const empty = document.getElementById("projects-empty");
+      let activeCategory = "All";
+
+      function applyFilters() {
+        const query = ((search && search.value) || "").trim().toLowerCase();
+        let visible = 0;
+
+        cards.forEach(function (card) {
+          const category = card.getAttribute("data-category") || "";
+          const haystack = [
+            card.getAttribute("data-title") || "",
+            card.getAttribute("data-description") || "",
+            card.getAttribute("data-tags") || "",
+            category,
+          ]
+            .join(" ")
+            .toLowerCase();
+
+          const matchesCategory =
+            activeCategory === "All" || category === activeCategory;
+          const matchesSearch = !query || haystack.indexOf(query) !== -1;
+          const show = matchesCategory && matchesSearch;
+
+          card.classList.toggle("is-filtered-out", !show);
+          if (show) visible += 1;
+        });
+
+        if (empty) {
+          empty.classList.toggle("is-visible", visible === 0);
+        }
+      }
+
+      chips.forEach(function (chip) {
+        chip.addEventListener("click", function () {
+          activeCategory = chip.getAttribute("data-filter") || "All";
+          chips.forEach(function (c) {
+            c.classList.toggle("is-active", c === chip);
+          });
+          applyFilters();
+        });
+      });
+
+      if (search) {
+        search.addEventListener("input", applyFilters);
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initProjectFilters);
+    } else {
+      initProjectFilters();
+    }
+  })();
+</script>

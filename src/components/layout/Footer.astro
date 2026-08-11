@@ -1,48 +1,58 @@
 ---
-import Divider from "../common/Divider.astro";
+import { Image } from "astro:assets";
+import logo from "@/assets/logos/logo.webp";
+
 const isUpworkBuild = import.meta.env.VITE_BUILD_TYPE === "UPWORK";
+const year = new Date().getFullYear();
+
+const homeLinks = [
+  { href: "#home", label: "Home" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
+  { href: "#about", label: "About" },
+  { href: "#contact", label: "Contact" },
+];
 ---
 
-<div class="flex flex-col gap-[20px] sm:gap-[18px]">
-  <Divider />
-  <footer>
+<footer
+  class=" flex flex-col items-center gap-[20px] sm:gap-[24px] lg:px-[21px] py-12"
+>
+  <!-- Mobile: stacked & centered. Desktop: 3-col with sections truly centered -->
+  <div
+    class="w-full md:items-center flex  justify-around gap-[16px] sm:gap-[24px]"
+  >
+    <!-- Logo + year -->
     <div
-      class="flex flex-col-reverse md:flex-row justify-between gap-[20px] items-center lg:px-[21px] font-normal"
+      class="flex items-center gap-[10px] sm:gap-[12px]"
     >
-      <p class="text-[10px] sm:text-[14px]">© 2025 All rights reserved</p>
-      {
-        !isUpworkBuild && (
-          <div class="block sm:flex justify-center items-center text-center sm:text-left">
-            <p class="leading-[18px] text-[12px] sm:text-[14px]">
-              Designed by&nbsp;
-            </p>
-
-            <span class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]">
-              <a
-                href="https://www.linkedin.com/in/saif-ullah-khan-740178228/"
-                target="_blank"
-              >
-                Saif Ullah Khan
-              </a>
-            </span>
-
-            <>
-              <span class="text-[12px] sm:text-[14px] font-bold leading-[18px]">
-                &nbsp;&&nbsp;
-              </span>
-              <span class="font-bold underline leading-[18px] text-[12px] sm:text-[14px]">
-                <a
-                  href="https://www.linkedin.com/in/areeba-rahila-memon/"
-                  target="_blank"
-                >
-                  Areeba (Rahila) Memon
-                </a>
-              </span>
-            </>
-          </div>
-        )
-      }
+      <a href="#home" class="shrink-0" aria-label="Home">
+        <Image
+          src={logo}
+          alt="Logo"
+          class="h-6 w-6"
+          loading="lazy"
+        />
+      </a>
+      <p class="text-[10px] sm:text-[14px] text-textSecondary">
+        © {year} All rights reserved
+      </p>
     </div>
-  </footer>
-  <Divider />
-</div>
+
+    <!-- Sections — centered -->
+    <nav
+      class="flex flex-wrap items-center justify-center gap-x-[14px] gap-y-[8px] sm:gap-x-[20px] md:justify-self-center"
+      aria-label="Home sections"
+    >
+      {
+        homeLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-[12px] sm:text-[14px] font-medium text-textSecondary transition-colors duration-200 hover:text-textPrimary"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</footer>
